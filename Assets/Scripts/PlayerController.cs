@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private float moveInput;
+    public Boundaries boundaries;
     private GameStateManager.GameStates currentGameState;
     public float maxSpeed = 10f;    
     public float acceleration = 10f;
@@ -30,8 +31,19 @@ public class PlayerController : MonoBehaviour
         moveInput = playerMovement.ReadValue<float>(); // reading the 1D axis value
     }
     void FixedUpdate() {
+        float halfWidth = boundaries.currentWidth / 2; // boundaries
+        float leftEdge = boundaries.currentCenter - halfWidth;
+        float rightEdge = boundaries.currentCenter + halfWidth;
+
         Vector2 targetVelocity = new Vector2(moveInput * maxSpeed, playerRb.linearVelocity.y);
-        playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+        playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration);
+
+        float clampedX = Mathf.Clamp(transform.position.x, leftEdge, rightEdge); // Clamping player position within river boundaries
+        
+        if (transform.position.x != clampedX) { // Updating position if the player actually hit the boundary
+            transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+            playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocity.y); // Zeroing out the X velocity so the player doesn't push against the wall
+        }
     }
     void OnAttack() {
         Debug.Log("Attack triggered");
