@@ -187,7 +187,7 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 2D Vector
+    - m_Name: A and S
       m_Id: 06fce053-c6c9-4418-bc44-530823a12c49
       m_Path: 1DAxis
       m_Interactions: 
@@ -211,7 +211,7 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Player Movement
       m_Flags: 8
-    - m_Name: 2D Vector
+    - m_Name: K and L
       m_Id: 30e10f7d-50a7-48d0-8e8f-da24a0ecda71
       m_Path: 1DAxis
       m_Interactions: 
@@ -221,7 +221,7 @@ MonoBehaviour:
       m_Flags: 4
     - m_Name: negative
       m_Id: 2356188b-d3e6-4a05-a2bc-8f0ed0e7f671
-      m_Path: <Keyboard>/leftArrow
+      m_Path: <Keyboard>/k
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -229,7 +229,7 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: positive
       m_Id: 688b2c90-fc6d-4c94-a2d6-e4c25a08bcbf
-      m_Path: <Keyboard>/rightArrow
+      m_Path: <Keyboard>/l
       m_Interactions: 
       m_Processors: 
       m_Groups: 
