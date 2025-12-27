@@ -6,7 +6,7 @@ public class Boundaries : MonoBehaviour {
     public float shiftAmount = 1.5f; // How far it can move left/right
     
     void Start() {
-        InvokeRepeating("UpdateRiverPath", 1f, 1f); // Runs every 1 second
+        InvokeRepeating("UpdateRiverPath", 0.2f, 0.2f); // Runs every 0.2 seconds
     }
 
     void UpdateRiverPath() {
