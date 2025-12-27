@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private float moveInput;
+    private GameStateManager.GameStates currentGameState;
     public float maxSpeed = 10f;    
     public float acceleration = 10f;
     public InputAction playerMovement;
@@ -34,5 +35,17 @@ public class PlayerController : MonoBehaviour
     }
     void OnAttack() {
         Debug.Log("Attack triggered");
+        currentGameState = GameStateManager.Instance.CheckGameState();
+        // if (currentGameState != GameStateManager.GameStates.Playing) {
+        //     return; // do not attack if not in playing state
+        // }
+        if (currentGameState == GameStateManager.GameStates.MainMenu) {
+            Debug.Log("In main menu, switching now");
+            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        }
+        else if (currentGameState == GameStateManager.GameStates.Playing) {
+            Debug.Log("In playing state, switching now");
+            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.MainMenu);
+        }
     }
 }
