@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class Boundaries : MonoBehaviour {
     public float currentCentre = 0f;
-    public float targetCentre = 0f;
     public float currentWidth = 15f;
+
+    public float targetCentre = 0f;
+    public float targetWidth = 15f;
+
+    public float minWidth = 10f; // Minimum width of the river
+    public float maxWidth = 18f; // Maximum width of the river
     public float shiftAmount = 2f; // How far it can move left/right per update (rn its one second)
     public float smoothSpeed = 3f; // How quickly the boundary smoothly moves to the target position
     
@@ -13,12 +18,14 @@ public class Boundaries : MonoBehaviour {
 
     void CalculateNewPath() {
         targetCentre = Random.Range(-shiftAmount, shiftAmount);
+        targetWidth = Random.Range(minWidth, maxWidth);
         // targetCentre = Mathf.Clamp(targetCentre, -5f, 5f); // Keeping the centre within a certain range so it doesn't leave the screen
-        Debug.Log("River center updated to: " + targetCentre + ", width: " + currentWidth);  
+        Debug.Log("River center updated to: " + targetCentre + ", width: " + targetWidth);  
     }
 
     void Update() {
         currentCentre = Mathf.Lerp(currentCentre, targetCentre, Time.deltaTime * smoothSpeed);
+        currentWidth = Mathf.Lerp(currentWidth, targetWidth, Time.deltaTime * smoothSpeed);
     }
 
     void OnDrawGizmos() {
