@@ -6,9 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private float moveInput;
-    public Boundaries boundaries;
+    public BoundaryManager boundaries;
+    public BoundaryGeneration boundaryGenerator;
     private GameStateManager.GameStates currentGameState;
-    public float maxSpeed = 10f;    
+    public float maxSpeed = 10f;
     public float acceleration = 10f;
     public InputAction playerMovement;
     public InputAction playerAttack;
@@ -31,9 +32,11 @@ public class PlayerController : MonoBehaviour
         moveInput = playerMovement.ReadValue<float>(); // reading the 1D axis value
     }
     void FixedUpdate() {
-        float halfWidth = boundaries.currentWidth / 2; // boundaries
-        float leftEdge = boundaries.currentCentre - halfWidth;
-        float rightEdge = boundaries.currentCentre + halfWidth;
+        float currentRiverCenter = boundaryGenerator.centreQueue.Peek(); // Peek gets the first item without removing it
+        float currentRiverWidth = boundaryGenerator.widthQueue.Peek();
+
+        float leftEdge = currentRiverCenter - (currentRiverWidth / 2);
+        float rightEdge = currentRiverCenter + (currentRiverWidth / 2);
 
         Vector2 targetVelocity = new Vector2(moveInput * maxSpeed, playerRb.linearVelocity.y);
         playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
