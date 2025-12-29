@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BoundaryGeneration : MonoBehaviour {
     public BoundaryManager boundaries;
-    public int nodesOnScreen = 20; // How many "steps" ahead we calculate
+    public int nodesOnScreen = 10; // How many "steps" ahead we calculate
     public float stepDistance = 2f; // Vertical distance between each node
     
     public Queue<float> centreQueue = new Queue<float>(); // using a queue because the FIFO principle is effective here

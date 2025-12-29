@@ -31,6 +31,7 @@ public class BoundaryManager : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
+        if (boundaryGeneration.centreQueue.Count == 0 || boundaryGeneration.widthQueue.Count == 0) return; // Avoid errors if the queue is empty
         float currentRiverCenter = boundaryGeneration.centreQueue.Peek(); // Peek gets the first item without removing it
         float currentRiverWidth = boundaryGeneration.widthQueue.Peek();
         Gizmos.color = Color.green;
@@ -41,6 +42,15 @@ public class BoundaryManager : MonoBehaviour {
         // Drawing the right edge
         Vector3 right = new Vector3(currentRiverCenter + (currentRiverWidth / 2), 0, 0);
         Gizmos.DrawRay(right + Vector3.up * 10, Vector3.down * 20);
+
+        Gizmos.color = Color.black;
+        // Drawing the left edge
+        Vector3 left2 = new Vector3(currentCentre - (currentWidth / 2), 0, 0);
+        Gizmos.DrawRay(left2 + Vector3.up * 10, Vector3.down * 20);
+
+        // Drawing the right edge
+        Vector3 right2 = new Vector3(currentCentre + (currentWidth / 2), 0, 0);
+        Gizmos.DrawRay(right2 + Vector3.up * 10, Vector3.down * 20);
     }
 }
 // this script works in real time, and updates the boundary when the player is already there.
