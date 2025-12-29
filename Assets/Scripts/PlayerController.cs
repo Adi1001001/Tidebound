@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate() {
         float halfWidth = boundaries.currentWidth / 2; // boundaries
-        float leftEdge = boundaries.currentCenter - halfWidth;
-        float rightEdge = boundaries.currentCenter + halfWidth;
+        float leftEdge = boundaries.currentCentre - halfWidth;
+        float rightEdge = boundaries.currentCentre + halfWidth;
 
         Vector2 targetVelocity = new Vector2(moveInput * maxSpeed, playerRb.linearVelocity.y);
         playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Attack triggered");
         currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState != GameStateManager.GameStates.Playing) {
+            Debug.Log("Cannot attack, game not in playing state");
             return; // do not attack if not in playing state
         }
     }
