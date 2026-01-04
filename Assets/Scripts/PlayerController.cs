@@ -5,31 +5,31 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    private float moveInput;
+    private Vector2 moveInput;
     public BoundaryManager boundaries;
     public BoundaryGeneration boundaryGenerator;
     private GameStateManager.GameStates currentGameState;
     public float maxSpeed = 10f;
     public float acceleration = 10f;
     public InputAction playerMovement;
-    public InputAction playerAttack;
+    public InputAction playerAbility;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
-        playerAttack.performed += ctx => OnAttack(); // when attack button (d/j) is pressed, call the function
+        playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
     }
 
     void OnEnable() {
         playerMovement.Enable();
-        playerAttack.Enable();
+        playerAbility.Enable();
     } void OnDisable() {
         playerMovement.Disable();
-        playerAttack.Disable();
+        playerAbility.Disable();
     }
 
     void Update() {
-        moveInput = playerMovement.ReadValue<float>(); // reading the 1D axis value
+        moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
     }
     void FixedUpdate() {
         float currentRiverCenter = boundaryGenerator.centreQueue.Peek(); // Peek gets the first item without removing it
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         float leftEdge = currentRiverCenter - (currentRiverWidth / 2);
         float rightEdge = currentRiverCenter + (currentRiverWidth / 2);
 
-        Vector2 targetVelocity = new Vector2(moveInput * maxSpeed, playerRb.linearVelocity.y);
+        Vector2 targetVelocity = new Vector2(moveInput.x * maxSpeed, moveInput.y * maxSpeed);
         playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
 
         float clampedX = Mathf.Clamp(transform.position.x, leftEdge, rightEdge); // Clamping player position within river boundaries
@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
             playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocity.y); // Zeroing out the X velocity so the player doesn't push against the wall
         }
     }
-    void OnAttack() {
-        Debug.Log("Attack triggered");
+    void OnAbility() {
+        Debug.Log("Ability triggered");
         currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState != GameStateManager.GameStates.Playing) {
-            Debug.Log("Cannot attack, game not in playing state");
-            return; // do not attack if not in playing state
+            Debug.Log("Cannot use ability, game not in playing state");
+            return; // do not use ability if not in playing state
         }
     }
 }
