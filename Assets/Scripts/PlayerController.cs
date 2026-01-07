@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -12,19 +13,27 @@ public class PlayerController : MonoBehaviour
     public float acceleration = 10f;
     public InputAction playerMovement;
     public InputAction playerAbility;
+    public InputAction playerPause;
+    public InputAction tempCountdown;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
+        playerPause.performed += ctx => OnPause();
+        tempCountdown.performed += ctx => OnTempCountdown();
     }
 
     void OnEnable() {
         playerMovement.Enable();
         playerAbility.Enable();
+        playerPause.Enable();
+        tempCountdown.Enable();
     } void OnDisable() {
         playerMovement.Disable();
         playerAbility.Disable();
+        playerPause.Disable();
+        tempCountdown.Disable();
     }
 
     void Update() {
@@ -46,9 +55,28 @@ public class PlayerController : MonoBehaviour
     void OnAbility() {
         Debug.Log("Ability triggered");
         currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Playing) {
-            Debug.Log("Cannot use ability, game not in playing state");
-            return; // do not use ability if not in playing state
+        if (currentGameState != GameStateManager.GameStates.Playing && currentGameState != GameStateManager.GameStates.Racing) {
+            Debug.Log("Cannot use ability, game not in playing/racing state");
+            return;
+        }
+    }
+    void OnPause() {
+        Debug.Log("Pause triggered");
+        currentGameState = GameStateManager.Instance.CheckGameState();
+        if (currentGameState == GameStateManager.GameStates.Paused) {
+            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        } else {
+            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
+        }
+    }
+    void OnTempCountdown() {
+        Debug.Log("Temp Countdown triggered");
+        GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
+        TimerManager timerManager = FindFirstObjectByType<TimerManager>();
+        if (timerManager != null) {
+            timerManager.StartCountdown();
+        } else {
+            Debug.LogWarning("TimerManager not found in the scene.");
         }
     }
 }
