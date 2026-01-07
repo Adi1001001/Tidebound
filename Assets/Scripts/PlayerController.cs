@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
-    public GameObject pauseMenuUI;
 
     void Start()
     {
@@ -48,13 +47,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Pause triggered");
         currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState == GameStateManager.GameStates.Paused) {
-            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
-            Time.timeScale = 1f;
-            pauseMenuUI.SetActive(false);
+            LevelManager.Instance.ResumeGame();
         } else {
-            GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
-            Time.timeScale = 0f;
-            pauseMenuUI.SetActive(true);
+            LevelManager.Instance.PauseGame();
         }
     }
     void OnTempCountdown() {
