@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
+    public GameObject pauseMenuUI;
 
     void Start()
     {
@@ -35,23 +36,6 @@ public class PlayerController : MonoBehaviour
         playerPause.Disable();
         tempCountdown.Disable();
     }
-
-    void Update() {
-        moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
-    }
-    void FixedUpdate() {
-        Vector2 targetVelocity = new Vector2(moveInput.x * maxSpeed, moveInput.y * maxSpeed);
-        playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
-
-        float leftEdge = boundaries.leftEdge; // Peek gets the first item without removing it
-        float rightEdge = boundaries.rightEdge;
-        float clampedX = Mathf.Clamp(transform.position.x, leftEdge, rightEdge); // Clamping player position within river boundaries
-        
-        if (transform.position.x != clampedX) { // Updating position if the player actually hit the boundary
-            transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
-            playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocity.y); // Zeroing out the X velocity so the player doesn't push against the wall
-        }
-    }
     void OnAbility() {
         Debug.Log("Ability triggered");
         currentGameState = GameStateManager.Instance.CheckGameState();
@@ -65,8 +49,12 @@ public class PlayerController : MonoBehaviour
         currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState == GameStateManager.GameStates.Paused) {
             GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+            Time.timeScale = 1f;
+            pauseMenuUI.SetActive(false);
         } else {
             GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
+            Time.timeScale = 0f;
+            pauseMenuUI.SetActive(true);
         }
     }
     void OnTempCountdown() {
@@ -77,6 +65,22 @@ public class PlayerController : MonoBehaviour
             timerManager.StartCountdown();
         } else {
             Debug.LogWarning("TimerManager not found in the scene.");
+        }
+    }
+    void Update() { // the movement
+        moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
+    }
+    void FixedUpdate() {
+        Vector2 targetVelocity = new Vector2(moveInput.x * maxSpeed, moveInput.y * maxSpeed);
+        playerRb.linearVelocity = Vector2.MoveTowards(playerRb.linearVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+
+        float leftEdge = boundaries.leftEdge;
+        float rightEdge = boundaries.rightEdge;
+        float clampedX = Mathf.Clamp(transform.position.x, leftEdge, rightEdge); // Clamping player position within river boundaries (might be redundant with physics colliders later on)
+        
+        if (transform.position.x != clampedX) { // Updating position if the player actually hit the boundary
+            transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+            playerRb.linearVelocity = new Vector2(0, playerRb.linearVelocity.y); // Zeroing out the X velocity so the player doesn't push against the wall
         }
     }
 }
