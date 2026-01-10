@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public Slider speedBar;
     public Image speedBarFill;
+    private Vector3 barOrigin;
+    private bool originSaved = false;
 
     void Start()
     {
@@ -130,8 +132,18 @@ public class PlayerController : MonoBehaviour
             speedColor = Color.Lerp(Color.yellow, Color.red, (speedPercent - 0.5f) * 2f);
         }
 
-        if (speedPercent > 0.9f) { // shake effect at high speeds
-            speedBar.transform.localPosition += (Vector3)Random.insideUnitCircle * 0.5f;
+        if (speedPercent > 0.9f) { // shake effect when going very fast
+            if (!originSaved) {
+                barOrigin = speedBar.transform.localPosition;
+                originSaved = true;
+            }
+
+            Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f; // calculating offset from starting position
+            speedBar.transform.localPosition = barOrigin + shakeOffset;
+        } 
+        else if (originSaved) { // when we slow down return to original position
+            speedBar.transform.localPosition = barOrigin;
+            originSaved = false;
         }
 
         speedText.text = "Speed: " + (currentSpeed * speedMultiplier).ToString("F0"); // applying colour now
