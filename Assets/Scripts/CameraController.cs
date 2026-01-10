@@ -11,11 +11,6 @@ public class CameraController : MonoBehaviour
             target = FindFirstObjectByType<PlayerController>().transform; // finding the player
         }
         cam = GetComponent<Camera>();
-        
-        // // Ensure camera is orthographic for 2D games
-        // if (cam != null) {
-        //     cam.orthographic = true;
-        // }
     }
 
     void LateUpdate() // this function happens after all the other update calls
