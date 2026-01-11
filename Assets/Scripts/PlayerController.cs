@@ -25,9 +25,12 @@ public class PlayerController : MonoBehaviour
     public Image speedBarFill;
     private Vector3 barOrigin;
     private bool originSaved = false;
+    public float slowDuration = 1f;
+    public float slowFactor = 0.5f;
+    private float slowTimer = 0f;
+    private bool isSlowed = false;
 
-    void Start()
-    {
+    void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
@@ -73,13 +76,16 @@ public class PlayerController : MonoBehaviour
         }
     }
     void Update() { // the movement
+        if (isSlowed) { // slow timer countdown
+            slowTimer -= Time.deltaTime;
+            if (slowTimer <= 0)  {
+                isSlowed = false;
+            }
+        }
         moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
         if (speedText != null) {
-                // .magnitude gives us the raw speed value
-                float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier;
-                
-                // "F0" removes decimals (e.g., 10 instead of 10.245)
-                speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS";
+                float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier; // .magnitude gives us the raw speed value
+                speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS"; // "F0" removes decimals
             }
     }
     void FixedUpdate() {
@@ -95,6 +101,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ApplyForwardForce() {
+        if (isSlowed) return; // cannot move while slowed
         // moving forward
         if (moveInput.y > 0) {
             playerRb.AddRelativeForce(Vector2.up * accelerationForce);
@@ -152,5 +159,13 @@ public class PlayerController : MonoBehaviour
         if (speedBarFill != null) {
             speedBarFill.color = speedColor;
         }
+    }
+    public void GetSlowed()  {
+        if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
+
+        isSlowed = true;
+        slowTimer = slowDuration;
+        
+        playerRb.linearVelocity *= slowFactor; // slow down immediately
     }
 }

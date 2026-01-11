@@ -14,7 +14,7 @@ public class TimerManager : MonoBehaviour {
     void Update() {
         currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState != GameStateManager.GameStates.Racing) {
-            Debug.Log("Cannot show timer when not in racing state");
+            // Debug.Log("Cannot show timer when not in racing state");
             return;
         }
     }
