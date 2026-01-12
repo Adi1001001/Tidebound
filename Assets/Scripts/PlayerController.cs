@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour
     public Image speedBarFill;
     private Vector3 barOrigin;
     private bool originSaved = false;
-    public float slowDuration = 1f;
-    public float slowFactor = 0.5f;
     private float slowTimer = 0f;
     private bool isSlowed = false;
 
@@ -160,7 +158,7 @@ public class PlayerController : MonoBehaviour
             speedBarFill.color = speedColor;
         }
     }
-    public void GetSlowed()  {
+    public void GetSlowed(float slowDuration, float slowFactor) {
         if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
 
         isSlowed = true;
