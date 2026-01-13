@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class Currents : MonoBehaviour {
     public float pushForce = 10f;
+    private Rigidbody2D playerRb;
+    private CameraController cameraController;
+    private PlayerController playerController;
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Player has entered a current!");
+            playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            cameraController = FindFirstObjectByType<CameraController>();
+            playerController = FindFirstObjectByType<PlayerController>();
+            playerController.inCurrent = true;
 
-            // float tiltInDegrees = transform.eulerAngles.z;
-            // Debug.Log("The current tilt is: " + tiltInDegrees);
-
-            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (playerRb != null) {
                 playerRb.AddForce(transform.up * pushForce); // you have to adjust the direction of the current in unity
+                cameraController.CurrentExtraLead();
             }
         }
     }

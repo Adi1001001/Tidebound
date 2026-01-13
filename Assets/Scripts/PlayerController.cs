@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool originSaved = false;
     private float slowTimer = 0f;
     private bool isSlowed = false;
+    [HideInInspector] public bool inCurrent = false;
 
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddRelativeForce(Vector2.down * reverseForce); // reversing
             }
         }
+        if (inCurrent) return; // ignore speed limit when in current
         playerRb.linearVelocity = Vector2.ClampMagnitude(playerRb.linearVelocity, maxSpeed); // clamp speed
     }
 
