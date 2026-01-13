@@ -19,7 +19,7 @@ public class Currents : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player")) {
             if (playerRb != null) {
                 playerRb.AddForce(transform.up * pushForce); // you have to adjust the direction of the current in unity
-                cameraController.CurrentExtraLead();
+                cameraController.CameraShake();
             }
         }
     }

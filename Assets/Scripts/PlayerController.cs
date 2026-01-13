@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
                 originSaved = true;
             }
 
-            Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f; // calculating offset from starting position
+            Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f;
             speedBar.transform.localPosition = barOrigin + shakeOffset;
         } 
         else if (originSaved) { // when we slow down return to original position

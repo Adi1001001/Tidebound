@@ -1998,6 +1998,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: -10}
   leadAmount: 1.5
   smoothSpeed: 5
+  shakeIntensity: 0.07
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

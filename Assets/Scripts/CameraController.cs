@@ -3,17 +3,16 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Transform playerTransform;
-    private Rigidbody2D playerRb;
     private PlayerController playerController;
     [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // Offset from the playerTransform
     public float leadAmount = 1.5f;
     public float smoothSpeed = 5.0f;
+    public float shakeIntensity = 0.07f;
 
     void Start() {
         if (playerTransform == null) {
             playerController = FindFirstObjectByType<PlayerController>();
             playerTransform = playerController.transform; // finding the player
-            playerRb = playerTransform.GetComponent<Rigidbody2D>();
         }
     }
 
@@ -26,11 +25,11 @@ public class CameraController : MonoBehaviour
         transform.position = desiredPosition;
     }
 
-    public void CurrentExtraLead() {
-        Debug.Log("Current extra lead activated");
-        Vector3 leadOffset = playerRb.linearVelocity.normalized * leadAmount;
-        Vector3 playerTransformPosition = playerTransform.position + offset + leadOffset;
-
-        transform.position = Vector3.Lerp(transform.position, playerTransformPosition, smoothSpeed * Time.deltaTime);
+    public void CameraShake() {
+        if (playerTransform == null) return;
+        if (playerController.inCurrent == false) return;
+        Debug.Log("Shaking Camera!!!");
+        Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * shakeIntensity;
+        transform.localPosition = playerTransform.position + offset + shakeOffset;
     }
 }
