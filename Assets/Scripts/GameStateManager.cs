@@ -27,6 +27,6 @@ public class GameStateManager : MonoBehaviour {
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        currentGameState = GameStates.MainMenu; // default state
+        currentGameState = GameStates.Playing; // default state (change to main menu eventually)
     }
 }

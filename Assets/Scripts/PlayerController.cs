@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
+    // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelerationForce = 25f;
     public float rotationSpeed = 150f;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
+        // enterRace.performed += ctx => OnRaceClick();
     }
 
     void OnEnable() {
@@ -41,11 +43,13 @@ public class PlayerController : MonoBehaviour
         playerAbility.Enable();
         playerPause.Enable();
         tempCountdown.Enable();
+        // enterRace.Enable();
     } void OnDisable() {
         playerMovement.Disable();
         playerAbility.Disable();
         playerPause.Disable();
         tempCountdown.Disable();
+        // enterRace.Disable();
     }
     void OnAbility() {
         Debug.Log("Ability triggered");
@@ -74,6 +78,10 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("TimerManager not found in the scene.");
         }
     }
+    // void OnRaceClick() {
+    //     if ()
+    //     Debug.Log("Enter Race triggered");
+    // }
     void Update() { // the movement
         if (isSlowed) { // slow timer countdown
             slowTimer -= Time.deltaTime;

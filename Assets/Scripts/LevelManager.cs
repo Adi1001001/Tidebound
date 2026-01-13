@@ -32,8 +32,8 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void ToMainMenu() { // going back to the main menu without losing all of the save data.
-        SceneManager.LoadScene("Main Menu");
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.MainMenu);
+        SceneManager.LoadScene("Main Menu");
     }
     public void LoadSceneByName(string sceneName) {
         Debug.Log("LOADING SCENE: " + sceneName);
