@@ -1,6 +1,5 @@
 // in order to activate the timer, when the game enters a racing level it will call the countdown and then the timer will auto start (make sure to change states once countdown timer is done)
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -8,15 +7,31 @@ using UnityEngine.SceneManagement;
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
+    private float elapsedTime = 0f;
+    [HideInInspector] public bool isTimerRunning = false;
     Dictionary<string, float> timeValues = new Dictionary<string, float>
-    {{"Race1", 20.0f}, {"Race2", 24.5f}, {"Race3", 35.5f}, {"Race4", 20.5f}, {"Race5", 40.0f}};
+    {{"SampleRaceScene", 10.0f}, {"Race1", 20.0f}, {"Race2", 24.5f}, {"Race3", 35.5f}, {"Race4", 20.5f}, {"Race5", 40.0f}};
     int countdown = 3;
+    private float raceTime;
 
     void Update() {
-        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Racing) {
-            // Debug.Log("Cannot show timer when not in racing state");
-            return;
+        if (isTimerRunning) {
+            Debug.Log("Timer Running");
+            elapsedTime += Time.deltaTime;
+            DisplayTime(elapsedTime);
         }
+    }
+    void DisplayTime(float timeToDisplay) {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        float milliSeconds = timeToDisplay % 1 * 100;
+
+        if (elapsedTime <= raceTime) {
+            timerDisplay.color = Color.green;
+        } else {
+            timerDisplay.color = Color.red;
+        }
+        timerDisplay.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliSeconds); // "00:00:00" format
     }
     public void StartCountdown() {
         if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Countdown) {
@@ -28,7 +43,9 @@ public class TimerManager : MonoBehaviour {
     public void StartRaceTimer() {
         timerDisplay.gameObject.SetActive(true);
         string currentRace = SceneManager.GetActiveScene().name.ToString();
-        float raceTime = timeValues[currentRace];
+        raceTime = timeValues[currentRace];
+        elapsedTime = 0f;
+        isTimerRunning = true;
     }
     System.Collections.IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
