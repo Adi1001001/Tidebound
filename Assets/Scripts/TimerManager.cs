@@ -3,28 +3,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
-    List<float> timer = new List<float> {20.0f, 24.5f, 35.5f, 20.5f, 40.0f};
+    Dictionary<string, float> timeValues = new Dictionary<string, float>
+    {{"Race1", 20.0f}, {"Race2", 24.5f}, {"Race3", 35.5f}, {"Race4", 20.5f}, {"Race5", 40.0f}};
     int countdown = 3;
-    private GameStateManager.GameStates currentGameState;
 
     void Update() {
-        currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Racing) {
+        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Racing) {
             // Debug.Log("Cannot show timer when not in racing state");
             return;
         }
     }
     public void StartCountdown() {
-        currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Countdown) {
+        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Countdown) {
             Debug.Log("Cannot show countdown timer when not in countdown state");
             return;
         }
         StartCoroutine(CountdownCoroutine());
+    }
+    public void StartRaceTimer() {
+        timerDisplay.gameObject.SetActive(true);
+        string currentRace = SceneManager.GetActiveScene().name.ToString();
+        float raceTime = timeValues[currentRace];
     }
     System.Collections.IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
@@ -37,7 +41,10 @@ public class TimerManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         countdownDisplay.text = "";
         countdownDisplay.gameObject.SetActive(false); // getting rid of the countdown text afterwards
+        countdown = 3;
+
         // Start the timer here
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
+        StartRaceTimer();
     }
 }

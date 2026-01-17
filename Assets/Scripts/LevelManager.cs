@@ -40,6 +40,10 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
     public void PauseGame() {
+        if (GameStateManager.Instance.CheckGameState() == GameStateManager.GameStates.MainMenu
+        || GameStateManager.Instance.CheckGameState() == GameStateManager.GameStates.Countdown) {
+            return;
+        }
         Time.timeScale = 0f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
         pauseMenuUI.SetActive(true);
