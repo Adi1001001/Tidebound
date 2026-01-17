@@ -17,7 +17,9 @@ public class MaxSpeedManager : MonoBehaviour {
         }
     }
 
-    public float GetCurrentMaxSpeed() {
-        return currentMaxSpeed;
+    public float GetCurrentMaxSpeed() { // and reset speed
+        float maxSpeed = currentMaxSpeed;
+        currentMaxSpeed = 0f; // reset for next race
+        return maxSpeed;
     }
 }
