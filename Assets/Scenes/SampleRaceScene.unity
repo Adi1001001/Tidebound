@@ -1283,9 +1283,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ControlsBackButton
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: CloseControls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1557,9 +1557,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ResumeGame
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: ToOverworld
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1690,8 +1690,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
         m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   speedText: {fileID: 1691639375}
   speedBar: {fileID: 892470034}
   speedBarFill: {fileID: 412948890}
+  canMove: 1
   inCurrent: 0
 --- !u!212 &437848671
 SpriteRenderer:
@@ -2469,7 +2470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542409004}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: ---EVERYTHING ELSE---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2487,12 +2488,7 @@ Transform:
   m_LocalPosition: {x: 0.84513, y: -0.24212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2145876069}
-  - {fileID: 2084637032}
-  - {fileID: 1075734965}
-  - {fileID: 2114355358}
-  - {fileID: 2139412673}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549627917
@@ -2578,9 +2574,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: ControlsButton
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: OpenControls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2640,6 +2636,8 @@ GameObject:
   - component: {fileID: 582309335}
   - component: {fileID: 582309334}
   - component: {fileID: 582309333}
+  - component: {fileID: 582309337}
+  - component: {fileID: 582309338}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2734,6 +2732,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &582309337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582309332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89664729704e4c4c990588441f32ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonControls
+--- !u!114 &582309338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582309332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca54d940dd9894349ad23d832a14e586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIConnector
+  pausePanel: {fileID: 783896603}
+  racePanel: {fileID: 801431485}
+  volumePanel: {fileID: 1088773024}
+  controlsPanel: {fileID: 202696425}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,10 +3065,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadSceneByName
-        m_Mode: 5
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: ToOverworld
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3963,9 +3989,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: VolumeBackButton
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: CloseVolumeSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4898,6 +4924,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039354863}
   m_CullTransparentMesh: 1
+--- !u!1 &1047607279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047607280}
+  m_Layer: 0
+  m_Name: ---MANAGERS---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1047607280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047607279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.84513, y: -0.24212, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068211630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,9 +5038,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: VolumeButton
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: OpenVolumeSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5209,11 +5266,11 @@ Transform:
   m_GameObject: {fileID: 1075734963}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.84513, y: 2.68394, z: 0}
+  m_LocalPosition: {x: 0, y: 2.44182, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 542409004}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088773024
 GameObject:
@@ -8971,9 +9028,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145876070}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: RestartCurrentScene
+      - m_Target: {fileID: 582309337}
+        m_TargetAssemblyTypeName: ButtonControls, Assembly-CSharp
+        m_MethodName: RestartRace
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9207,50 +9264,6 @@ Transform:
   - {fileID: 69082565}
   m_Father: {fileID: 719489956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2084637030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2084637032}
-  - component: {fileID: 2084637031}
-  m_Layer: 0
-  m_Name: GameStateManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2084637031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084637030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0a4a9cc8f64914d808ce12bb3a76fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStates
---- !u!4 &2084637032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084637030}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.84513, y: 0.24212, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 542409004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114355356
 GameObject:
   m_ObjectHideFlags: 0
@@ -9293,11 +9306,11 @@ Transform:
   m_GameObject: {fileID: 2114355356}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5002499, y: 2.68394, z: 0}
+  m_LocalPosition: {x: 1.34538, y: 2.44182, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 542409004}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2122706274
 GameObject:
@@ -9462,12 +9475,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139412672}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.84513, y: -0.24212, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 542409004}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2139412674
 MonoBehaviour:
@@ -9490,54 +9503,6 @@ MonoBehaviour:
   bestTimeText: {fileID: 1680725157}
   successRaceResultText: {fileID: 1256454124}
   failedRaceResultText: {fileID: 1218711117}
---- !u!1 &2145876068
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2145876069}
-  - component: {fileID: 2145876070}
-  m_Layer: 0
-  m_Name: LevelManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2145876069
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145876068}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 294.39255, y: 289.6903, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 542409004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2145876070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145876068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1da07d66944084f45884fb843e543f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  pauseMenuUI: {fileID: 783896603}
-  raceUI: {fileID: 801431485}
-  volumeUI: {fileID: 1088773024}
-  controlsUI: {fileID: 202696425}
 --- !u!1 &2146533683
 GameObject:
   m_ObjectHideFlags: 0
@@ -9680,6 +9645,10 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1047607280}
+  - {fileID: 1075734965}
+  - {fileID: 2114355358}
+  - {fileID: 2139412673}
   - {fileID: 542409004}
   - {fileID: 519420032}
   - {fileID: 619394802}

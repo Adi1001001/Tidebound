@@ -7,9 +7,9 @@ public class GameStateManager : MonoBehaviour {
     public enum GameStates {
         MainMenu,
         Playing, // overworld gameplay
-        Racing, // in race 
-        PreRace, // character selection
-        Countdown, // countdown
+        Racing,
+        CharacterSelect,
+        Countdown,
         NPC, // interacting with NPCs
         Paused,
         GameOver // death screen

@@ -5,12 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 161abaf020836df4ab22282ef46161ef
   - enabled: 1
     path: Assets/Scenes/Overworld.unity
     guid: f61f5bb63848a284ea021990332a428b
+  - enabled: 1
+    path: Assets/Scenes/Character Select.unity
+    guid: e368832b8fca62e48b5cef3170441480
   - enabled: 1
     path: Assets/Scenes/SampleRaceScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
