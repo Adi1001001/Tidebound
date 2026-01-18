@@ -6,10 +6,12 @@ public class TeleportManager : MonoBehaviour {
     public InputAction enterRace;
     private Collider2D teleportCollider;
     private HoverableInteract hoverableInteract;
+    private RaceManager raceManager;
     void Start() {
         enterRace.performed += ctx => OnRaceClick();
         teleportCollider = GetComponent<Collider2D>();
         hoverableInteract = GetComponent<HoverableInteract>();
+        raceManager = FindFirstObjectByType<RaceManager>();
     }
     void OnEnable() {
         enterRace.Enable();
@@ -32,6 +34,7 @@ public class TeleportManager : MonoBehaviour {
             Debug.Log("Player is at the teleport point. Teleporting to race start.");
             GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing); // actually supposed to go to the character select state. will create new function to go to the character select screen and also save the race it is going to.
             LevelManager.Instance.LoadSceneByName(teleportTag);
+            raceManager.StartRace();
         }
     }
 }

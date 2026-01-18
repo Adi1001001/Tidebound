@@ -1,22 +1,52 @@
 using UnityEngine;
+using TMPro;
 
-public class FinishRace : MonoBehaviour
+public class RaceManager : MonoBehaviour
 {
     private TimerManager timerManager;
     private MaxSpeedManager maxSpeedManager;
+    private PlayerController playerController;
+    public GameObject RaceEndUI;
+    public GameObject RaceUI;
+    public TMP_Text elapsedTimeText;
+    public TMP_Text requiredTimeText;
+    public TMP_Text timeDifferenceText;
+    public TMP_Text topSpeedText;
+    public TMP_Text bestTimeText;
+    public TMP_Text successRaceResultText;
+    public TMP_Text failedRaceResultText;
     
     void Start() {
         timerManager = FindFirstObjectByType<TimerManager>();
         maxSpeedManager = FindFirstObjectByType<MaxSpeedManager>();
+        playerController = FindFirstObjectByType<PlayerController>();
     }
 
-    void StartRace() {
+    public void StartRace() { // add the feature to restart a race by pressing a button laters
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
         timerManager.StartCountdown();
     }
-    // void FinishRace()
-    // {
+    public void FinishRace() { // also add the best time feature later when you have the saves ready
+        float elapsedTime = timerManager.GetTimerValues().Item1;
+        float requiredTime = timerManager.GetTimerValues().Item2;
+        float topSpeed = maxSpeedManager.GetCurrentMaxSpeed();
+        topSpeed *= playerController.speedMultiplier;
+        timerManager.StopRaceTimer();
 
-    //     topSpeed = maxSpeedManager.GetCurrentMaxSpeed();
-    // }
+        RaceEndUI.SetActive(true);
+        RaceUI.SetActive(false);
+
+        if (elapsedTime <= requiredTime) {
+            successRaceResultText.gameObject.SetActive(true);
+            failedRaceResultText.gameObject.SetActive(false);
+        } else {
+            successRaceResultText.gameObject.SetActive(false);
+            failedRaceResultText.gameObject.SetActive(true);
+        }
+
+        elapsedTimeText.text = elapsedTime.ToString();
+        requiredTimeText.text = requiredTime.ToString();
+        timeDifferenceText.text = (elapsedTime - requiredTime).ToString();
+        topSpeedText.text = topSpeed.ToString();
+    }
 }

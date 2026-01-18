@@ -12,7 +12,7 @@ public class TimerManager : MonoBehaviour {
     Dictionary<string, float> timeValues = new Dictionary<string, float>
     {{"SampleRaceScene", 10.0f}, {"Race1", 20.0f}, {"Race2", 24.5f}, {"Race3", 35.5f}, {"Race4", 20.5f}, {"Race5", 40.0f}};
     int countdown = 3;
-    private float raceTime;
+    private float requiredTime;
 
     void Update() {
         if (isTimerRunning) {
@@ -26,7 +26,7 @@ public class TimerManager : MonoBehaviour {
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         float milliSeconds = timeToDisplay % 1 * 100;
 
-        if (elapsedTime <= raceTime) {
+        if (elapsedTime <= requiredTime) {
             timerDisplay.color = Color.green;
         } else {
             timerDisplay.color = Color.red;
@@ -43,9 +43,17 @@ public class TimerManager : MonoBehaviour {
     public void StartRaceTimer() {
         timerDisplay.gameObject.SetActive(true);
         string currentRace = SceneManager.GetActiveScene().name.ToString();
-        raceTime = timeValues[currentRace];
-        elapsedTime = 0f;
+        requiredTime = timeValues[currentRace];
         isTimerRunning = true;
+    }
+    public (float, float) GetTimerValues() {
+        return (elapsedTime, requiredTime);
+    }
+    public void StopRaceTimer() {
+        isTimerRunning = false;
+        elapsedTime = 0f;
+        timerDisplay.gameObject.SetActive(false);
+        requiredTime = 0f;
     }
     System.Collections.IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
