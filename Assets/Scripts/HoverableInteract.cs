@@ -12,6 +12,7 @@ public class HoverableInteract : MonoBehaviour {
     }
     void OnTriggerExit2D(Collider2D collision) {
         isHovering = false;
+        if (textUI != null)
         textUI.SetActive(false);
     }
 }

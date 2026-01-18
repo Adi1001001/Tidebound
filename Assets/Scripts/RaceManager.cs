@@ -20,9 +20,11 @@ public class RaceManager : MonoBehaviour
         timerManager = FindFirstObjectByType<TimerManager>();
         maxSpeedManager = FindFirstObjectByType<MaxSpeedManager>();
         playerController = FindFirstObjectByType<PlayerController>();
+        StartRace();
     }
 
     public void StartRace() { // add the feature to restart a race by pressing a button laters
+        Debug.Log("STARTING RACE");
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
         timerManager.StartCountdown();
     }

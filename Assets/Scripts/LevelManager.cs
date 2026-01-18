@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject raceUI;
     public GameObject volumeUI;
     public GameObject controlsUI;
-    private RaceManager raceManager;
+    // private RaceManager raceManager;
     void Awake() {
         if (Instance != null && Instance != this) { // making it a singleton
             Destroy(gameObject);
@@ -57,8 +57,8 @@ public class LevelManager : MonoBehaviour {
     public void ToRaceScene() {
         string raceTag = DataCarrier.Instance.nextRaceTag;
         SceneManager.LoadScene(raceTag);
-        raceManager = FindFirstObjectByType<RaceManager>();
-        raceManager.StartRace();
+        // raceManager = FindFirstObjectByType<RaceManager>();
+        // raceManager.StartRace();
     }
     public void LoadSceneByName(string sceneName) {
         Debug.Log("LOADING SCENE: " + sceneName);
