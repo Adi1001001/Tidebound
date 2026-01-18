@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
+    private PlayerController playerController;
     private float elapsedTime = 0f;
     [HideInInspector] public bool isTimerRunning = false;
     Dictionary<string, float> timeValues = new Dictionary<string, float>
@@ -14,6 +15,9 @@ public class TimerManager : MonoBehaviour {
     int countdown = 3;
     private float requiredTime;
 
+    void Start() {
+        playerController = FindFirstObjectByType<PlayerController>();
+    }
     void Update() {
         if (isTimerRunning) {
             Debug.Log("Timer Running");
@@ -41,6 +45,7 @@ public class TimerManager : MonoBehaviour {
         StartCoroutine(CountdownCoroutine());
     }
     public void StartRaceTimer() {
+        playerController.canMove = true;
         timerDisplay.gameObject.SetActive(true);
         string currentRace = SceneManager.GetActiveScene().name.ToString();
         requiredTime = timeValues[currentRace];
@@ -57,6 +62,7 @@ public class TimerManager : MonoBehaviour {
     }
     System.Collections.IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
+        playerController.canMove = false;
         while (countdown > 0) {
             countdownDisplay.text = countdown.ToString(); // displaying the countdown number
             yield return new WaitForSeconds(1f);

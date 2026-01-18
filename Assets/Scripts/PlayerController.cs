@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private bool originSaved = false;
     private float slowTimer = 0f;
     private bool isSlowed = false;
+    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
 
     void Start() {
@@ -89,7 +90,12 @@ public class PlayerController : MonoBehaviour
                 isSlowed = false;
             }
         }
-        moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
+        if (canMove) {
+            moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
+        } else {
+            Debug.Log("Player cannot move");
+            moveInput = Vector2.zero;
+        }
         if (speedText != null) {
                 float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier; // .magnitude gives us the raw speed value
                 speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS"; // "F0" removes decimals

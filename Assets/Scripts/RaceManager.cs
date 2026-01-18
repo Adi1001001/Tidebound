@@ -27,6 +27,7 @@ public class RaceManager : MonoBehaviour
         timerManager.StartCountdown();
     }
     public void FinishRace() { // also add the best time feature later when you have the saves ready
+        playerController.canMove = false;
         float elapsedTime = timerManager.GetTimerValues().Item1;
         float requiredTime = timerManager.GetTimerValues().Item2;
         float topSpeed = maxSpeedManager.GetCurrentMaxSpeed();
