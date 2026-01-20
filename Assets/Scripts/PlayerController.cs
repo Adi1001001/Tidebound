@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
+    public InputAction retryLevel;
     // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelerationForce = 25f;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
+        retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
         // enterRace.performed += ctx => OnRaceClick();
     }
 
@@ -44,12 +46,14 @@ public class PlayerController : MonoBehaviour
         playerAbility.Enable();
         playerPause.Enable();
         tempCountdown.Enable();
+        retryLevel.Enable();
         // enterRace.Enable();
     } void OnDisable() {
         playerMovement.Disable();
         playerAbility.Disable();
         playerPause.Disable();
         tempCountdown.Disable();
+        retryLevel.Disable();
         // enterRace.Disable();
     }
     void OnAbility() {

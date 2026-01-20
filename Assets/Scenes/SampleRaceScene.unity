@@ -1984,6 +1984,23 @@ MonoBehaviour:
       m_Action: Temp Countdown
       m_Flags: 0
     m_Flags: 0
+  retryLevel:
+    m_Name: Retry Level
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9e90d719-b40d-4765-b3bf-42fc48f14364
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 9ec37131-678d-4309-bc7f-4f68a1d418e4
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Retry Level
+      m_Flags: 0
+    m_Flags: 0
   driftFactor: 0.8
   accelerationForce: 25
   rotationSpeed: 150
