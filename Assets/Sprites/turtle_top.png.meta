@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1b14427eec69b7343932a6a2a1aabca2
+guid: 7b347fc7a72a47c4f87f9699cccf4bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8769063626959350581
-    second: pixellab-a-cartoon-stylised-shark--1768950178484_0
+      213: -4758977764724364232
+    second: turtle_top_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixellab-a-cartoon-stylised-shark--1768950178484_0
+      name: turtle_top_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 37
-        width: 82
-        height: 69
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc41a4e77170e4680800000000000000
-      internalID: -8769063626959350581
+      spriteID: 83c2f97efe6b4fdb0800000000000000
+      internalID: -4758977764724364232
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pixellab-a-cartoon-stylised-shark--1768950178484_0: -8769063626959350581
+      turtle_top_0: -4758977764724364232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

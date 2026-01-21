@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isSlowed = false;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
-
+    [HideInInspector] public int selectedCharacterIndex = 0;
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
@@ -62,6 +62,12 @@ public class PlayerController : MonoBehaviour
         if (currentGameState != GameStateManager.GameStates.Playing && currentGameState != GameStateManager.GameStates.Racing) {
             Debug.Log("Cannot use ability, game not in playing/racing state");
             return;
+        }
+        AbilityManager abilityManager = FindFirstObjectByType<AbilityManager>();
+        if (abilityManager != null) {
+            abilityManager.UseAbility(selectedCharacterIndex);
+        } else {
+            Debug.LogWarning("AbilityManager not found in the scene.");
         }
     }
     void OnPause() {
