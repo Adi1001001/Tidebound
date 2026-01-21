@@ -1,33 +1,68 @@
 // in order to activate the timer, when the game enters a racing level it will call the countdown and then the timer will auto start (make sure to change states once countdown timer is done)
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
-    List<float> timer = new List<float> {20.0f, 24.5f, 35.5f, 20.5f, 40.0f};
+    private PlayerController playerController;
+    private float elapsedTime = 0f;
+    [HideInInspector] public bool isTimerRunning = false;
+    Dictionary<string, float> timeValues = new Dictionary<string, float>
+    {{"SampleRaceScene", 10.0f}, {"Race1", 20.0f}, {"Race2", 24.5f}, {"Race3", 35.5f}, {"Race4", 20.5f}, {"Race5", 40.0f}};
     int countdown = 3;
-    private GameStateManager.GameStates currentGameState;
+    private float requiredTime;
 
+    void Start() {
+        playerController = FindFirstObjectByType<PlayerController>();
+    }
     void Update() {
-        currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Racing) {
-            Debug.Log("Cannot show timer when not in racing state");
-            return;
+        if (isTimerRunning) {
+            Debug.Log("Timer Running");
+            elapsedTime += Time.deltaTime;
+            DisplayTime(elapsedTime);
         }
     }
+    void DisplayTime(float timeToDisplay) {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        float milliSeconds = timeToDisplay % 1 * 100;
+
+        if (elapsedTime <= requiredTime) {
+            timerDisplay.color = Color.green;
+        } else {
+            timerDisplay.color = Color.red;
+        }
+        timerDisplay.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliSeconds); // "00:00:00" format
+    }
     public void StartCountdown() {
-        currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Countdown) {
+        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Countdown) {
             Debug.Log("Cannot show countdown timer when not in countdown state");
             return;
         }
         StartCoroutine(CountdownCoroutine());
     }
+    public void StartRaceTimer() {
+        playerController.canMove = true;
+        timerDisplay.gameObject.SetActive(true);
+        string currentRace = SceneManager.GetActiveScene().name.ToString();
+        requiredTime = timeValues[currentRace];
+        isTimerRunning = true;
+    }
+    public (float, float) GetTimerValues() {
+        return (elapsedTime, requiredTime);
+    }
+    public void StopRaceTimer() {
+        isTimerRunning = false;
+        elapsedTime = 0f;
+        timerDisplay.gameObject.SetActive(false);
+        requiredTime = 0f;
+    }
     System.Collections.IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
+        playerController.canMove = false;
         while (countdown > 0) {
             countdownDisplay.text = countdown.ToString(); // displaying the countdown number
             yield return new WaitForSeconds(1f);
@@ -37,7 +72,10 @@ public class TimerManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         countdownDisplay.text = "";
         countdownDisplay.gameObject.SetActive(false); // getting rid of the countdown text afterwards
+        countdown = 3;
+
         // Start the timer here
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
+        StartRaceTimer();
     }
 }

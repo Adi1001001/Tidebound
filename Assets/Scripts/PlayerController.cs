@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
+    public InputAction retryLevel;
+    // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelerationForce = 25f;
     public float rotationSpeed = 150f;
@@ -25,13 +27,18 @@ public class PlayerController : MonoBehaviour
     public Image speedBarFill;
     private Vector3 barOrigin;
     private bool originSaved = false;
-
-    void Start()
-    {
+    private float slowTimer = 0f;
+    private bool isSlowed = false;
+    [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool inCurrent = false;
+    [HideInInspector] public int selectedCharacterIndex = 0;
+    void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
+        retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
+        // enterRace.performed += ctx => OnRaceClick();
     }
 
     void OnEnable() {
@@ -39,11 +46,15 @@ public class PlayerController : MonoBehaviour
         playerAbility.Enable();
         playerPause.Enable();
         tempCountdown.Enable();
+        retryLevel.Enable();
+        // enterRace.Enable();
     } void OnDisable() {
         playerMovement.Disable();
         playerAbility.Disable();
         playerPause.Disable();
         tempCountdown.Disable();
+        retryLevel.Disable();
+        // enterRace.Disable();
     }
     void OnAbility() {
         Debug.Log("Ability triggered");
@@ -51,6 +62,12 @@ public class PlayerController : MonoBehaviour
         if (currentGameState != GameStateManager.GameStates.Playing && currentGameState != GameStateManager.GameStates.Racing) {
             Debug.Log("Cannot use ability, game not in playing/racing state");
             return;
+        }
+        AbilityManager abilityManager = FindFirstObjectByType<AbilityManager>();
+        if (abilityManager != null) {
+            abilityManager.UseAbility(selectedCharacterIndex);
+        } else {
+            Debug.LogWarning("AbilityManager not found in the scene.");
         }
     }
     void OnPause() {
@@ -72,14 +89,26 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("TimerManager not found in the scene.");
         }
     }
+    // void OnRaceClick() {
+    //     if ()
+    //     Debug.Log("Enter Race triggered");
+    // }
     void Update() { // the movement
-        moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
+        if (isSlowed) { // slow timer countdown
+            slowTimer -= Time.deltaTime;
+            if (slowTimer <= 0)  {
+                isSlowed = false;
+            }
+        }
+        if (canMove) {
+            moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
+        } else {
+            Debug.Log("Player cannot move");
+            moveInput = Vector2.zero;
+        }
         if (speedText != null) {
-                // .magnitude gives us the raw speed value
-                float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier;
-                
-                // "F0" removes decimals (e.g., 10 instead of 10.245)
-                speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS";
+                float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier; // .magnitude gives us the raw speed value
+                speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS"; // "F0" removes decimals
             }
     }
     void FixedUpdate() {
@@ -95,6 +124,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ApplyForwardForce() {
+        if (isSlowed) return; // cannot move while slowed
         // moving forward
         if (moveInput.y > 0) {
             playerRb.AddRelativeForce(Vector2.up * accelerationForce);
@@ -109,6 +139,7 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddRelativeForce(Vector2.down * reverseForce); // reversing
             }
         }
+        if (inCurrent) return; // ignore speed limit when in current
         playerRb.linearVelocity = Vector2.ClampMagnitude(playerRb.linearVelocity, maxSpeed); // clamp speed
     }
 
@@ -138,7 +169,7 @@ public class PlayerController : MonoBehaviour
                 originSaved = true;
             }
 
-            Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f; // calculating offset from starting position
+            Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f;
             speedBar.transform.localPosition = barOrigin + shakeOffset;
         } 
         else if (originSaved) { // when we slow down return to original position
@@ -152,5 +183,13 @@ public class PlayerController : MonoBehaviour
         if (speedBarFill != null) {
             speedBarFill.color = speedColor;
         }
+    }
+    public void GetSlowed(float slowDuration, float slowFactor) {
+        if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
+
+        isSlowed = true;
+        slowTimer = slowDuration;
+        
+        playerRb.linearVelocity *= slowFactor; // slow down immediately
     }
 }
