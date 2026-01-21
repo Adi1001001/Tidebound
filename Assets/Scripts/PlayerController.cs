@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private bool isSlowed = false;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
-    [HideInInspector] public int selectedCharacterIndex = 0;
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         abilityManager = GetComponent<AbilityManager>();
@@ -66,7 +65,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         if (abilityManager != null) {
-            abilityManager.UseAbility(selectedCharacterIndex);
+            abilityManager.UseAbility();
         } else {
             Debug.LogWarning("AbilityManager not found in the scene.");
         }
@@ -187,7 +186,7 @@ public class PlayerController : MonoBehaviour
     }
     public void GetSlowed(float slowDuration, float slowFactor) {
         if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
-            if (abilityManager.turtleOn) return; // turtle ability makes you immune to obstacles
+        if (abilityManager.turtleOn) return; // turtle ability makes you immune to obstacles
 
         isSlowed = true;
         slowTimer = slowDuration;

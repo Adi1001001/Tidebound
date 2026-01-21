@@ -1829,6 +1829,7 @@ GameObject:
   - component: {fileID: 437848673}
   - component: {fileID: 437848670}
   - component: {fileID: 437848674}
+  - component: {fileID: 437848675}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2053,6 +2054,7 @@ MonoBehaviour:
   speedBarFill: {fileID: 412948890}
   canMove: 1
   inCurrent: 0
+  selectedCharacterIndex: 0
 --- !u!212 &437848671
 SpriteRenderer:
   serializedVersion: 2
@@ -2176,6 +2178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaaefc6ba3ded144aef0dfc3fd103bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaxSpeedManager
+--- !u!114 &437848675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437848668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8dca5b4a5874a748abd009561d39b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
+  turtleOn: 0
 --- !u!1 &445299995
 GameObject:
   m_ObjectHideFlags: 0

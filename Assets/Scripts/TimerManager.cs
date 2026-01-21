@@ -20,7 +20,6 @@ public class TimerManager : MonoBehaviour {
     }
     void Update() {
         if (isTimerRunning) {
-            Debug.Log("Timer Running");
             elapsedTime += Time.deltaTime;
             DisplayTime(elapsedTime);
         }

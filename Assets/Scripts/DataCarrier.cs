@@ -4,6 +4,7 @@ public class DataCarrier : MonoBehaviour
 {
     public static DataCarrier Instance;
     [HideInInspector] public string nextRaceTag; // teleport tag
+    [HideInInspector] public int selectedCharacterIndex = 0; // just putting this here because it's convenient (singleton)
 
     void Awake() {
         if (Instance == null) {

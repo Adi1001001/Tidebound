@@ -7,9 +7,9 @@ public class AbilityManager : MonoBehaviour {
     [HideInInspector] public bool turtleOn = false;
     private Dictionary<int, string> characterIndex = new Dictionary<int, string>
     {{0, "Clownfish"}, {1, "Dolphin"}, {2, "Shark"}, {3, "Octopus"}, {4, "Swordfish"}, {5, "Turtle"}};
-    public void UseAbility(int selectedCharacterIndex) {
+    public void UseAbility() {
         playerController = FindFirstObjectByType<PlayerController>();
-        string characterName = characterIndex[selectedCharacterIndex];
+        string characterName = characterIndex[DataCarrier.Instance.selectedCharacterIndex];
         switch (characterName) {
             case "Clownfish":
                 clownfishAbility(playerController);
@@ -35,6 +35,7 @@ public class AbilityManager : MonoBehaviour {
         
     }
     public void dolphinAbility(PlayerController playerController) { // increases your acceleartion and max speed for 3 seconds
+        Debug.Log("Dolphin ability activated");
         playerController.StartCoroutine(DolphinSpeedBoost());
     }
     public void sharkAbility(PlayerController playerController) {
@@ -47,6 +48,7 @@ public class AbilityManager : MonoBehaviour {
         
     }
     public void turtleAbility() { // make the player immune to obstacles for 5 seconds
+        Debug.Log("Turtle ability activated");
         StartCoroutine(TurtleInvincibility());
     }
     IEnumerator DolphinSpeedBoost() {
