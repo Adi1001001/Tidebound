@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
+    private AbilityManager abilityManager;
     private Vector2 moveInput;
     public BoundaryManager boundaries;
     private GameStateManager.GameStates currentGameState;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int selectedCharacterIndex = 0;
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
+        abilityManager = GetComponent<AbilityManager>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
@@ -63,7 +65,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot use ability, game not in playing/racing state");
             return;
         }
-        AbilityManager abilityManager = FindFirstObjectByType<AbilityManager>();
         if (abilityManager != null) {
             abilityManager.UseAbility(selectedCharacterIndex);
         } else {
@@ -186,6 +187,7 @@ public class PlayerController : MonoBehaviour
     }
     public void GetSlowed(float slowDuration, float slowFactor) {
         if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
+            if (abilityManager.turtleOn) return; // turtle ability makes you immune to obstacles
 
         isSlowed = true;
         slowTimer = slowDuration;
