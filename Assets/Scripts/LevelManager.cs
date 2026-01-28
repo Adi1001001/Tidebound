@@ -43,7 +43,9 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void ToOverworld() {
+        Debug.Log(GameStateManager.Instance.CheckGameState());
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        Debug.Log(GameStateManager.Instance.CheckGameState());
         SceneManager.LoadScene("Overworld");
     }
     public void ToCharacterSelect() {

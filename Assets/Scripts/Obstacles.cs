@@ -7,6 +7,11 @@ public class Obstacle : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Player hit an obstacle!");
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            AbilityManager abilityManager = collision.gameObject.GetComponent<AbilityManager>();
+            if (abilityManager.sharkOn) {
+                Destroy(gameObject);
+                return;
+            }
             if (playerController != null) {
                 playerController.GetSlowed(slowDuration, slowFactor);
             }

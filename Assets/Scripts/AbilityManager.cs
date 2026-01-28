@@ -5,8 +5,18 @@ using System.Collections.Generic;
 public class AbilityManager : MonoBehaviour {
     PlayerController playerController;
     [HideInInspector] public bool turtleOn = false;
+    [HideInInspector] public bool sharkOn = false;
     private Dictionary<int, string> characterIndex = new Dictionary<int, string>
     {{0, "Clownfish"}, {1, "Dolphin"}, {2, "Shark"}, {3, "Octopus"}, {4, "Swordfish"}, {5, "Turtle"}};
+    float clownfishAbilityDuration = 4f;
+    float dolphinAbilityDuration = 3f;
+    float dolphinAbilityMultiplier = 1.5f;
+    float sharkAbilityDuration = 1f;
+    float sharkAbilityForce = 500f;
+    float octopusAbilityDuration = 6f;
+    float swordfishAbilityDuration = 2f;
+    float turtleAbilityDuration = 5f;
+    float abilityCooldown = 10f;
     public void UseAbility() {
         playerController = FindFirstObjectByType<PlayerController>();
         string characterName = characterIndex[DataCarrier.Instance.selectedCharacterIndex];
@@ -39,7 +49,8 @@ public class AbilityManager : MonoBehaviour {
         playerController.StartCoroutine(DolphinSpeedBoost());
     }
     public void sharkAbility(PlayerController playerController) {
-        
+        Debug.Log("Shark ability activated");
+        playerController.StartCoroutine(SharkAttack());
     }
     public void octopusAbility(PlayerController playerController) {
         
@@ -54,16 +65,23 @@ public class AbilityManager : MonoBehaviour {
     IEnumerator DolphinSpeedBoost() {
         float originalAcceleration = playerController.accelerationForce;
         float originalMaxSpeed = playerController.maxSpeed;
-        playerController.accelerationForce *= 1.5f;
-        playerController.maxSpeed *= 1.5f; 
-        yield return new WaitForSeconds(3f); 
+        playerController.accelerationForce *= dolphinAbilityMultiplier;
+        playerController.maxSpeed *= dolphinAbilityMultiplier; 
+        yield return new WaitForSeconds(dolphinAbilityDuration); 
         playerController.accelerationForce = originalAcceleration;
         playerController.maxSpeed = originalMaxSpeed;
     }
     IEnumerator TurtleInvincibility() {
         turtleOn = true;
-        yield return new WaitForSeconds(5f); 
+        yield return new WaitForSeconds(turtleAbilityDuration); 
         turtleOn = false;
+    }
+    IEnumerator SharkAttack() {
+        sharkOn = true;
+        Rigidbody2D playerRb = playerController.GetComponent<Rigidbody2D>();
+        playerRb.AddRelativeForce(Vector2.up * sharkAbilityForce); // adding a quick dash forward
+        yield return new WaitForSeconds(sharkAbilityDuration);
+        sharkOn = false;
     }
 }
 // you need to add a cooldown, ui button, popup text to tell you that you can't use it again yet
