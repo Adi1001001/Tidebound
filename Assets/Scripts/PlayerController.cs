@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool isSlowed = false;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
+    public float timeCorrection = 1f;
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         abilityManager = GetComponent<AbilityManager>();
@@ -119,24 +120,25 @@ public class PlayerController : MonoBehaviour
     }
 
     void ApplyRotation() {
-        float rotationAmount = moveInput.x * rotationSpeed * Time.fixedDeltaTime;
+        float rotationAmount = moveInput.x * rotationSpeed * Time.fixedUnscaledDeltaTime;
         playerRb.MoveRotation(playerRb.rotation - rotationAmount);
     }
 
     void ApplyForwardForce() {
-        if (isSlowed) return; // cannot move while slowed
+        if (isSlowed) return; // cannot move while slowed     
+        
         // moving forward
         if (moveInput.y > 0) {
-            playerRb.AddRelativeForce(Vector2.up * accelerationForce);
+            playerRb.AddRelativeForce(Vector2.up * accelerationForce * timeCorrection);
         }
         // braking or reversing
         else if (moveInput.y < 0) {
             float forwardSpeed = Vector2.Dot(playerRb.linearVelocity, transform.up);
 
             if (forwardSpeed > 0.1f) {
-                playerRb.AddRelativeForce(Vector2.down * accelerationForce * brakeStrength); // braking
+                playerRb.AddRelativeForce(Vector2.down * accelerationForce * brakeStrength * timeCorrection); // braking
             } else {
-                playerRb.AddRelativeForce(Vector2.down * reverseForce); // reversing
+                playerRb.AddRelativeForce(Vector2.down * reverseForce * timeCorrection); // reversing
             }
         }
         if (inCurrent) return; // ignore speed limit when in current
