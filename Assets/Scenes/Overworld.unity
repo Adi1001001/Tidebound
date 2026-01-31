@@ -3178,6 +3178,7 @@ MonoBehaviour:
   speedBarFill: {fileID: 436376745}
   canMove: 1
   inCurrent: 0
+  maxSpeedReached: 0
 --- !u!70 &1284783718
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3377,8 +3378,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 70
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -3470,6 +3471,8 @@ MonoBehaviour:
   leadAmount: 1.5
   smoothSpeed: 5
   shakeIntensity: 0.07
+  normalFOV: 70
+  slowMoFOV: 90
 --- !u!1 &1478058888
 GameObject:
   m_ObjectHideFlags: 0

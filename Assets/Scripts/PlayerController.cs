@@ -30,10 +30,12 @@ public class PlayerController : MonoBehaviour
     private bool originSaved = false;
     private float slowTimer = 0f;
     private bool isSlowed = false;
+    // public CameraController cameraController;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
-    public float timeCorrection = 1f;
+    [HideInInspector] public bool maxSpeedReached = false;
     void Start() {
+        // cameraController = FindFirstObjectByType<CameraController>();
         playerRb = GetComponent<Rigidbody2D>();
         abilityManager = GetComponent<AbilityManager>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
@@ -126,19 +128,19 @@ public class PlayerController : MonoBehaviour
 
     void ApplyForwardForce() {
         if (isSlowed) return; // cannot move while slowed     
-        
+
         // moving forward
         if (moveInput.y > 0) {
-            playerRb.AddRelativeForce(Vector2.up * accelerationForce * timeCorrection);
+            playerRb.AddRelativeForce(Vector2.up * accelerationForce);
         }
         // braking or reversing
         else if (moveInput.y < 0) {
             float forwardSpeed = Vector2.Dot(playerRb.linearVelocity, transform.up);
 
             if (forwardSpeed > 0.1f) {
-                playerRb.AddRelativeForce(Vector2.down * accelerationForce * brakeStrength * timeCorrection); // braking
+                playerRb.AddRelativeForce(Vector2.down * accelerationForce * brakeStrength); // braking
             } else {
-                playerRb.AddRelativeForce(Vector2.down * reverseForce * timeCorrection); // reversing
+                playerRb.AddRelativeForce(Vector2.down * reverseForce); // reversing
             }
         }
         if (inCurrent) return; // ignore speed limit when in current
@@ -165,6 +167,11 @@ public class PlayerController : MonoBehaviour
             speedColor = Color.Lerp(Color.yellow, Color.red, (speedPercent - 0.5f) * 2f);
         }
 
+        if (speedPercent >= 0.99f) {
+            maxSpeedReached = true;
+        } else {
+            maxSpeedReached = false;
+        }
         if (speedPercent > 0.9f) { // shake effect when going very fast
             if (!originSaved) {
                 barOrigin = speedBar.transform.localPosition;
@@ -174,6 +181,7 @@ public class PlayerController : MonoBehaviour
             Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f;
             speedBar.transform.localPosition = barOrigin + shakeOffset;
         } 
+
         else if (originSaved) { // when we slow down return to original position
             speedBar.transform.localPosition = barOrigin;
             originSaved = false;
