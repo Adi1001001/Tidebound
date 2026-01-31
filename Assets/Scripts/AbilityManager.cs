@@ -11,7 +11,8 @@ public class AbilityManager : MonoBehaviour {
     [HideInInspector] public bool swordfishOn = false;
     private Dictionary<int, string> characterIndex = new Dictionary<int, string>
     {{0, "Clownfish"}, {1, "Dolphin"}, {2, "Shark"}, {3, "Octopus"}, {4, "Swordfish"}, {5, "Turtle"}};
-    public float clownfishAbilityDuration = 4f;
+    public float clownfishAbilityDuration = 5f;
+    public bool clownfishAbilityVisionBoost = false;
     public float dolphinAbilityDuration = 3f;
     public float dolphinAbilityMultiplier = 1.5f;
     public float sharkAbilityDuration = 1f;
@@ -46,7 +47,8 @@ public class AbilityManager : MonoBehaviour {
         }
     }
     public void clownfishAbility(PlayerController playerController) {
-        
+        Debug.Log("Clownfish ability activated");
+        playerController.StartCoroutine(ClownfishVisionBoost());
     }
     public void dolphinAbility(PlayerController playerController) { // increases your acceleartion and max speed for 3 seconds
         Debug.Log("Dolphin ability activated");
@@ -66,6 +68,11 @@ public class AbilityManager : MonoBehaviour {
     public void turtleAbility() { // make the player immune to obstacles for 5 seconds
         Debug.Log("Turtle ability activated");
         StartCoroutine(TurtleInvincibility());
+    }
+    IEnumerator ClownfishVisionBoost() {
+        clownfishAbilityVisionBoost = true;
+        yield return new WaitForSeconds(clownfishAbilityDuration); 
+        clownfishAbilityVisionBoost = false;
     }
     IEnumerator DolphinSpeedBoost() {
         float originalAcceleration = playerController.accelerationForce;
