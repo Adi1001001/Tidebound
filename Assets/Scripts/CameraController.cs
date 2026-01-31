@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
 
     public void FOVZoom(){
         if (cam == null || abilityManager == null) return;
-        float target = abilityManager.clownfishAbilityVisionBoost ? abilityFOV : normalFOV;
+        float target = abilityManager.anglerfishAbilityVisionBoost ? abilityFOV : normalFOV;
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, target, Time.unscaledDeltaTime * smoothSpeed);
     }
 }

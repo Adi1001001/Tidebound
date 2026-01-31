@@ -4,6 +4,7 @@ public class Obstacle : MonoBehaviour {
     public float slowDuration = 1f;
     public float slowFactor = 0.5f;
     public bool breakableByShark;
+    public bool active = true;
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Player hit an obstacle!");
@@ -17,6 +18,7 @@ public class Obstacle : MonoBehaviour {
                 Debug.Log("Shark ability active, obstacle not breakable");
                 return;
             }
+            if (active == false) return;
             if (playerController != null) {
                 playerController.GetSlowed(slowDuration, slowFactor);
             }

@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 232339111}
   - component: {fileID: 232339110}
   m_Layer: 5
-  m_Name: Clownfish Panel
+  m_Name: Anglerfish Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 421233598}
   - component: {fileID: 421233597}
   m_Layer: 5
-  m_Name: Octopus
+  m_Name: Eel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Description of ability: Camoflauge into environments'
+  m_text: 'Description of ability: Increase FOV for 5 seconds'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a22779d3e0da4414685d90123902d080, type: 2}
   m_sharedMaterial: {fileID: -5484475325105853923, guid: a22779d3e0da4414685d90123902d080, type: 2}
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 567291114}
   - component: {fileID: 567291113}
   m_Layer: 5
-  m_Name: Clownfish
+  m_Name: Anglerfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OCTOPUS
+  m_text: EEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2954,7 +2954,7 @@ GameObject:
   - component: {fileID: 1238502588}
   - component: {fileID: 1238502587}
   m_Layer: 5
-  m_Name: Octopus Panel
+  m_Name: Eel Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3291,7 +3291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Description of ability: Decieve obstacles through ink'
+  m_text: 'Description of ability: Electrocute all nearby obstacles'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a22779d3e0da4414685d90123902d080, type: 2}
   m_sharedMaterial: {fileID: -5484475325105853923, guid: a22779d3e0da4414685d90123902d080, type: 2}
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CLOWNFISH
+  m_text: ANGLERFISH
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
