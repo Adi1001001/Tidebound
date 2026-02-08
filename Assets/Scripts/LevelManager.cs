@@ -43,7 +43,9 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void ToOverworld() {
+        Debug.Log(GameStateManager.Instance.CheckGameState());
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        Debug.Log(GameStateManager.Instance.CheckGameState());
         SceneManager.LoadScene("Overworld");
     }
     public void ToCharacterSelect() {
@@ -78,6 +80,8 @@ public class LevelManager : MonoBehaviour {
         Time.timeScale = 1f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
         pauseMenuUI.SetActive(false);
+        if (volumeUI != null) volumeUI.SetActive(false);
+        if (controlsUI != null) controlsUI.SetActive(false);
         raceUI.SetActive(true);
     }
     public void OpenVolumeSettings() {

@@ -8,6 +8,7 @@ public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
     private PlayerController playerController;
+    private AbilityManager abilityManager;
     private float elapsedTime = 0f;
     [HideInInspector] public bool isTimerRunning = false;
     Dictionary<string, float> timeValues = new Dictionary<string, float>
@@ -17,11 +18,15 @@ public class TimerManager : MonoBehaviour {
 
     void Start() {
         playerController = FindFirstObjectByType<PlayerController>();
+        abilityManager = playerController.GetComponent<AbilityManager>();
     }
     void Update() {
         if (isTimerRunning) {
-            Debug.Log("Timer Running");
-            elapsedTime += Time.deltaTime;
+            if (abilityManager.swordfishOn) {
+                elapsedTime += Time.deltaTime * abilityManager.swordfishAbilitySlowFactor;
+            } else {
+                elapsedTime += Time.deltaTime;
+            }
             DisplayTime(elapsedTime);
         }
     }
@@ -30,7 +35,9 @@ public class TimerManager : MonoBehaviour {
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         float milliSeconds = timeToDisplay % 1 * 100;
 
-        if (elapsedTime <= requiredTime) {
+        if (abilityManager.swordfishOn) {
+            timerDisplay.color = Color.yellow;
+        } else if (elapsedTime <= requiredTime) {
             timerDisplay.color = Color.green;
         } else {
             timerDisplay.color = Color.red;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
+    private AbilityManager abilityManager;
     private Vector2 moveInput;
     public BoundaryManager boundaries;
     private GameStateManager.GameStates currentGameState;
@@ -29,11 +30,14 @@ public class PlayerController : MonoBehaviour
     private bool originSaved = false;
     private float slowTimer = 0f;
     private bool isSlowed = false;
+    // public CameraController cameraController;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
-    [HideInInspector] public int selectedCharacterIndex = 0;
+    [HideInInspector] public bool maxSpeedReached = false;
     void Start() {
+        // cameraController = FindFirstObjectByType<CameraController>();
         playerRb = GetComponent<Rigidbody2D>();
+        abilityManager = GetComponent<AbilityManager>();
         playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
@@ -63,9 +67,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot use ability, game not in playing/racing state");
             return;
         }
-        AbilityManager abilityManager = FindFirstObjectByType<AbilityManager>();
         if (abilityManager != null) {
-            abilityManager.UseAbility(selectedCharacterIndex);
+            abilityManager.UseAbility();
         } else {
             Debug.LogWarning("AbilityManager not found in the scene.");
         }
@@ -119,12 +122,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void ApplyRotation() {
-        float rotationAmount = moveInput.x * rotationSpeed * Time.fixedDeltaTime;
+        float rotationAmount = moveInput.x * rotationSpeed * Time.fixedUnscaledDeltaTime;
         playerRb.MoveRotation(playerRb.rotation - rotationAmount);
     }
 
     void ApplyForwardForce() {
-        if (isSlowed) return; // cannot move while slowed
+        if (isSlowed) return; // cannot move while slowed     
+
         // moving forward
         if (moveInput.y > 0) {
             playerRb.AddRelativeForce(Vector2.up * accelerationForce);
@@ -163,6 +167,11 @@ public class PlayerController : MonoBehaviour
             speedColor = Color.Lerp(Color.yellow, Color.red, (speedPercent - 0.5f) * 2f);
         }
 
+        if (speedPercent >= 0.99f) {
+            maxSpeedReached = true;
+        } else {
+            maxSpeedReached = false;
+        }
         if (speedPercent > 0.9f) { // shake effect when going very fast
             if (!originSaved) {
                 barOrigin = speedBar.transform.localPosition;
@@ -172,6 +181,7 @@ public class PlayerController : MonoBehaviour
             Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * 2.0f;
             speedBar.transform.localPosition = barOrigin + shakeOffset;
         } 
+
         else if (originSaved) { // when we slow down return to original position
             speedBar.transform.localPosition = barOrigin;
             originSaved = false;
@@ -186,6 +196,7 @@ public class PlayerController : MonoBehaviour
     }
     public void GetSlowed(float slowDuration, float slowFactor) {
         if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
+        if (abilityManager.turtleOn) return; // turtle ability makes you immune to obstacles
 
         isSlowed = true;
         slowTimer = slowDuration;
