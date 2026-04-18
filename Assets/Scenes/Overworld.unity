@@ -794,10 +794,10 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1088,6 +1088,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1817,7 +1818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3ca95babfb9d64085d641b8661fce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportManager
-  teleportTag: SampleRaceScene
+  teleportTag: Race 1.1
   enterRace:
     m_Name: Enter Race
     m_Type: 0
@@ -2001,6 +2002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   timerDisplay: {fileID: 827808563}
   countdownDisplay: {fileID: 187651661}
+  timeLimit: 30
   isTimerRunning: 0
 --- !u!1 &693036460
 GameObject:
@@ -2245,10 +2247,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1220811774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -80}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827808563
 MonoBehaviour:
@@ -2300,10 +2302,10 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2336,7 +2338,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 481.7734, y: 0, z: 480.1431, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2483,7 +2485,7 @@ MonoBehaviour:
   m_fontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3272,12 +3274,12 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   driftFactor: 0.8
-  accelerationForce: 25
+  accelerationForce: 22
   rotationSpeed: 150
-  maxSpeed: 25
+  maxSpeed: 20
   reverseForce: 7
-  brakeStrength: 0.5
-  speedMultiplier: 10
+  brakeStrength: 0.6
+  speedMultiplier: 12.5
   speedText: {fileID: 874602498}
   speedBar: {fileID: 982019164}
   speedBarFill: {fileID: 436376745}
