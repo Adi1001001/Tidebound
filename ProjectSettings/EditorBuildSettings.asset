@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Race 1.1/Race 1.1.unity
     guid: 527af688048da4b639f8bd3052e6b57d
+  - enabled: 1
+    path: Assets/Scenes/Race 1.2/Race 1.2.unity
+    guid: 98c45ed34f1644333b50320af00dbeaa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
