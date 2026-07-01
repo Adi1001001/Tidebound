@@ -44,7 +44,7 @@ public class TimerManager : MonoBehaviour {
 
         float elapsed = elapsedTime / timeLimit;
         if (abilityManager.swordfishOn) {
-            timerDisplay.color = Color.yellow;
+            timerDisplay.color = Color.white;
         } else if (elapsed >= 0.9f) {
             timerDisplay.color = Color.red;
         } else if (elapsed >= 0.75f) {
