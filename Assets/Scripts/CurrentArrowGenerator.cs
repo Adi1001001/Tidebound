@@ -171,7 +171,7 @@ public class CurrentArrowGenerator : MonoBehaviour
 
 
 
-        // Center inside the 80% usable area
+        // Center inside the usable area
         float startX =
             -usableWidth * 0.5f +
             (usableWidth - totalWidth) * 0.5f +

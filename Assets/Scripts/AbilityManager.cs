@@ -33,7 +33,7 @@ public class AbilityManager : MonoBehaviour {
     public bool turtleCooldownBool = false;
     public float turtleCooldown = 15f;
     public void UseAbility() {
-        playerController = FindFirstObjectByType<PlayerController>();
+        playerController = FindAnyObjectByType<PlayerController>();
         string characterName = characterIndex[DataCarrier.Instance.selectedCharacterIndex];
         switch (characterName) {
             case "Anglerfish":
@@ -99,7 +99,7 @@ public class AbilityManager : MonoBehaviour {
         foreach (Collider2D hit in hitObjects) {
             if (hit.gameObject == gameObject) continue; // avoiding yourself
             GameObject collidedObject = hit.gameObject;
-            Obstacle obstacle = collidedObject.GetComponent<Obstacle>();
+            SlowZone obstacle = collidedObject.GetComponent<SlowZone>();
 
             if (obstacle == null) continue; // only affect obstacles
 

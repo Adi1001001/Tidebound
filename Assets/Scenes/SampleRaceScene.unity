@@ -977,8 +977,8 @@ Transform:
   m_GameObject: {fileID: 147763127}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.84513, y: 5.24212, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.84513, y: 18.4, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 719489956}
@@ -995,8 +995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7440198f896bafa4a813078ffd211fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  slowDuration: 1
-  slowFactor: 0.5
+  speedFactor: 0.4
+  accelerationFactor: 1
   breakableByShark: 0
   active: 1
 --- !u!1 &167155782

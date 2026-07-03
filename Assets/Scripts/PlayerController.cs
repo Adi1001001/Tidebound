@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
-
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
@@ -18,8 +17,10 @@ public class PlayerController : MonoBehaviour
     // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelerationForce = 25f;
+    private float accelFactor = 1f;
     public float rotationSpeed = 150f;
     public float maxSpeed = 25f;
+    private float speedFactor = 1f;
     public float reverseForce = 7f;
     public float brakeStrength = 0.5f;
     public float speedMultiplier = 10f; // to make the numbers displayed look bigger
@@ -27,9 +28,9 @@ public class PlayerController : MonoBehaviour
     public Slider speedBar;
     public Image speedBarFill;
     private Vector3 barOrigin;
-    private bool originSaved = false;
-    private float slowTimer = 0f;
     private bool isSlowed = false;
+    private float decelerationRate = 10f; // applicable in slow zones (in knots per second^2)
+    private bool originSaved = false;
     // public CameraController cameraController;
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
     void OnTempCountdown() {
         Debug.Log("Temp Countdown triggered");
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
-        TimerManager timerManager = FindFirstObjectByType<TimerManager>();
+        TimerManager timerManager = FindAnyObjectByType<TimerManager>();
         if (timerManager != null) {
             timerManager.StartCountdown();
         } else {
@@ -97,12 +98,6 @@ public class PlayerController : MonoBehaviour
     //     Debug.Log("Enter Race triggered");
     // }
     void Update() { // the movement
-        if (isSlowed) { // slow timer countdown
-            slowTimer -= Time.deltaTime;
-            if (slowTimer <= 0)  {
-                isSlowed = false;
-            }
-        }
         if (canMove) {
             moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
         } else {
@@ -118,6 +113,7 @@ public class PlayerController : MonoBehaviour
         ApplyRotation();
         ApplyForwardForce();
         KillOrthogonalVelocity();
+        EnforceSpeedLimit(); 
         UpdateSpeedUI();
     }
 
@@ -126,25 +122,56 @@ public class PlayerController : MonoBehaviour
         playerRb.MoveRotation(playerRb.rotation - rotationAmount);
     }
 
-    void ApplyForwardForce() {
-        if (isSlowed) return; // cannot move while slowed     
+    void ApplyForwardForce()
+    {
+        float accel = accelerationForce * accelFactor;
 
-        // moving forward
-        if (moveInput.y > 0) {
-            playerRb.AddRelativeForce(Vector2.up * accelerationForce);
+        // Forward
+        if (moveInput.y > 0)
+        {
+            playerRb.AddRelativeForce(Vector2.up * accel);
         }
-        // braking or reversing
-        else if (moveInput.y < 0) {
+        // Brake / reverse
+        else if (moveInput.y < 0)
+        {
             float forwardSpeed = Vector2.Dot(playerRb.linearVelocity, transform.up);
 
-            if (forwardSpeed > 0.1f) {
-                playerRb.AddRelativeForce(Vector2.down * accelerationForce * brakeStrength); // braking
-            } else {
-                playerRb.AddRelativeForce(Vector2.down * reverseForce); // reversing
+            if (forwardSpeed > 0.1f)
+            {
+                playerRb.AddRelativeForce(Vector2.down * accel * brakeStrength);
+            }
+            else
+            {
+                playerRb.AddRelativeForce(Vector2.down * reverseForce);
             }
         }
-        if (inCurrent) return; // ignore speed limit when in current
-        playerRb.linearVelocity = Vector2.ClampMagnitude(playerRb.linearVelocity, maxSpeed); // clamp speed
+
+        if (inCurrent)
+            return;
+    }
+
+    void EnforceSpeedLimit()
+    {
+        float limit = isSlowed ? maxSpeed * speedFactor : maxSpeed;
+
+        Vector2 vel = playerRb.linearVelocity;
+        float speed = vel.magnitude;
+
+        if (speed > limit)
+        {
+            float excess = speed - limit;
+
+            float strength =
+                decelerationRate + (excess * excess * 0.5f);
+
+            float newSpeed = Mathf.MoveTowards(
+                speed,
+                limit,
+                strength * Time.fixedDeltaTime
+            );
+
+            playerRb.linearVelocity = vel.normalized * newSpeed;
+        }
     }
 
     void KillOrthogonalVelocity() {
@@ -194,13 +221,20 @@ public class PlayerController : MonoBehaviour
             speedBarFill.color = speedColor;
         }
     }
-    public void GetSlowed(float slowDuration, float slowFactor) {
-        if (isSlowed) return; // creating a small invincibility period to avoid stacking slows
-        if (abilityManager.turtleOn) return; // turtle ability makes you immune to obstacles
+    public void EnterSlowZone(float speedFactor, float accelFactor)
+    {
+        if (abilityManager != null && abilityManager.turtleOn)
+            return;
 
         isSlowed = true;
-        slowTimer = slowDuration;
-        
-        playerRb.linearVelocity *= slowFactor; // slow down immediately
+        this.speedFactor = speedFactor;
+        this.accelFactor = accelFactor;
+    }
+
+    public void ExitSlowZone()
+    {
+        isSlowed = false;
+        speedFactor = 1f;
+        accelFactor = 1f;
     }
 }
