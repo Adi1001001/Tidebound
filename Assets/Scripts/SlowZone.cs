@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour {
     public float speedFactor = 0.4f;
-    public float accelerationFactor = 0.7f;
+    [Range(0.75f, 1f)]
+    public float accelerationFactor = 1f;
     public bool breakableByShark;
     public bool active = true;
 

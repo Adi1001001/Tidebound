@@ -1201,6 +1201,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slow Zone
       objectReference: {fileID: 0}
+    - target: {fileID: 5553580092326672168, guid: ecc0c313d8d7946869b86b5cdd7121f8, type: 3}
+      propertyPath: speedFactor
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553580092326672168, guid: ecc0c313d8d7946869b86b5cdd7121f8, type: 3}
+      propertyPath: accelerationFactor
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
