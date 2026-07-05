@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
@@ -93,10 +94,7 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("TimerManager not found in the scene.");
         }
     }
-    // void OnRaceClick() {
-    //     if ()
-    //     Debug.Log("Enter Race triggered");
-    // }
+
     void Update() { // the movement
         if (canMove) {
             moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
@@ -157,21 +155,21 @@ public class PlayerController : MonoBehaviour
         Vector2 vel = playerRb.linearVelocity;
         float speed = vel.magnitude;
 
-        if (speed > limit)
-        {
-            float excess = speed - limit;
+        if (speed <= limit || speed < 0.001f)
+            return;
 
-            float strength =
-                decelerationRate + (excess * excess * 0.5f);
+        float excess = speed - limit;
+        float excessRatio = excess / limit;
 
-            float newSpeed = Mathf.MoveTowards(
-                speed,
-                limit,
-                strength * Time.fixedDeltaTime
-            );
+        const float dragStrength = 35f; // NOTE: Higher = harsher braking
+        const float exponent = 0.3f; // NOTE: Lower = Hovering closer to speed limit
 
-            playerRb.linearVelocity = vel.normalized * newSpeed;
-        }
+        float dragMultiplier = Mathf.Pow(excessRatio, exponent);
+
+        // Convert into a physically meaningful force
+        float dragForce = dragMultiplier * dragStrength * playerRb.mass;
+
+        playerRb.AddForce(-vel.normalized * dragForce, ForceMode2D.Force);
     }
 
     void KillOrthogonalVelocity() {
