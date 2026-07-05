@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7165879760816729707}
   - component: {fileID: 6297846669862709267}
   m_Layer: 0
-  m_Name: CURRENT
+  m_Name: Current
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98181ceceb633e144ab190c04b9ef86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Currents
-  pushForce: 12
+  pushForce: 40
 --- !u!61 &7165879760816729707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,4 +202,5 @@ MonoBehaviour:
   arrowHeightPixels: 24
   horizontalGapPixels: 24
   verticalGapPixels: 24
+  boundaryMargin: 0.05
   sortingOrder: 1
