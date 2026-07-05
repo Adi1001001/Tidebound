@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelerationForce = 25f;
     private float accelFactor = 1f;
-    public float rotationSpeed = 150f;
+    public float minRotationSpeed = 150f;
+    public float maxRotationSpeed = 250f;
     public float maxSpeed = 25f;
     private float speedFactor = 1f;
     public float reverseForce = 7f;
@@ -30,7 +31,11 @@ public class PlayerController : MonoBehaviour
     public Image speedBarFill;
     private Vector3 barOrigin;
     private bool isSlowed = false;
-    private float decelerationRate = 10f; // applicable in slow zones (in knots per second^2)
+    [Header("Collision Feel")]
+    [SerializeField] private float bounceStrength = 0.6f;
+    [SerializeField] private float maxBounceSpeed = 25f;
+
+    private float collisionLockTimer = 0f;
     private bool originSaved = false;
     // public CameraController cameraController;
     [HideInInspector] public bool canMove = true;
@@ -108,22 +113,30 @@ public class PlayerController : MonoBehaviour
             }
     }
     void FixedUpdate() {
+        if (collisionLockTimer > 0f)
+        {
+            collisionLockTimer -= Time.fixedDeltaTime;
+        }
         ApplyRotation();
         ApplyForwardForce();
         KillOrthogonalVelocity();
         EnforceSpeedLimit(); 
-        UpdateSpeedUI();
+        UpdateSpeedUI();  
     }
 
-    void ApplyRotation() {
-        float rotationAmount = moveInput.x * rotationSpeed * Time.fixedUnscaledDeltaTime;
+    void ApplyRotation()
+    {
+        float steeringFalloffSpeed = maxSpeed * 1.25f;
+        float speedPercent = Mathf.Clamp01(playerRb.linearVelocity.magnitude / steeringFalloffSpeed);
+        float currentRotationSpeed = Mathf.Lerp(maxRotationSpeed, minRotationSpeed, speedPercent);
+        float rotationAmount = moveInput.x * currentRotationSpeed * Time.fixedUnscaledDeltaTime;
+
         playerRb.MoveRotation(playerRb.rotation - rotationAmount);
     }
 
     void ApplyForwardForce()
     {
         float accel = accelerationForce * accelFactor;
-
         // Forward
         if (moveInput.y > 0)
         {
@@ -172,7 +185,11 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(-vel.normalized * dragForce, ForceMode2D.Force);
     }
 
-    void KillOrthogonalVelocity() {
+    void KillOrthogonalVelocity()
+    {
+        if (collisionLockTimer > 0f)
+            return;
+
         Vector2 forwardVelocity = transform.up * Vector2.Dot(playerRb.linearVelocity, transform.up);
         Vector2 rightVelocity = transform.right * Vector2.Dot(playerRb.linearVelocity, transform.right);
 
@@ -218,6 +235,38 @@ public class PlayerController : MonoBehaviour
         if (speedBarFill != null) {
             speedBarFill.color = speedColor;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        ContactPoint2D contact = collision.GetContact(0);
+        Vector2 normal = contact.normal;
+
+        Vector2 v = collision.relativeVelocity;
+
+        float speedIntoWall = Vector2.Dot(v, normal);
+
+        Debug.Log(speedIntoWall);
+
+        if (speedIntoWall <= 0f)
+            return;
+
+        float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
+        float strength = Mathf.SmoothStep(0f, 1f, t);
+
+        Vector2 reflected = Vector2.Reflect(v, normal);
+
+        Vector2 bounceVelocity =
+            Vector2.Lerp(v, reflected, 0.6f * strength);
+
+        Vector2 correction = bounceVelocity - v;
+
+        playerRb.AddForce(
+            -correction * bounceStrength,
+            ForceMode2D.Impulse
+        );
+
+        collisionLockTimer = 0.1f;
     }
     public void EnterSlowZone(float speedFactor, float accelFactor)
     {
