@@ -9,7 +9,7 @@ public class Currents : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player")) {
             Debug.Log("Player has entered a current!");
             playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            cameraController = FindFirstObjectByType<CameraController>();
+            cameraController = FindAnyObjectByType<CameraController>();
             playerController = collision.gameObject.GetComponent<PlayerController>();
             
             if (playerController != null) playerController.inCurrent = true;

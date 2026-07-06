@@ -246,8 +246,6 @@ public class PlayerController : MonoBehaviour
 
         float speedIntoWall = Vector2.Dot(v, normal);
 
-        Debug.Log(speedIntoWall);
-
         if (speedIntoWall <= 0f)
             return;
 

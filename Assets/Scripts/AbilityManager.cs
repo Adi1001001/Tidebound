@@ -8,8 +8,6 @@ public class AbilityManager : MonoBehaviour {
     [HideInInspector] public bool turtleOn = false;
     [HideInInspector] public bool sharkOn = false;
     [HideInInspector] public bool swordfishOn = false;
-    private Dictionary<int, string> characterIndex = new Dictionary<int, string>
-    {{0, "Anglerfish"}, {1, "Dolphin"}, {2, "Shark"}, {3, "Eel"}, {4, "Swordfish"}, {5, "Turtle"}};
     public float anglerfishAbilityDuration = 5f;
     public bool anglerfishAbilityVisionBoost = false;
     public bool anglerfishCooldownBool = false;
@@ -32,30 +30,37 @@ public class AbilityManager : MonoBehaviour {
     public float turtleAbilityDuration = 5f;
     public bool turtleCooldownBool = false;
     public float turtleCooldown = 15f;
-    public void UseAbility() {
-        playerController = FindAnyObjectByType<PlayerController>();
-        string characterName = characterIndex[DataCarrier.Instance.selectedCharacterIndex];
-        switch (characterName) {
-            case "Anglerfish":
-                anglerfishAbility();
-                break;
-            case "Dolphin":
-                dolphinAbility();
-                break;
-            case "Shark":
-                sharkAbility();
-                break;
-            case "Eel":
-                eelAbility();
-                break;
-            case "Swordfish":
-                swordfishAbility();
-                break;
-            case "Turtle":
-                turtleAbility();
-                break;
-        }
+    public void UseAbility()
+{
+    playerController = FindAnyObjectByType<PlayerController>();
+
+    switch (DataCarrier.Instance.currentCharacter)
+    {
+        case CharacterType.Anglerfish:
+            anglerfishAbility();
+            break;
+
+        case CharacterType.Dolphin:
+            dolphinAbility();
+            break;
+
+        case CharacterType.Shark:
+            sharkAbility();
+            break;
+
+        case CharacterType.Eel:
+            eelAbility();
+            break;
+
+        case CharacterType.Swordfish:
+            swordfishAbility();
+            break;
+
+        case CharacterType.Turtle:
+            turtleAbility();
+            break;
     }
+}
     public void anglerfishAbility() { // increases your vision for 5 seconds, cooldown of 15 seconds after use
         if (anglerfishCooldownBool) {
             Debug.Log("Anglerfish ability is on cooldown!");
