@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private float collisionLockTimer = 0f;
     private bool originSaved = false;
     // public CameraController cameraController;
-    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
     [HideInInspector] public bool maxSpeedReached = false;
     void Start() {
@@ -101,10 +100,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() { // the movement
-        if (canMove) {
+        if (GameStateManager.Instance != null && !GameStateManager.Instance.IsGameplayFrozen()) {
             moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
         } else {
-            Debug.Log("Player cannot move");
             moveInput = Vector2.zero;
         }
         if (speedText != null) {

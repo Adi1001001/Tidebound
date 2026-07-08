@@ -1151,11 +1151,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1246105632299089137, guid: ecc0c313d8d7946869b86b5cdd7121f8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1246105632299089137, guid: ecc0c313d8d7946869b86b5cdd7121f8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1246105632299089137, guid: ecc0c313d8d7946869b86b5cdd7121f8, type: 3}
       propertyPath: m_LocalScale.z
@@ -9184,6 +9184,10 @@ PrefabInstance:
       propertyPath: speedBarFill
       value: 
       objectReference: {fileID: 1045457328}
+    - target: {fileID: 6539600725176092332, guid: ae73e97fda931404f944a3bd6e2739fe, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

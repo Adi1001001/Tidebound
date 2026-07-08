@@ -64,7 +64,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 1cbabf11d3f1e4f81a0df78eb66f271f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,9 +85,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -9095717837082945937, guid: 6012ed25c226d420fae696527a3f1666, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -365,17 +365,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAppearance
   characters:
   - character: 0
-    sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
+    sprite: {fileID: 1249149584347041918, guid: 99147e5a0483d429b9d96d0e0ba4eba4, type: 3}
   - character: 1
-    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+    sprite: {fileID: 1624513127720242999, guid: 77f007595574a494ca0cb0adda085667, type: 3}
   - character: 2
-    sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
+    sprite: {fileID: 1249149584347041918, guid: 99147e5a0483d429b9d96d0e0ba4eba4, type: 3}
   - character: 3
-    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+    sprite: {fileID: 1624513127720242999, guid: 77f007595574a494ca0cb0adda085667, type: 3}
   - character: 4
-    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+    sprite: {fileID: 1624513127720242999, guid: 77f007595574a494ca0cb0adda085667, type: 3}
   - character: 5
-    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+    sprite: {fileID: 1624513127720242999, guid: 77f007595574a494ca0cb0adda085667, type: 3}
 --- !u!114 &2336971384591331746
 MonoBehaviour:
   m_ObjectHideFlags: 0

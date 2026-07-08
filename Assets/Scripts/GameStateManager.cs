@@ -20,6 +20,11 @@ public class GameStateManager : MonoBehaviour {
     public GameStates CheckGameState() {
         return currentGameState;
     }
+    public bool IsGameplayFrozen()
+    {
+        return currentGameState == GameStates.Paused || currentGameState == GameStates.Countdown 
+        || currentGameState == GameStates.GameOver;
+    }
     void Awake() {
         if (Instance != null && Instance != this) { // making it a singleton
             Destroy(gameObject);
@@ -30,3 +35,4 @@ public class GameStateManager : MonoBehaviour {
         currentGameState = GameStates.Playing; // default state (change to main menu eventually)
     }
 }
+

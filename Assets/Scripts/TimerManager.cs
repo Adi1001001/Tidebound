@@ -69,7 +69,6 @@ public class TimerManager : MonoBehaviour {
     }
 
     public void StartRaceTimer() {
-        playerController.canMove = true;
         timerDisplay.gameObject.SetActive(true);
         isTimerRunning = true;
     }
@@ -86,7 +85,6 @@ public class TimerManager : MonoBehaviour {
 
     IEnumerator CountdownCoroutine() {
         countdownDisplay.gameObject.SetActive(true);
-        playerController.canMove = false;
         while (countdown > 0) {
             countdownDisplay.text = countdown.ToString();
             yield return new WaitForSeconds(1f);

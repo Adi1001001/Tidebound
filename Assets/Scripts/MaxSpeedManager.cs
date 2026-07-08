@@ -13,7 +13,6 @@ public class MaxSpeedManager : MonoBehaviour {
         }
         if (currentMaxSpeed < playerRb.linearVelocity.magnitude) {
             currentMaxSpeed = playerRb.linearVelocity.magnitude;
-            Debug.Log("New Max Speed: " + currentMaxSpeed);
         }
     }
 

@@ -17,9 +17,9 @@ public class RaceManager : MonoBehaviour
     public TMP_Text failedRaceResultText;
     
     void Start() {
-        timerManager = FindFirstObjectByType<TimerManager>();
-        maxSpeedManager = FindFirstObjectByType<MaxSpeedManager>();
-        playerController = FindFirstObjectByType<PlayerController>();
+        timerManager = FindAnyObjectByType<TimerManager>();
+        maxSpeedManager = FindAnyObjectByType<MaxSpeedManager>();
+        playerController = FindAnyObjectByType<PlayerController>();
         StartRace();
     }
 
@@ -29,9 +29,7 @@ public class RaceManager : MonoBehaviour
         timerManager.StartCountdown();
     }
     public void FinishRace() { // also add the best time feature later when you have the saves ready
-        playerController.canMove = false;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.GameOver);
-
         float elapsedTime = timerManager.GetTimerValues().Item1;
         float requiredTime = timerManager.GetTimerValues().Item2;
         float topSpeed = maxSpeedManager.GetCurrentMaxSpeed();
