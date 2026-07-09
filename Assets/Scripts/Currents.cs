@@ -7,9 +7,8 @@ public class Currents : MonoBehaviour {
     private PlayerController playerController;
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            Debug.Log("Player has entered a current!");
             playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            cameraController = FindFirstObjectByType<CameraController>();
+            cameraController = FindAnyObjectByType<CameraController>();
             playerController = collision.gameObject.GetComponent<PlayerController>();
             
             if (playerController != null) playerController.inCurrent = true;
@@ -25,7 +24,6 @@ public class Currents : MonoBehaviour {
     }
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
-            Debug.Log("Player has exited a current!");
             if (playerController != null) playerController.inCurrent = false;
             // clear references so we don't accidentally try to push a player who left the current
             playerRb = null;

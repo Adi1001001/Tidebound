@@ -18,14 +18,14 @@
     <LangVersion>9.0</LangVersion>
     <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
-    <AssemblyName>SuperTiled2UnityEditor</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>0169;USG0001</NoWarn>
     <DefineConstants>UNITY_6000_4_1;UNITY_6000_4;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;UNITY_6000_3_OR_NEWER;UNITY_6000_4_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_AUDIO_SCRIPTABLE_PIPELINE;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_ACCESSIBILITY_SCREEN_READER;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_CLOUD_SERVICES_ENGINE_DIAGNOSTICS;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_HAS_CUSTOM_MUTEX;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS;PLATFORM_REQUIRES_PATH_NORMALIZATION;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;ENABLE_PROFILER_ASSISTANT_INTEGRATION;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;TEXTCORE_FONT_ENGINE_1_6_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;UNITY_EDITOR_ONLY_COMPILATION</DefineConstants>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoStandardLibraries>true</NoStandardLibraries>
@@ -49,166 +49,7 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetAssetResolverFactory.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Math/PolygonUtils.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Tiles/BadTileTextures.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/GlobalTileDatabase.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/MeshUtils.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/AppDomainExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Properties/CustomObjectType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/SuperTileLayerLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/RectUtil.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ObjectTemplate.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/TilePolygonCollection.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAssetMap.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/WorldAssetImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/Graphics/PixelBlends.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseFrameTagsChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/LayerSorterHelper.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/SuperMapExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/DrawOrder.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/ColorProfileType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/Graphics/AseGraphics.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/PolylineReduction.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/ChunkType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TiledAssetImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetAssetResolver.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAssetTileset.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/CollisionBuilder.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/GameObjectExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporter.TileLayer.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Helpers/ReadOnlyPropertyDrawer.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/Tess.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/DataEncoding.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseTilesetChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TiledAssetImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseOldPaletteChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/CelType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/ColorDepth.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseFile.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseSliceChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Tiles/BadTileSpriteProvider.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AsePaletteEntry.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetAssetResolverAseprite.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/CustomPropertyLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/Mesh.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Settings/ST2USettingsProvider.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/clipper.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/SuperImportContext.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/StreamExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetAssetResolverError.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/SortingMode.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/GUI/GuiScopedIndent.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/StringExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/CollisionClipper.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Math/ColliderFactory.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/CustomImporters/CustomTmxImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/IAseVisitor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TxAssetImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Postprocessors/SuperAssetDependencyPostprocessor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseColorProfileChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Settings/LayerMaterialMatch.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/SliceFlags.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Path/ChDir.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/Math.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/LayerType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/ColorProfileFlags.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AsePaletteChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/SuperObjectLayerLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Errors/ImportErrorsEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TsxAssetImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/CompositeCollider2DExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/CollisionObjectExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TsxAssetImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAssetSettings.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/TypeExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/SuperGroupLayerLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/CustomEditors/SuperColliderComponentEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseSliceEntry.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseDummyChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporter.ImageLayer.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TilesetAtlasImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Windows/SuperPackageExport.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/TileIdMath.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/Collider2DExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/PriorityQueue.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/ComposeConvexPolygons.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/PolygonEdge.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseFrame.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/SuperTileExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporter.GroupLayer.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/LayerChunkFlags.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/HeaderFlags.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AnimationBuilder.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/SuperLayerExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Postprocessors/SuperTexturePostprocessor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/Tileset/TilesetAssetResolverTexture.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseLayerChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/CompositionPolygon.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TmxAssetImporter.ObjectLayer.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/LoopAnimationDirection.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Icons/SuperIcons.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Postprocessors/AssetDependencies.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAssetWorld.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetPath.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/ImporterConstants.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/CollisionClipperKey.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/RendererSorter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/XmlExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/WorldAssetImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/SuperImporterEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/BlendMode.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/CustomEditors/SuperMapEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Helpers/UniqueNameifier.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Helpers/NamedColors.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAssetTemplate.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseCelChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/DataCompression.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/LayerIgnoreMode.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/GUI/GuiScopedBackgroundColor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/Dict.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/PriorityHeap.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/SuperImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/Geom.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Settings/CustomPropertiesWindow.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/TilePolygon.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/PolygonEdgeGroup.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseFrameTagEntry.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/Graphics/AseCanvas.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TilesetAtlasImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Settings/TypePrefabReplacement.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Settings/ST2USettings.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Collision/Geometry/Triangulator.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/CustomPropertyExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Attributes/AutoCustomTmxImporterAttribute.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseReader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseHeader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Config/SuperTiled2Unity_Config.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Extensions/ByteExtensions.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Importers/TxAssetImporter.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Windows/RecursiveAssetDependencyTracker.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/StringConstants.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Exceptions/CustomImporterException.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/CustomEditors/SuperWorldEditor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/CustomEditors/ColliderGizmos.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/SuperLayerLoader.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/AssetTypes/SuperAsset.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Math/ColliderFactoryOrthogonal.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Math/ColliderFactoryIsometric.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/ChunkFactory.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/MultiValueDictionary.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseReader/AseUserDataChunk.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Postprocessors/TiledAssetDependencies.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/ThirdParty/LibTessDotNet/Sweep.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Aseprite/AseFileVisitor.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Editor/Loaders/SuperImageLayerLoader.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets/com.seanba.super-tiled2unity/Editor/seanba.super-tiled2unity.Editor.asmdef" />
+    <Compile Include="Assets/Editor/SlowZoneEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1343,22 +1184,6 @@
       <HintPath>/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/Scripting/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
       <Private>False</Private>
@@ -1367,9 +1192,307 @@
       <HintPath>Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Path.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Common.Path.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityWakatime">
+      <HintPath>Library/ScriptAssemblies/UnityWakatime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UI.Analytics">
+      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PsdPlugin">
+      <HintPath>Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Rendering.LightTransport.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Rendering.LightTransport.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Editor.Overrides.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.PathTracing.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.PathTracing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tooling.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tooling.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Core">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.UnifiedRayTracing.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.UnifiedRayTracing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Common">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Aseprite.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Aseprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.ShaderGraph.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.ShaderGraph.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualStudio.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="EasyTextEffects">
+      <HintPath>Library/ScriptAssemblies/EasyTextEffects.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem.ForUI">
+      <HintPath>Library/ScriptAssemblies/Unity.InputSystem.ForUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.SurfaceCache.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.SurfaceCache.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.Center.Common">
+      <HintPath>Library/ScriptAssemblies/Unity.Multiplayer.Center.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Core.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.004">
+      <HintPath>Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.004.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Multiplayer.Center.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.PathTracing.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.PathTracing.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State">
+      <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared">
+      <HintPath>Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Collections.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Collections.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj" />
     <ProjectReference Include="SuperTiled2Unity.csproj" />
+    <ProjectReference Include="SuperTiled2UnityEditor.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

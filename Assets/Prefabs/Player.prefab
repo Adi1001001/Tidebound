@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2480117733801809327}
   - component: {fileID: 6539600725176092332}
   - component: {fileID: 7943757488577384220}
-  - component: {fileID: 5202089535093325842}
   - component: {fileID: 5518567359507135655}
   - component: {fileID: 1751892072255695045}
+  - component: {fileID: -2530813529613109276}
+  - component: {fileID: -537582182577022112}
+  - component: {fileID: 2336971384591331746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,43 +124,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &5202089535093325842
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067521861580782983}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1.9999999}
-  m_Direction: 0
 --- !u!114 &5518567359507135655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +256,8 @@ MonoBehaviour:
     m_Flags: 0
   driftFactor: 0.6
   accelerationForce: 22
-  rotationSpeed: 250
+  minRotationSpeed: 150
+  maxRotationSpeed: 250
   maxSpeed: 20
   reverseForce: 16
   brakeStrength: 1.5
@@ -299,6 +265,8 @@ MonoBehaviour:
   speedText: {fileID: 0}
   speedBar: {fileID: 0}
   speedBarFill: {fileID: 0}
+  bounceStrength: 0.6
+  maxBounceSpeed: 25
   canMove: 1
   inCurrent: 0
   maxSpeedReached: 0
@@ -314,3 +282,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaaefc6ba3ded144aef0dfc3fd103bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaxSpeedManager
+--- !u!60 &-2530813529613109276
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067521861580782983}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -0.15234375, y: 0.97265625}
+      - {x: -0.29296875, y: 0.90234375}
+      - {x: -0.40234375, y: 0.79296875}
+      - {x: -0.47265625, y: 0.65234375}
+      - {x: -0.5, y: 0.5}
+      - {x: -0.5, y: -0.5}
+      - {x: -0.47265625, y: -0.65234375}
+      - {x: -0.40234375, y: -0.79296875}
+      - {x: -0.29296875, y: -0.90234375}
+      - {x: -0.15234375, y: -0.97265625}
+      - {x: 0, y: -1}
+      - {x: 0.15234375, y: -0.97265625}
+      - {x: 0.29296875, y: -0.90234375}
+      - {x: 0.40234375, y: -0.79296875}
+      - {x: 0.47265625, y: -0.65234375}
+      - {x: 0.5, y: -0.5}
+      - {x: 0.5, y: 0.5}
+      - {x: 0.47265625, y: 0.65234375}
+      - {x: 0.40234375, y: 0.79296875}
+      - {x: 0.29296875, y: 0.90234375}
+      - {x: 0.15234375, y: 0.97265625}
+  m_UseDelaunayMesh: 1
+--- !u!114 &-537582182577022112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067521861580782983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586f4a83d6ed24ce9a22749ce4c789a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAppearance
+  characters:
+  - character: 0
+    sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
+  - character: 1
+    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+  - character: 2
+    sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
+  - character: 3
+    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+  - character: 4
+    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+  - character: 5
+    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
+--- !u!114 &2336971384591331746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067521861580782983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8dca5b4a5874a748abd009561d39b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
+  turtleOn: 0
+  sharkOn: 0
+  swordfishOn: 0
+  anglerfishAbilityDuration: 5
+  anglerfishAbilityVisionBoost: 0
+  anglerfishCooldownBool: 0
+  anglerfishCooldown: 15
+  dolphinAbilityDuration: 3
+  dolphinAbilityMultiplier: 1.5
+  dolphinCooldownBool: 0
+  dolphinCooldown: 10
+  sharkAbilityDuration: 1
+  sharkAbilityForce: 500
+  sharkCooldownBool: 0
+  sharkCooldown: 8
+  eelRadius: 10
+  eelCooldownBool: 0
+  eelCooldown: 12
+  swordfishAbilityDuration: 3
+  swordfishAbilitySlowFactor: 0.25
+  swordfishCooldownBool: 0
+  swordfishCooldown: 10
+  turtleAbilityDuration: 5
+  turtleCooldownBool: 0
+  turtleCooldown: 15

@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
     private float collisionLockTimer = 0f;
     private bool originSaved = false;
     // public CameraController cameraController;
-    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool inCurrent = false;
     [HideInInspector] public bool maxSpeedReached = false;
     void Start() {
@@ -101,10 +100,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() { // the movement
-        if (canMove) {
+        if (GameStateManager.Instance != null && !GameStateManager.Instance.IsGameplayFrozen()) {
             moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
         } else {
-            Debug.Log("Player cannot move");
             moveInput = Vector2.zero;
         }
         if (speedText != null) {
@@ -239,14 +237,17 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collisionLockTimer > 0f)
+            return;
+
+        collisionLockTimer = 0.1f; 
+
         ContactPoint2D contact = collision.GetContact(0);
         Vector2 normal = contact.normal;
 
         Vector2 v = collision.relativeVelocity;
 
         float speedIntoWall = Vector2.Dot(v, normal);
-
-        Debug.Log(speedIntoWall);
 
         if (speedIntoWall <= 0f)
             return;
@@ -256,8 +257,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 reflected = Vector2.Reflect(v, normal);
 
-        Vector2 bounceVelocity =
-            Vector2.Lerp(v, reflected, 0.6f * strength);
+        Vector2 bounceVelocity = Vector2.Lerp(v, reflected, 0.6f * strength);
 
         Vector2 correction = bounceVelocity - v;
 
@@ -265,8 +265,6 @@ public class PlayerController : MonoBehaviour
             -correction * bounceStrength,
             ForceMode2D.Impulse
         );
-
-        collisionLockTimer = 0.1f;
     }
     public void EnterSlowZone(float speedFactor, float accelFactor)
     {

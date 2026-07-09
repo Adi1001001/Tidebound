@@ -1,21 +1,45 @@
 using UnityEngine;
-// used for temporary data (will delete after player closes the game)
+
+public enum CharacterType
+{
+    Anglerfish,
+    Dolphin,
+    Shark,
+    Eel,
+    Swordfish,
+    Turtle
+}
+
 public class DataCarrier : MonoBehaviour
 {
     public static DataCarrier Instance;
-    [HideInInspector] public string nextRaceTag; // teleport tag
-    [HideInInspector] public int selectedCharacterIndex = 0; // just putting this here because it's convenient (singleton)
 
-    void Awake() {
-        if (Instance == null) {
+    [HideInInspector] public string nextRaceTag;
+
+    [HideInInspector] public CharacterType currentCharacter = CharacterType.Anglerfish;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // This is the magic line!
-        } else {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
-    public void UpdateTag(string tag) {
+
+    public void UpdateTag(string tag)
+    {
         nextRaceTag = tag;
         Debug.Log("Updated nextRaceTag to: " + nextRaceTag);
+    }
+
+    public void SetCharacter(CharacterType character)
+    {
+        currentCharacter = character;
+        Debug.Log("Current character: " + currentCharacter);
     }
 }

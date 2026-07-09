@@ -4,7 +4,7 @@ public class FinishLine : MonoBehaviour {
     private RaceManager raceManager;
 
     void Start() {
-        raceManager = FindFirstObjectByType<RaceManager>();
+        raceManager = FindAnyObjectByType<RaceManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
