@@ -15,8 +15,10 @@ public class DataCarrier : MonoBehaviour
     public static DataCarrier Instance;
 
     [HideInInspector] public string nextRaceTag;
-
     [HideInInspector] public CharacterType currentCharacter = CharacterType.Anglerfish;
+
+    [HideInInspector] public int currentSaveZoneID = 0;
+    [HideInInspector] public int overworldProgress = 0;
 
     void Awake()
     {
@@ -41,5 +43,20 @@ public class DataCarrier : MonoBehaviour
     {
         currentCharacter = character;
         Debug.Log("Current character: " + currentCharacter);
+    }
+
+    public void SetSaveZone(int id)
+    {
+        currentSaveZoneID = id;
+        Debug.Log("Current Save Zone ID: " + currentSaveZoneID);
+    }
+
+    public void UnlockProgress(int id)
+    {
+        if (id > overworldProgress)
+        {
+            overworldProgress = id;
+            Debug.Log("Unlocked overworld progress: " + overworldProgress);
+        }
     }
 }

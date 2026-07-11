@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2530813529613109276}
   - component: {fileID: -537582182577022112}
   - component: {fileID: 2336971384591331746}
+  - component: {fileID: 8188596951048417057}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -267,7 +268,6 @@ MonoBehaviour:
   speedBarFill: {fileID: 0}
   bounceStrength: 0.6
   maxBounceSpeed: 25
-  canMove: 1
   inCurrent: 0
   maxSpeedReached: 0
 --- !u!114 &1751892072255695045
@@ -413,3 +413,15 @@ MonoBehaviour:
   turtleAbilityDuration: 5
   turtleCooldownBool: 0
   turtleCooldown: 15
+--- !u!114 &8188596951048417057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067521861580782983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1131e9d3a75d2499a9b8c9a6ce8a3582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverworldSpawn

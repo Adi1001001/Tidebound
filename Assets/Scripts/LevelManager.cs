@@ -41,10 +41,9 @@ public class LevelManager : MonoBehaviour {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void ToOverworld() {
-        Debug.Log(GameStateManager.Instance.CheckGameState());
+    public void ToOverworld()
+    {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
-        Debug.Log(GameStateManager.Instance.CheckGameState());
         SceneManager.LoadScene("Overworld");
     }
     public void ToCharacterSelect() {
