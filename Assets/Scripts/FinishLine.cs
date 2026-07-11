@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class FinishLine : MonoBehaviour {
+    public int raceID;
     private RaceManager raceManager;
 
     void Start() {
@@ -10,7 +11,7 @@ public class FinishLine : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             Debug.Log("Finish line crossed by player.");
-            raceManager.FinishRace();
+            raceManager.FinishRace(raceID);
         }
     }
 }
