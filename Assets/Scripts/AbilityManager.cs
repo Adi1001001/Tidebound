@@ -145,13 +145,13 @@ public class AbilityManager : MonoBehaviour {
         anglerfishCooldownBool = false;
     }
     IEnumerator DolphinSpeedBoost() {
-        float originalAcceleration = playerController.accelerationForce;
-        float originalMaxSpeed = playerController.maxSpeed;
-        playerController.accelerationForce *= dolphinAbilityMultiplier;
-        playerController.maxSpeed *= dolphinAbilityMultiplier; 
+        float originalAcceleration = playerController.accelForce;
+        float originalMaxSpeed = playerController.highSpeed;
+        playerController.accelForce *= dolphinAbilityMultiplier;
+        playerController.highSpeed *= dolphinAbilityMultiplier; 
         yield return new WaitForSeconds(dolphinAbilityDuration); 
-        playerController.accelerationForce = originalAcceleration;
-        playerController.maxSpeed = originalMaxSpeed;
+        playerController.accelForce = originalAcceleration;
+        playerController.highSpeed = originalMaxSpeed;
     }
     IEnumerator DolphinCooldown() {
         dolphinCooldownBool = true;

@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour
 {
-    [Header("Slow Zone")]
-    [Range(0f, 1f)]
-    public float speedFactor = 0.4f;
+    public float speedLimit;
 
     [Range(0.75f, 1f)]
     public float accelerationFactor = 1f;
@@ -257,7 +255,7 @@ public class SlowZone : MonoBehaviour
         if (player != null)
         {
             player.EnterSlowZone(
-                speedFactor,
+                speedLimit,
                 accelerationFactor
             );
         }

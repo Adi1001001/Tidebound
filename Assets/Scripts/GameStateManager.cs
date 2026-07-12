@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameStateManager : MonoBehaviour {
     public static GameStateManager Instance { get; private set; }
     private GameStates currentGameState;
-
+    private PlayerStates currentPlayerState = PlayerStates.Normal;
     public enum GameStates {
         MainMenu,
         Playing, // overworld gameplay
@@ -14,17 +14,33 @@ public class GameStateManager : MonoBehaviour {
         Paused,
         GameOver // death screen
     }
+
+    public enum PlayerStates
+    {
+        Normal,
+        InCannon
+    }
     public void SetGameState(GameStates newState) {
         currentGameState = newState;
     }
     public GameStates CheckGameState() {
         return currentGameState;
     }
+    public void SetPlayerState(PlayerStates newState)
+    {
+        currentPlayerState = newState;
+    }
+
+    public PlayerStates CheckPlayerState()
+    {
+        return currentPlayerState;
+    }
     public bool IsGameplayFrozen()
     {
         return currentGameState == GameStates.Paused || currentGameState == GameStates.Countdown 
         || currentGameState == GameStates.GameOver;
     }
+
     void Awake() {
         if (Instance != null && Instance != this) { // making it a singleton
             Destroy(gameObject);

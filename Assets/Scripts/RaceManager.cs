@@ -15,6 +15,7 @@ public class RaceManager : MonoBehaviour
     public TMP_Text bestTimeText;
     public TMP_Text successRaceResultText;
     public TMP_Text failedRaceResultText;
+    public int raceID;
     
     void Start() {
         timerManager = FindAnyObjectByType<TimerManager>();
@@ -28,7 +29,7 @@ public class RaceManager : MonoBehaviour
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
         timerManager.StartCountdown();
     }
-    public void FinishRace(int raceID) { // also add the best time feature later when you have the saves ready
+    public void FinishRace() { // also add the best time feature later when you have the saves ready
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.GameOver);
         float elapsedTime = timerManager.GetTimerValues().Item1;
         float requiredTime = timerManager.GetTimerValues().Item2;

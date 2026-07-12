@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -537582182577022112}
   - component: {fileID: 2336971384591331746}
   - component: {fileID: 8188596951048417057}
+  - component: {fileID: 8299106324781615867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -187,23 +188,6 @@ MonoBehaviour:
       m_Action: Player Movement
       m_Flags: 8
     m_Flags: 0
-  playerAbility:
-    m_Name: Player Ability
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 36a8538e-9a6a-4918-a1fc-670ec6647e7a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: a5fe2adc-4110-4161-94d1-546a367ff866
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Player Ability
-      m_Flags: 0
-    m_Flags: 0
   playerPause:
     m_Name: Player Pause
     m_Type: 0
@@ -256,10 +240,10 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   driftFactor: 0.6
-  accelerationForce: 22
+  accelForce: 25
   minRotationSpeed: 150
   maxRotationSpeed: 250
-  maxSpeed: 20
+  highSpeed: 20
   reverseForce: 16
   brakeStrength: 1.5
   speedMultiplier: 12.5
@@ -425,3 +409,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1131e9d3a75d2499a9b8c9a6ce8a3582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OverworldSpawn
+--- !u!114 &8299106324781615867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067521861580782983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b60650a094fe42e0816aea4dba10533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverManager
+  playerAbility:
+    m_Name: Player Ability
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: db8e7fb0-69dd-44ea-9d7f-fc9bc92935c9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b9cb8a22-f4db-4be9-bfc7-93bf7c1f8d9e
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Ability
+      m_Flags: 0
+    m_Flags: 0
