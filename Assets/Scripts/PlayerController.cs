@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     public BoundaryManager boundaries;
     private GameStateManager.GameStates currentGameState;
+    private GameStateManager.PlayerStates currentPlayerState = GameStateManager.PlayerStates.Normal;
+    private Cannon nearbyCannon;
     public InputAction playerMovement;
     public InputAction playerAbility;
     public InputAction playerPause;
@@ -17,12 +20,12 @@ public class PlayerController : MonoBehaviour
     public InputAction retryLevel;
     // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
-    public float accelerationForce = 25f;
+    public float accelForce = 25f;
     private float accelFactor = 1f;
     public float minRotationSpeed = 150f;
     public float maxRotationSpeed = 250f;
-    public float maxSpeed = 25f;
-    private float speedFactor = 1f;
+    public float highSpeed = 25f;
+    private float resistanceSpeed;
     public float reverseForce = 7f;
     public float brakeStrength = 0.5f;
     public float speedMultiplier = 10f; // to make the numbers displayed look bigger
@@ -51,6 +54,59 @@ public class PlayerController : MonoBehaviour
         // enterRace.performed += ctx => OnRaceClick();
     }
 
+    void Update()
+    {
+        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        {
+            moveInput = Vector2.zero;
+        }
+        else if (GameStateManager.Instance != null && !GameStateManager.Instance.IsGameplayFrozen())
+        {
+            moveInput = playerMovement.ReadValue<Vector2>();
+        }
+        else
+        {
+            moveInput = Vector2.zero;
+        }
+
+        if (speedText != null)
+        {
+            float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier;
+
+            speedText.text =
+                "Speed: " + currentSpeed.ToString("F0") + " KNOTS";
+        }
+    }
+    void FixedUpdate()
+    {
+        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        {
+            UpdateSpeedUI();
+            return;
+        }
+        if (collisionLockTimer > 0f)
+        {
+            collisionLockTimer -= Time.fixedDeltaTime;
+        }
+        ApplyRotation();
+        ApplyForwardForce();
+        KillOrthogonalVelocity();
+        if (isSlowed)
+        {
+            ApplyResistance(resistanceSpeed, 35, 3.5f);
+        }
+        else
+        {
+            ApplyResistance(highSpeed, 15, 2.5f);
+        }
+        UpdateSpeedUI();
+    }
+
+    public void SetVisible(bool visible)
+    {
+        GetComponent<SpriteRenderer>().enabled = visible;
+    }
+
     void OnEnable() {
         playerMovement.Enable();
         playerAbility.Enable();
@@ -66,16 +122,29 @@ public class PlayerController : MonoBehaviour
         retryLevel.Disable();
         // enterRace.Disable();
     }
-    void OnAbility() {
-        Debug.Log("Ability triggered");
+    void OnAbility()
+    {
+        if (nearbyCannon != null)
+        {
+            nearbyCannon.ToggleCannon();
+            return;
+        }
+
         currentGameState = GameStateManager.Instance.CheckGameState();
-        if (currentGameState != GameStateManager.GameStates.Playing && currentGameState != GameStateManager.GameStates.Racing) {
+
+        if (currentGameState != GameStateManager.GameStates.Playing &&
+            currentGameState != GameStateManager.GameStates.Racing)
+        {
             Debug.Log("Cannot use ability, game not in playing/racing state");
             return;
         }
-        if (abilityManager != null) {
+
+        if (abilityManager != null)
+        {
             abilityManager.UseAbility();
-        } else {
+        }
+        else
+        {
             Debug.LogWarning("AbilityManager not found in the scene.");
         }
     }
@@ -99,32 +168,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Update() { // the movement
-        if (GameStateManager.Instance != null && !GameStateManager.Instance.IsGameplayFrozen()) {
-            moveInput = playerMovement.ReadValue<Vector2>(); // reading the 2D input value
-        } else {
-            moveInput = Vector2.zero;
-        }
-        if (speedText != null) {
-                float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier; // .magnitude gives us the raw speed value
-                speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS"; // "F0" removes decimals
-            }
-    }
-    void FixedUpdate() {
-        if (collisionLockTimer > 0f)
-        {
-            collisionLockTimer -= Time.fixedDeltaTime;
-        }
-        ApplyRotation();
-        ApplyForwardForce();
-        KillOrthogonalVelocity();
-        EnforceSpeedLimit(); 
-        UpdateSpeedUI();  
-    }
-
     void ApplyRotation()
     {
-        float steeringFalloffSpeed = maxSpeed * 1.25f;
+        float steeringFalloffSpeed = highSpeed * 1.25f;
         float speedPercent = Mathf.Clamp01(playerRb.linearVelocity.magnitude / steeringFalloffSpeed);
         float currentRotationSpeed = Mathf.Lerp(maxRotationSpeed, minRotationSpeed, speedPercent);
         float rotationAmount = moveInput.x * currentRotationSpeed * Time.fixedUnscaledDeltaTime;
@@ -134,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
     void ApplyForwardForce()
     {
-        float accel = accelerationForce * accelFactor;
+        float accel = accelForce * accelFactor;
         // Forward
         if (moveInput.y > 0)
         {
@@ -155,32 +201,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (inCurrent)
-            return;
-    }
-
-    void EnforceSpeedLimit()
-    {
-        float limit = isSlowed ? maxSpeed * speedFactor : maxSpeed;
-
-        Vector2 vel = playerRb.linearVelocity;
-        float speed = vel.magnitude;
-
-        if (speed <= limit || speed < 0.001f)
-            return;
-
-        float excess = speed - limit;
-        float excessRatio = excess / limit;
-
-        const float dragStrength = 35f; // NOTE: Higher = harsher braking
-        const float exponent = 0.3f; // NOTE: Lower = Hovering closer to speed limit
-
-        float dragMultiplier = Mathf.Pow(excessRatio, exponent);
-
-        // Convert into a physically meaningful force
-        float dragForce = dragMultiplier * dragStrength * playerRb.mass;
-
-        playerRb.AddForce(-vel.normalized * dragForce, ForceMode2D.Force);
     }
 
     void KillOrthogonalVelocity()
@@ -193,11 +213,39 @@ public class PlayerController : MonoBehaviour
 
         playerRb.linearVelocity = forwardVelocity + (rightVelocity * driftFactor);
     }
+
+    void ApplyResistance(float resistanceSpeed, float resistanceStrength, float fallOff)
+    {
+        Vector2 velocity = playerRb.linearVelocity;
+        float speed = velocity.magnitude;
+
+        if (speed <= resistanceSpeed)
+            return;
+
+        float excessSpeed = speed - resistanceSpeed;
+        float excessRatio = excessSpeed / resistanceSpeed;
+
+        float exponent = 1/fallOff;
+
+        float resistanceMultiplier =
+            Mathf.Pow(excessRatio, exponent);
+
+        float resistanceForce =
+            resistanceMultiplier *
+            resistanceStrength *
+            playerRb.mass;
+
+        playerRb.AddForce(
+            -velocity.normalized * resistanceForce,
+            ForceMode2D.Force
+        );
+    }
+
     void UpdateSpeedUI() {
         if (speedText == null || speedBar == null) return;
 
         float currentSpeed = playerRb.linearVelocity.magnitude;
-        float speedPercent = currentSpeed / maxSpeed; // 0 to 1
+        float speedPercent = Mathf.Min(1f, currentSpeed / highSpeed); // 0 to 1
 
         speedBar.value = speedPercent;
         Color speedColor;
@@ -266,20 +314,41 @@ public class PlayerController : MonoBehaviour
             ForceMode2D.Impulse
         );
     }
-    public void EnterSlowZone(float speedFactor, float accelFactor)
+    public void EnterSlowZone(float speedLimit, float accelFactor)
     {
         if (abilityManager != null && abilityManager.turtleOn)
             return;
 
         isSlowed = true;
-        this.speedFactor = speedFactor;
+        this.resistanceSpeed = speedLimit;
         this.accelFactor = accelFactor;
     }
 
     public void ExitSlowZone()
     {
         isSlowed = false;
-        speedFactor = 1f;
+        resistanceSpeed = highSpeed;
         accelFactor = 1f;
+    }
+
+    public void SetNearbyCannon(Cannon cannon)
+    {
+        nearbyCannon = cannon;
+    }
+
+    public void EnterCannon()
+    {
+        currentPlayerState = GameStateManager.PlayerStates.InCannon;
+        moveInput = Vector2.zero;
+        playerRb.linearVelocity = Vector2.zero;
+        playerRb.angularVelocity = 0f;
+    }
+
+    public void FireFromCannon(float speed, Vector2 direction)
+    {
+        currentPlayerState = GameStateManager.PlayerStates.Normal;
+        SetVisible(true);
+        playerRb.linearVelocity = direction.normalized * (speed/speedMultiplier);
+        playerRb.angularVelocity = 0f;
     }
 }

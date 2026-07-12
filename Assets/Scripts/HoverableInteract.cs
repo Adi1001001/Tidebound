@@ -8,11 +8,16 @@ public class HoverableInteract : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision) {
         isHovering = true;
-        textUI.SetActive(true);
+        if (textUI != null)
+        {
+            textUI.SetActive(true);
+        }
     }
     void OnTriggerExit2D(Collider2D collision) {
         isHovering = false;
         if (textUI != null)
-        textUI.SetActive(false);
+        {
+            textUI.SetActive(false);
+        }
     }
 }

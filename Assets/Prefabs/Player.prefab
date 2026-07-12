@@ -259,7 +259,7 @@ MonoBehaviour:
   accelerationForce: 22
   minRotationSpeed: 150
   maxRotationSpeed: 250
-  maxSpeed: 20
+  highSpeed: 20
   reverseForce: 16
   brakeStrength: 1.5
   speedMultiplier: 12.5
