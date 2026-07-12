@@ -2,19 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    private AbilityManager abilityManager;
     private Vector2 moveInput;
     public BoundaryManager boundaries;
-    private GameStateManager.GameStates currentGameState;
     private GameStateManager.PlayerStates currentPlayerState = GameStateManager.PlayerStates.Normal;
-    private Cannon nearbyCannon;
     public InputAction playerMovement;
-    public InputAction playerAbility;
     public InputAction playerPause;
     public InputAction tempCountdown;
     public InputAction retryLevel;
@@ -37,7 +32,6 @@ public class PlayerController : MonoBehaviour
     [Header("Collision Feel")]
     [SerializeField] private float bounceStrength = 0.6f;
     [SerializeField] private float maxBounceSpeed = 25f;
-
     private float collisionLockTimer = 0f;
     private bool originSaved = false;
     // public CameraController cameraController;
@@ -46,8 +40,6 @@ public class PlayerController : MonoBehaviour
     void Start() {
         // cameraController = FindFirstObjectByType<CameraController>();
         playerRb = GetComponent<Rigidbody2D>();
-        abilityManager = GetComponent<AbilityManager>();
-        playerAbility.performed += ctx => OnAbility(); // when the ability button (e) is pressed, call the function
         playerPause.performed += ctx => OnPause();
         tempCountdown.performed += ctx => OnTempCountdown();
         retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
@@ -109,48 +101,19 @@ public class PlayerController : MonoBehaviour
 
     void OnEnable() {
         playerMovement.Enable();
-        playerAbility.Enable();
         playerPause.Enable();
         tempCountdown.Enable();
         retryLevel.Enable();
-        // enterRace.Enable();
-    } void OnDisable() {
+    } 
+    void OnDisable() {
         playerMovement.Disable();
-        playerAbility.Disable();
         playerPause.Disable();
         tempCountdown.Disable();
         retryLevel.Disable();
-        // enterRace.Disable();
-    }
-    void OnAbility()
-    {
-        if (nearbyCannon != null)
-        {
-            nearbyCannon.ToggleCannon();
-            return;
-        }
-
-        currentGameState = GameStateManager.Instance.CheckGameState();
-
-        if (currentGameState != GameStateManager.GameStates.Playing &&
-            currentGameState != GameStateManager.GameStates.Racing)
-        {
-            Debug.Log("Cannot use ability, game not in playing/racing state");
-            return;
-        }
-
-        if (abilityManager != null)
-        {
-            abilityManager.UseAbility();
-        }
-        else
-        {
-            Debug.LogWarning("AbilityManager not found in the scene.");
-        }
     }
     void OnPause() {
         Debug.Log("Pause triggered");
-        currentGameState = GameStateManager.Instance.CheckGameState();
+        GameStateManager.GameStates currentGameState = GameStateManager.Instance.CheckGameState();
         if (currentGameState == GameStateManager.GameStates.Paused) {
             LevelManager.Instance.ResumeGame();
         } else {
@@ -314,13 +277,10 @@ public class PlayerController : MonoBehaviour
             ForceMode2D.Impulse
         );
     }
-    public void EnterSlowZone(float speedLimit, float accelFactor)
+    public void EnterSlowZone(float resistanceSpeed, float accelFactor)
     {
-        if (abilityManager != null && abilityManager.turtleOn)
-            return;
-
         isSlowed = true;
-        this.resistanceSpeed = speedLimit;
+        this.resistanceSpeed = resistanceSpeed;
         this.accelFactor = accelFactor;
     }
 
@@ -331,13 +291,9 @@ public class PlayerController : MonoBehaviour
         accelFactor = 1f;
     }
 
-    public void SetNearbyCannon(Cannon cannon)
-    {
-        nearbyCannon = cannon;
-    }
-
     public void EnterCannon()
     {
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.InCannon);
         currentPlayerState = GameStateManager.PlayerStates.InCannon;
         moveInput = Vector2.zero;
         playerRb.linearVelocity = Vector2.zero;
@@ -346,6 +302,7 @@ public class PlayerController : MonoBehaviour
 
     public void FireFromCannon(float speed, Vector2 direction)
     {
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
         currentPlayerState = GameStateManager.PlayerStates.Normal;
         SetVisible(true);
         playerRb.linearVelocity = direction.normalized * (speed/speedMultiplier);

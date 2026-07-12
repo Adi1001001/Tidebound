@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3521232796727028183}
   - component: {fileID: 3579718930335791877}
   - component: {fileID: 8759844484074710737}
-  - component: {fileID: 6069346167775084671}
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Untagged
@@ -107,23 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeleportManager
   teleportTag: SampleRaceScene
-  enterRace:
-    m_Name: Enter Race
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c1e8d784-6fb8-4d6b-b992-8d49c7d429c9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9dce4db4-d9aa-4714-b35d-0f1f07f13b48
-      m_Path: <Keyboard>/t
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Enter Race
-      m_Flags: 0
-    m_Flags: 0
 --- !u!58 &8759844484074710737
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,18 +142,3 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &6069346167775084671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6002613952415147704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb4bd1ba111ce843b3ec5bf807a3eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoverableInteract
-  message: PRESS 'T' TO TELEPORT
-  textUI: {fileID: 0}
-  isHovering: 0
