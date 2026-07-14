@@ -17,7 +17,7 @@ public class CharacterSelector : MonoBehaviour {
         {
             characterPanels[index].SetActive(true);
 
-            DataCarrier.Instance.SetCharacter((CharacterType)index);
+            DataCarrier.Instance.SetCharacter((Character)index);
         }
     }
 }

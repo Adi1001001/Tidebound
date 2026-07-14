@@ -13,21 +13,21 @@ public class Cannon : MonoBehaviour
     private bool movingTowardsMax = true;
 
     private float rotationProgress = 0f;
-    private float rotationDuration = 1.25f;
+    public float rotationDuration = 1.25f;
 
     private float currentAngle;
 
     private PlayerController player;
-    private bool playerInCannon = false;
+    [HideInInspector] public bool playerInCannon = false;
 
-    private Camera mainCamera;
+    private CameraController mainCamera;
     public float cameraZoomFactor = 1.5f;
 
     void Start()
     {
         RebuildCollider();
         SetRandomRotation();
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
     }
 
 
@@ -139,22 +139,14 @@ public class Cannon : MonoBehaviour
         {
             player.EnterCannon(transform.position);
             player.SetVisible(false);
-            ZoomCamera(cameraZoomFactor);
+            mainCamera.ZoomCamera(cameraZoomFactor);
         }
         else
         {
             player.FireFromCannon(releaseSpeed, transform.up);
             player.SetVisible(true);
-            ZoomCamera(1/cameraZoomFactor);
+            mainCamera.ZoomCamera(1/cameraZoomFactor);
         }
-    }
-
-    void ZoomCamera(float zoomFactor)
-    {
-        if (mainCamera == null)
-            return;
-
-        mainCamera.orthographicSize *= zoomFactor;
     }
 
     void RebuildCollider()
@@ -185,7 +177,7 @@ public class Cannon : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStateManager>().SetNearbyCannon(this);
+            collision.GetComponent<PlayerActionManager>().SetNearbyCannon(this);
         }
     }
 
@@ -193,7 +185,7 @@ public class Cannon : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStateManager>().SetNearbyCannon(null);
+            collision.GetComponent<PlayerActionManager>().SetNearbyCannon(null);
         }
     }
 }

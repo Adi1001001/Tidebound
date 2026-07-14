@@ -6,7 +6,7 @@ public class PlayerAppearance : MonoBehaviour
     [System.Serializable]
     public class CharacterData
     {
-        public CharacterType character;
+        public Character character;
         public Sprite sprite;
     }
 
@@ -28,7 +28,7 @@ public class PlayerAppearance : MonoBehaviour
 
     public void ApplyCharacter()
     {
-        CharacterType current = DataCarrier.Instance.currentCharacter;
+        Character current = DataCarrier.Instance.currentCharacter;
 
         foreach (CharacterData character in characters)
         {

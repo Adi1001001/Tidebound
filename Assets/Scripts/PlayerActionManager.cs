@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerStateManager : MonoBehaviour
+public class PlayerActionManager : MonoBehaviour
 {
-    private AbilityManager abilityManager;
+    private Ability ability;
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
+    public bool alwaysBouncy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        abilityManager = GetComponent<AbilityManager>();
+        ability = GetComponent<Ability>();
         playerAbility.performed += ctx => OnAbility(); 
     }
 
@@ -33,9 +34,14 @@ public class PlayerStateManager : MonoBehaviour
         if (nearbyTeleporter != null)
         {
             nearbyTeleporter.OnRaceClick();
+            return;
         }
         if (nearbyCannon != null)
         {
+            if (!nearbyCannon.playerInCannon && DataCarrier.Instance.GetCharacter() == Character.Anglerfish)
+            {
+                ability.EndAbility();
+            }
             nearbyCannon.ToggleCannon();
             return;
         }
@@ -46,9 +52,9 @@ public class PlayerStateManager : MonoBehaviour
             return;
         }
 
-        if (abilityManager != null)
+        if (ability != null)
         {
-            abilityManager.UseAbility();
+            ability.UseAbility();
         }
         else
         {
@@ -68,7 +74,14 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SetNearbyBouncyArea(BouncyArea bouncyArea)
     {
-        GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
-        GameStateManager.Instance.SetPlayerState(newState);
+        if (alwaysBouncy)
+        {
+            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
+        }
+        else
+        {
+            GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
+            GameStateManager.Instance.SetPlayerState(newState);
+        }
     }
 }

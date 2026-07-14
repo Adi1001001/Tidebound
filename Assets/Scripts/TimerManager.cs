@@ -1,31 +1,28 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
     public float timeLimit = 30f;
+    private GameObject player;
     private PlayerController playerController;
-    private AbilityManager abilityManager;
+    private Ability ability;
     private float elapsedTime = 0f;
+    public float slowFactor = 1;
     [HideInInspector] public bool isTimerRunning = false;
     int countdown = 3;
 
     void Start() {
-        playerController = FindAnyObjectByType<PlayerController>();
-        abilityManager = playerController.GetComponent<AbilityManager>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        ability = playerController.GetComponent<Ability>();
     }
 
     void Update() {
         if (isTimerRunning) {
-            if (abilityManager.swordfishOn) {
-                elapsedTime += Time.deltaTime * abilityManager.swordfishAbilitySlowFactor;
-            } else {
-                elapsedTime += Time.deltaTime;
-            }
-
+            elapsedTime += Time.deltaTime * slowFactor;
             if (elapsedTime >= timeLimit) {
                 isTimerRunning = false;
                 timerDisplay.color = Color.red;
@@ -35,7 +32,6 @@ public class TimerManager : MonoBehaviour {
             }
         }
     }
-
     void DisplayTime(float timeToDisplay) {
         timeToDisplay = Mathf.Max(0f, timeToDisplay);
         int minutes = Mathf.FloorToInt(timeToDisplay / 60);
@@ -43,7 +39,7 @@ public class TimerManager : MonoBehaviour {
         int tenths = Mathf.FloorToInt(timeToDisplay % 1 * 10);
 
         float elapsed = elapsedTime / timeLimit;
-        if (abilityManager.swordfishOn) {
+        if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
             timerDisplay.color = Color.white;
         } else if (elapsed >= 0.9f) {
             timerDisplay.color = Color.red;
@@ -61,7 +57,7 @@ public class TimerManager : MonoBehaviour {
     }
 
     public void StartCountdown() {
-        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Countdown) {
+        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown) {
             Debug.Log("Cannot show countdown timer when not in countdown state");
             return;
         }

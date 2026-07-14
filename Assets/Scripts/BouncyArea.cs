@@ -12,8 +12,7 @@ public class BouncyArea : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(":)");
-            collision.GetComponent<PlayerStateManager>().SetNearbyBouncyArea(this);
+            collision.GetComponent<PlayerActionManager>().SetNearbyBouncyArea(this);
         }
     }
 
@@ -21,8 +20,7 @@ public class BouncyArea : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(":(");
-            collision.GetComponent<PlayerStateManager>().SetNearbyBouncyArea(null);
+            collision.GetComponent<PlayerActionManager>().SetNearbyBouncyArea(null);
         }
     }
 }

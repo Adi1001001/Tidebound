@@ -6,13 +6,13 @@ public class CurrentArrowGenerator : MonoBehaviour
     [Header("Arrow")]
     [SerializeField] private Sprite arrowSprite;
 
-    [SerializeField] private float arrowWidthPixels = 32f;
-    [SerializeField] private float arrowHeightPixels = 32f;
+    public float arrowWidthPixels = 32f;
+    public float arrowHeightPixels = 32f;
 
 
     [Header("Spacing")]
-    [SerializeField] private float horizontalGapPixels = 32f;
-    [SerializeField] private float verticalGapPixels = 32f;
+    public float horizontalGapPixels = 32f;
+    public float verticalGapPixels = 32f;
 
 
     [Header("Layout")]
