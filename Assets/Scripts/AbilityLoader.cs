@@ -29,7 +29,7 @@ public class AbilityLoader : MonoBehaviour
                 break;
 
             case Character.Turtle:
-                // currentAbility = gameObject.AddComponent<TurtleAbility>();
+                currentAbility = gameObject.AddComponent<TurtleAbility>();
                 break;
         }
     }

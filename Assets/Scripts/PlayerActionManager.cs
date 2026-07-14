@@ -7,6 +7,7 @@ public class PlayerActionManager : MonoBehaviour
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
+    public bool alwaysBouncy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +38,7 @@ public class PlayerActionManager : MonoBehaviour
         }
         if (nearbyCannon != null)
         {
-            if (!nearbyCannon.playerInCannon && DataCarrier.Instance.GetCharacter() != Character.Swordfish)
+            if (!nearbyCannon.playerInCannon && DataCarrier.Instance.GetCharacter() == Character.Anglerfish)
             {
                 ability.EndAbility();
             }
@@ -73,7 +74,14 @@ public class PlayerActionManager : MonoBehaviour
 
     public void SetNearbyBouncyArea(BouncyArea bouncyArea)
     {
-        GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
-        GameStateManager.Instance.SetPlayerState(newState);
+        if (alwaysBouncy)
+        {
+            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
+        }
+        else
+        {
+            GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
+            GameStateManager.Instance.SetPlayerState(newState);
+        }
     }
 }

@@ -5,8 +5,7 @@ public class SwordfishAbility : Ability
 {
     [SerializeField] private float duration = 2f;
     [SerializeField] private float slowFactor = 0.5f;
-    private GameObject timerManager;
-    private TimerManager timer;
+    private TimerManager timer = null;
     private SlowZone[] allZones;
     private Cannon[] allCannons;
     protected override void Start()
@@ -14,7 +13,7 @@ public class SwordfishAbility : Ability
         base.Start();
         cooldown = 15f;
 
-        timerManager = GameObject.Find("TimerManager");
+        GameObject timerManager = GameObject.Find("TimerManager");
         if (timerManager != null)
         {
             timer = timerManager.GetComponent<TimerManager>();
@@ -27,7 +26,7 @@ public class SwordfishAbility : Ability
     {
         Debug.Log("Swordfish ability activated");
         
-        if (timerManager != null)
+        if (timer != null)
         {
             timer.slowFactor = slowFactor;
         }
@@ -44,7 +43,7 @@ public class SwordfishAbility : Ability
 
     protected override void OnAbilityEnd()
     {
-        if (timerManager != null)
+        if (timer != null)
         {
             timer.slowFactor = 1f;
         }
