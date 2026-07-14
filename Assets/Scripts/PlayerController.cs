@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviour
     public void FireFromCannon(float speed, Vector2 direction)
     { 
         GameStateManager.Instance.SetPlayerState(prevPlayerState);
-        playerRb.linearVelocity = direction.normalized * (speed/speedMultiplier);
+        playerRb.linearVelocity = direction.normalized * speed;
         playerRb.angularVelocity = 0f;
     }
 }

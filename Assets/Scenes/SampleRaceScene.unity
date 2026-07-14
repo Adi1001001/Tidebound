@@ -1588,7 +1588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4825100285192052344, guid: bf729fcf87e0e4d85be97f4f4d0f56f8, type: 3}
       propertyPath: releaseSpeed
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4825100285192052344, guid: bf729fcf87e0e4d85be97f4f4d0f56f8, type: 3}
       propertyPath: enterCannon.m_Name
