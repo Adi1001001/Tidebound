@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Currents : MonoBehaviour {
+public class Current : MonoBehaviour {
     public float pushForce = 10f;
     private Rigidbody2D playerRb;
     private CameraController cameraController;

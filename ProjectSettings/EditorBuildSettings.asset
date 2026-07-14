@@ -30,4 +30,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Race 1.4/Race 1.4.unity
     guid: 2ad5bb004063041d489e7eb3411fea18
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 5474916d3165b470da25860e151a627c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

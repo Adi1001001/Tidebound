@@ -53,7 +53,6 @@ public class DataCarrier : MonoBehaviour
     public void SetSaveZone(int id)
     {
         currentSaveZoneID = id;
-        Debug.Log("Current Save Zone ID: " + currentSaveZoneID);
     }
 
     public void UnlockProgress(int id)
@@ -61,7 +60,6 @@ public class DataCarrier : MonoBehaviour
         if (id > overworldProgress)
         {
             overworldProgress = id;
-            Debug.Log("Unlocked overworld progress: " + overworldProgress);
         }
     }
 }

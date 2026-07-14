@@ -13,7 +13,7 @@ public class AbilityLoader : MonoBehaviour
                 break;
 
             case Character.Dolphin:
-                // currentAbility = gameObject.AddComponent<DolphinAbility>();
+                currentAbility = gameObject.AddComponent<DolphinAbility>();
                 break;
 
             case Character.Shark:
