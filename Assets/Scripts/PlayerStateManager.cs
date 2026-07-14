@@ -65,4 +65,10 @@ public class PlayerStateManager : MonoBehaviour
     {
         nearbyTeleporter = teleporter;
     }
+
+    public void SetNearbyBouncyArea(BouncyArea bouncyArea)
+    {
+        GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
+        GameStateManager.Instance.SetPlayerState(newState);
+    }
 }

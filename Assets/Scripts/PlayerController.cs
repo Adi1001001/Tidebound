@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
     public BoundaryManager boundaries;
-    private GameStateManager.PlayerStates currentPlayerState = GameStateManager.PlayerStates.Bouncy;
     private GameStateManager.PlayerStates prevPlayerState;
     public InputAction playerMovement;
     public InputAction playerPause;
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             moveInput = Vector2.zero;
         }
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             UpdateSpeedUI();
             return;
@@ -84,7 +83,6 @@ public class PlayerController : MonoBehaviour
         }
         ApplyRotation();
         ApplyForwardForce();
-        // if (currentPlayerState != GameStateManager.PlayerStates.Bouncy) {KillOrthogonalVelocity();}
         KillOrthogonalVelocity();
         if (isSlowed)
         {
@@ -251,7 +249,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("BOUNCE");
         if (collisionLockTimer > 0f)
             return;
 
@@ -264,12 +261,9 @@ public class PlayerController : MonoBehaviour
         // Make sure we were actually travelling into the surface
         float speedIntoWall = Vector2.Dot(incoming, normal);
 
-        if (speedIntoWall <= 0f)
+        if (speedIntoWall < 0f)
             return;
-        // ==========================
-        // BOUNCY STATE
-        // ==========================
-        if (currentPlayerState == GameStateManager.PlayerStates.Bouncy)
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.Bouncy)
         {
             Vector2 reflected = Vector2.Reflect(-incoming, normal);
 
@@ -279,12 +273,8 @@ public class PlayerController : MonoBehaviour
             float speed = incoming.magnitude;
             playerRb.linearVelocity = reflected.normalized * speed * 1.05f;
             playerRb.position += normal * 0.5f;
-
             return;
         }
-        // ==========================
-        // NORMAL STATE
-        // ==========================
         collisionLockTimer = 0.15f;
         float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
         float strength = Mathf.SmoothStep(0f, 1f, t);
@@ -313,11 +303,11 @@ public class PlayerController : MonoBehaviour
         accelFactor = 1f;
     }
 
-    public void EnterCannon()
+    public void EnterCannon(Vector3 cannonPos)
     {
-        prevPlayerState = currentPlayerState;
+        prevPlayerState = GameStateManager.Instance.CheckPlayerState();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.InCannon);
-        currentPlayerState = GameStateManager.PlayerStates.InCannon;
+        transform.position = cannonPos;
         moveInput = Vector2.zero;
         playerRb.linearVelocity = Vector2.zero;
         playerRb.angularVelocity = 0f;
@@ -326,7 +316,6 @@ public class PlayerController : MonoBehaviour
     public void FireFromCannon(float speed, Vector2 direction)
     { 
         GameStateManager.Instance.SetPlayerState(prevPlayerState);
-        currentPlayerState = prevPlayerState;
         playerRb.linearVelocity = direction.normalized * (speed/speedMultiplier);
         playerRb.angularVelocity = 0f;
     }

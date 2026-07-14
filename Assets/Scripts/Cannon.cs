@@ -137,7 +137,7 @@ public class Cannon : MonoBehaviour
 
         if (playerInCannon)
         {
-            player.EnterCannon();
+            player.EnterCannon(transform.position);
             player.SetVisible(false);
             ZoomCamera(cameraZoomFactor);
         }
