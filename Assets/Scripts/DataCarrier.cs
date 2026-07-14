@@ -4,8 +4,6 @@ public enum Character
 {
     Anglerfish,
     Dolphin,
-    Shark,
-    Eel,
     Swordfish,
     Turtle
 }

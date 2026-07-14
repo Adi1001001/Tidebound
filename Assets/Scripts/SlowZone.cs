@@ -224,16 +224,6 @@ public class SlowZone : MonoBehaviour
         if (!active)
             return;
 
-
-        // if (ability != null && ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Shark)
-        // {
-        //     if (breakableByShark)
-        //         Destroy(gameObject);
-
-        //     return;
-        // }
-
-
         if (player != null)
         {
             player.EnterSlowZone(

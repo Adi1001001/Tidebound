@@ -16,14 +16,6 @@ public class AbilityLoader : MonoBehaviour
                 currentAbility = gameObject.AddComponent<DolphinAbility>();
                 break;
 
-            case Character.Shark:
-                // currentAbility = gameObject.AddComponent<SharkAbility>();
-                break;
-
-            case Character.Eel:
-                // currentAbility = gameObject.AddComponent<EelAbility>();
-                break;
-
             case Character.Swordfish:
                 currentAbility = gameObject.AddComponent<SwordfishAbility>();
                 break;

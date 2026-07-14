@@ -52,7 +52,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
-    <Compile Include="Assets/Scripts/Redundant.cs" />
     <Compile Include="Assets/Scripts/Cannon.cs" />
     <Compile Include="Assets/Scripts/PlayerActionManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
