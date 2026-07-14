@@ -1,32 +1,28 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
     public float timeLimit = 30f;
+    private GameObject player;
     private PlayerController playerController;
     private Ability ability;
     private float elapsedTime = 0f;
+    public float slowFactor = 1;
     [HideInInspector] public bool isTimerRunning = false;
     int countdown = 3;
 
     void Start() {
-        playerController = FindAnyObjectByType<PlayerController>();
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         ability = playerController.GetComponent<Ability>();
     }
 
     void Update() {
         if (isTimerRunning) {
-            elapsedTime += Time.deltaTime;
-            // if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
-            //     elapsedTime += Time.deltaTime * ability.swordfishAbilitySlowFactor;
-            // } else {
-            //     elapsedTime += Time.deltaTime;
-            // }
-
+            elapsedTime += Time.deltaTime * slowFactor;
             if (elapsedTime >= timeLimit) {
                 isTimerRunning = false;
                 timerDisplay.color = Color.red;
@@ -36,7 +32,6 @@ public class TimerManager : MonoBehaviour {
             }
         }
     }
-
     void DisplayTime(float timeToDisplay) {
         timeToDisplay = Mathf.Max(0f, timeToDisplay);
         int minutes = Mathf.FloorToInt(timeToDisplay / 60);

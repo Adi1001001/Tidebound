@@ -13,7 +13,7 @@ public class Cannon : MonoBehaviour
     private bool movingTowardsMax = true;
 
     private float rotationProgress = 0f;
-    private float rotationDuration = 1.25f;
+    public float rotationDuration = 1.25f;
 
     private float currentAngle;
 

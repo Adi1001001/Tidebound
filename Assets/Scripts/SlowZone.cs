@@ -7,33 +7,19 @@ public class SlowZone : MonoBehaviour
 
     [Range(0.75f, 1f)]
     public float accelerationFactor = 1f;
-
-    public bool breakableByShark;
     public bool active = true;
-
-
     [Header("Movement")]
     public bool movable = false;
     public float moveSpeed = 2f;
-
     [Tooltip("Offsets from starting position.")]
-    public List<Vector2> waypoints = new List<Vector2>()
-    {
-        Vector2.zero
-    };
-
-
+    public List<Vector2> waypoints = new List<Vector2>(){Vector2.zero};
     // Movement
     private int currentTarget = 0;
     private Vector2 startPosition;
-
-
     // Path Line
     private LineRenderer pathRenderer;
-
     private static readonly Color PATH_COLOR =
         new Color32(37, 0, 255, 255);
-
 
     // Moving indicator
     private GameObject movementIndicator;
@@ -50,9 +36,7 @@ public class SlowZone : MonoBehaviour
         startPosition = transform.position;
 
         RebuildCollider();
-
         CreatePathLine();
-
         CreateMovementIndicator();
     }
 

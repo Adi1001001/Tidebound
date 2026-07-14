@@ -25,7 +25,7 @@ public class AbilityLoader : MonoBehaviour
                 break;
 
             case Character.Swordfish:
-                // currentAbility = gameObject.AddComponent<SwordfishAbility>();
+                currentAbility = gameObject.AddComponent<SwordfishAbility>();
                 break;
 
             case Character.Turtle:

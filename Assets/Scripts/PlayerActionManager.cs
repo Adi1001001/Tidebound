@@ -37,7 +37,7 @@ public class PlayerActionManager : MonoBehaviour
         }
         if (nearbyCannon != null)
         {
-            if (!nearbyCannon.playerInCannon)
+            if (!nearbyCannon.playerInCannon && DataCarrier.Instance.GetCharacter() != Character.Swordfish)
             {
                 ability.EndAbility();
             }

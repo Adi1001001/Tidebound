@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 784331115806571859}
   - component: {fileID: 93492309397845367}
   - component: {fileID: 3365970308168006631}
+  - component: {fileID: 3949447393872045373}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -511,3 +512,15 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3949447393872045373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324790025656845857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1131e9d3a75d2499a9b8c9a6ce8a3582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OverworldSpawn
