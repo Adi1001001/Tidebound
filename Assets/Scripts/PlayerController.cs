@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
     public BoundaryManager boundaries;
-    private GameStateManager.PlayerStates currentPlayerState = GameStateManager.PlayerStates.Normal;
+    private GameStateManager.PlayerStates prevPlayerState;
     public InputAction playerMovement;
     public InputAction playerPause;
     public InputAction tempCountdown;
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // public CameraController cameraController;
     [HideInInspector] public bool inCurrent = false;
     [HideInInspector] public bool maxSpeedReached = false;
+    
     void Start() {
         // cameraController = FindFirstObjectByType<CameraController>();
         playerRb = GetComponent<Rigidbody2D>();
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             moveInput = Vector2.zero;
         }
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (currentPlayerState == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             UpdateSpeedUI();
             return;
@@ -251,26 +252,37 @@ public class PlayerController : MonoBehaviour
         if (collisionLockTimer > 0f)
             return;
 
-        collisionLockTimer = 0.1f; 
-
         ContactPoint2D contact = collision.GetContact(0);
         Vector2 normal = contact.normal;
 
-        Vector2 v = collision.relativeVelocity;
+        // Velocity just before impact
+        Vector2 incoming = collision.relativeVelocity;
 
-        float speedIntoWall = Vector2.Dot(v, normal);
+        // Make sure we were actually travelling into the surface
+        float speedIntoWall = Vector2.Dot(incoming, normal);
 
-        if (speedIntoWall <= 0f)
+        if (speedIntoWall < 0f)
             return;
+        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.Bouncy)
+        {
+            Vector2 reflected = Vector2.Reflect(-incoming, normal);
 
+            float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            float speed = incoming.magnitude;
+            playerRb.linearVelocity = reflected.normalized * speed * 1.05f;
+            playerRb.position += normal * 0.5f;
+            return;
+        }
+        collisionLockTimer = 0.15f;
         float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
         float strength = Mathf.SmoothStep(0f, 1f, t);
 
-        Vector2 reflected = Vector2.Reflect(v, normal);
+        Vector2 reflectedVelocity = Vector2.Reflect(incoming, normal);
+        Vector2 bounceVelocity = Vector2.Lerp(incoming, reflectedVelocity, 0.6f * strength);
 
-        Vector2 bounceVelocity = Vector2.Lerp(v, reflected, 0.6f * strength);
-
-        Vector2 correction = bounceVelocity - v;
+        Vector2 correction = bounceVelocity - incoming;
 
         playerRb.AddForce(
             -correction * bounceStrength,
@@ -291,20 +303,19 @@ public class PlayerController : MonoBehaviour
         accelFactor = 1f;
     }
 
-    public void EnterCannon()
+    public void EnterCannon(Vector3 cannonPos)
     {
+        prevPlayerState = GameStateManager.Instance.CheckPlayerState();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.InCannon);
-        currentPlayerState = GameStateManager.PlayerStates.InCannon;
+        transform.position = cannonPos;
         moveInput = Vector2.zero;
         playerRb.linearVelocity = Vector2.zero;
         playerRb.angularVelocity = 0f;
     }
 
     public void FireFromCannon(float speed, Vector2 direction)
-    {
-        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
-        currentPlayerState = GameStateManager.PlayerStates.Normal;
-        SetVisible(true);
+    { 
+        GameStateManager.Instance.SetPlayerState(prevPlayerState);
         playerRb.linearVelocity = direction.normalized * (speed/speedMultiplier);
         playerRb.angularVelocity = 0f;
     }

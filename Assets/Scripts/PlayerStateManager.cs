@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HoverManager : MonoBehaviour
+public class PlayerStateManager : MonoBehaviour
 {
     private AbilityManager abilityManager;
     public InputAction playerAbility;
@@ -23,7 +23,7 @@ public class HoverManager : MonoBehaviour
     void OnEnable() {
         playerAbility.Enable();
     }
-    
+
     void OnDisable() {
         playerAbility.Disable();
     }
@@ -64,5 +64,11 @@ public class HoverManager : MonoBehaviour
     public void SetNearbyTeleporter(Teleporter teleporter)
     {
         nearbyTeleporter = teleporter;
+    }
+
+    public void SetNearbyBouncyArea(BouncyArea bouncyArea)
+    {
+        GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
+        GameStateManager.Instance.SetPlayerState(newState);
     }
 }

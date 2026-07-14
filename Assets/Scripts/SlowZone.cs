@@ -78,8 +78,7 @@ public class SlowZone : MonoBehaviour
 
             if (Vector2.Distance(transform.position, target) < 0.02f)
             {
-                currentTarget =
-                    (currentTarget + 1) % waypoints.Count;
+                currentTarget = (currentTarget + 1) % waypoints.Count;
             }
         }
     }

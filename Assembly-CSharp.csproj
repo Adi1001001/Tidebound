@@ -74,7 +74,6 @@
     <Compile Include="Assets/Scripts/Currents.cs" />
     <Compile Include="Assets/Scripts/SaveZone.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets/Scripts/HoverManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" />
     <Compile Include="Assets/Scripts/TimerManager.cs" />
+    <Compile Include="Assets/Scripts/PlayerStateManager.cs" />
     <Compile Include="Assets/Scripts/CharacterSelector.cs" />
     <Compile Include="Assets/Scripts/RaceManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
@@ -108,6 +108,7 @@
     <Compile Include="Assets/Scripts/FinishLine.cs" />
     <Compile Include="Assets/Scripts/CameraController.cs" />
     <Compile Include="Assets/Scripts/DataCarrier.cs" />
+    <Compile Include="Assets/Scripts/BouncyArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
