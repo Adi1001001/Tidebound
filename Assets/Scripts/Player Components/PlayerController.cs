@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
-    public BoundaryManager boundaries;
     public GameStateManager.PlayerStates prevPlayerState;
     public InputAction playerMovement;
     public InputAction playerPause;

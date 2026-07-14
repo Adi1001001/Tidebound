@@ -57,8 +57,8 @@
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/ReadOnlyAttribute.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/SuperLayer.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/CollisionShapeType.cs" />
-    <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/TileRenderSize.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/CustomProperty.cs" />
+    <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/TileRenderSize.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/MapRenderOrder.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/SuperWorld.cs" />
     <Compile Include="Assets/com.seanba.super-tiled2unity/Runtime/Math/MatrixUtils.cs" />
