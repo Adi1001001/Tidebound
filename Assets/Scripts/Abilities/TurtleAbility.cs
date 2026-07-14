@@ -18,7 +18,7 @@ public class TurtleAbility : Ability
         playerController.prevPlayerState = GameStateManager.PlayerStates.Bouncy;
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
         actionManager.alwaysBouncy = true;
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
     }
 
     protected override void OnAbilityEnd()
