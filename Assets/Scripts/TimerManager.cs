@@ -8,23 +8,24 @@ public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI countdownDisplay;
     public float timeLimit = 30f;
     private PlayerController playerController;
-    private AbilityManager abilityManager;
+    private Ability ability;
     private float elapsedTime = 0f;
     [HideInInspector] public bool isTimerRunning = false;
     int countdown = 3;
 
     void Start() {
         playerController = FindAnyObjectByType<PlayerController>();
-        abilityManager = playerController.GetComponent<AbilityManager>();
+        ability = playerController.GetComponent<Ability>();
     }
 
     void Update() {
         if (isTimerRunning) {
-            if (abilityManager.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
-                elapsedTime += Time.deltaTime * abilityManager.swordfishAbilitySlowFactor;
-            } else {
-                elapsedTime += Time.deltaTime;
-            }
+            elapsedTime += Time.deltaTime;
+            // if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
+            //     elapsedTime += Time.deltaTime * ability.swordfishAbilitySlowFactor;
+            // } else {
+            //     elapsedTime += Time.deltaTime;
+            // }
 
             if (elapsedTime >= timeLimit) {
                 isTimerRunning = false;
@@ -43,7 +44,7 @@ public class TimerManager : MonoBehaviour {
         int tenths = Mathf.FloorToInt(timeToDisplay % 1 * 10);
 
         float elapsed = elapsedTime / timeLimit;
-        if (abilityManager.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
+        if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
             timerDisplay.color = Color.white;
         } else if (elapsed >= 0.9f) {
             timerDisplay.color = Color.red;

@@ -234,21 +234,20 @@ public class SlowZone : MonoBehaviour
             collision.GetComponent<PlayerController>();
 
 
-        AbilityManager ability =
-            collision.GetComponent<AbilityManager>();
+        Ability ability = collision.GetComponent<Ability>();
 
 
         if (!active)
             return;
 
 
-        if (ability != null && ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Shark)
-        {
-            if (breakableByShark)
-                Destroy(gameObject);
+        // if (ability != null && ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Shark)
+        // {
+        //     if (breakableByShark)
+        //         Destroy(gameObject);
 
-            return;
-        }
+        //     return;
+        // }
 
 
         if (player != null)

@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerActionManager : MonoBehaviour
 {
-    private AbilityManager abilityManager;
+    private Ability ability;
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        abilityManager = GetComponent<AbilityManager>();
+        ability = GetComponent<Ability>();
         playerAbility.performed += ctx => OnAbility(); 
     }
 
@@ -39,7 +39,7 @@ public class PlayerActionManager : MonoBehaviour
         {
             if (!nearbyCannon.playerInCannon)
             {
-                abilityManager.CancelAbility();
+                ability.EndAbility();
             }
             nearbyCannon.ToggleCannon();
             return;
@@ -51,9 +51,9 @@ public class PlayerActionManager : MonoBehaviour
             return;
         }
 
-        if (abilityManager != null)
+        if (ability != null)
         {
-            abilityManager.UseAbility();
+            ability.UseAbility();
         }
         else
         {
