@@ -18,7 +18,8 @@ public class GameStateManager : MonoBehaviour {
     public enum PlayerStates
     {
         Normal,
-        InCannon
+        InCannon,
+        Bouncy
     }
     public void SetGameState(GameStates newState) {
         currentGameState = newState;

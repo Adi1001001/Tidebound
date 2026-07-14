@@ -185,7 +185,7 @@ public class Cannon : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<HoverManager>().SetNearbyCannon(this);
+            collision.GetComponent<PlayerStateManager>().SetNearbyCannon(this);
         }
     }
 
@@ -193,7 +193,7 @@ public class Cannon : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<HoverManager>().SetNearbyCannon(null);
+            collision.GetComponent<PlayerStateManager>().SetNearbyCannon(null);
         }
     }
 }

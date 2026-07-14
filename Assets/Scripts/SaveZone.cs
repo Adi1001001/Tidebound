@@ -3,7 +3,6 @@ using UnityEngine;
 public class SaveZone : MonoBehaviour
 {
     public int saveZoneID;
-
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
 

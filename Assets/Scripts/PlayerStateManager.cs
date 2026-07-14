@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HoverManager : MonoBehaviour
+public class PlayerStateManager : MonoBehaviour
 {
     private AbilityManager abilityManager;
     public InputAction playerAbility;
@@ -23,7 +23,7 @@ public class HoverManager : MonoBehaviour
     void OnEnable() {
         playerAbility.Enable();
     }
-    
+
     void OnDisable() {
         playerAbility.Disable();
     }
