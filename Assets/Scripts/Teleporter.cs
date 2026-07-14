@@ -19,7 +19,7 @@ public class Teleporter : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStateManager>().SetNearbyTeleporter(this);
+            collision.GetComponent<PlayerActionManager>().SetNearbyTeleporter(this);
         }
     }
 
@@ -27,7 +27,7 @@ public class Teleporter : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStateManager>().SetNearbyTeleporter(null);
+            collision.GetComponent<PlayerActionManager>().SetNearbyTeleporter(null);
         }
     }
     public void OnRaceClick() {

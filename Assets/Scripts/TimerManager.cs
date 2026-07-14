@@ -20,7 +20,7 @@ public class TimerManager : MonoBehaviour {
 
     void Update() {
         if (isTimerRunning) {
-            if (abilityManager.swordfishOn) {
+            if (abilityManager.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
                 elapsedTime += Time.deltaTime * abilityManager.swordfishAbilitySlowFactor;
             } else {
                 elapsedTime += Time.deltaTime;
@@ -43,7 +43,7 @@ public class TimerManager : MonoBehaviour {
         int tenths = Mathf.FloorToInt(timeToDisplay % 1 * 10);
 
         float elapsed = elapsedTime / timeLimit;
-        if (abilityManager.swordfishOn) {
+        if (abilityManager.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
             timerDisplay.color = Color.white;
         } else if (elapsed >= 0.9f) {
             timerDisplay.color = Color.red;
@@ -61,7 +61,7 @@ public class TimerManager : MonoBehaviour {
     }
 
     public void StartCountdown() {
-        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Countdown) {
+        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown) {
             Debug.Log("Cannot show countdown timer when not in countdown state");
             return;
         }

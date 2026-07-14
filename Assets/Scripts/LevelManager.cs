@@ -65,8 +65,8 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
     public void PauseGame() {
-        if (GameStateManager.Instance.CheckGameState() == GameStateManager.GameStates.MainMenu
-        || GameStateManager.Instance.CheckGameState() == GameStateManager.GameStates.Countdown) {
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu
+        || GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Countdown) {
             return;
         }
         Time.timeScale = 0f;

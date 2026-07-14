@@ -8,7 +8,7 @@ public class MaxSpeedManager : MonoBehaviour {
     }
 
     void Update() {
-        if (GameStateManager.Instance.CheckGameState() != GameStateManager.GameStates.Racing) {
+        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Racing) {
             return;
         }
         if (currentMaxSpeed < playerRb.linearVelocity.magnitude) {

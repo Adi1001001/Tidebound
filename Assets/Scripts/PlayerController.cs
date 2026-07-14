@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             moveInput = Vector2.zero;
         }
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.InCannon)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             UpdateSpeedUI();
             return;
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
     }
     void OnPause() {
         Debug.Log("Pause triggered");
-        GameStateManager.GameStates currentGameState = GameStateManager.Instance.CheckGameState();
+        GameStateManager.GameStates currentGameState = GameStateManager.Instance.GetGameState();
         if (currentGameState == GameStateManager.GameStates.Paused) {
             LevelManager.Instance.ResumeGame();
         } else {
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
 
         if (speedIntoWall < 0f)
             return;
-        if (GameStateManager.Instance.CheckPlayerState() == GameStateManager.PlayerStates.Bouncy)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
         {
             Vector2 reflected = Vector2.Reflect(-incoming, normal);
 
@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
             playerRb.position += normal * 0.5f;
             return;
         }
-        collisionLockTimer = 0.15f;
+        collisionLockTimer = 0.1f;
         float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
         float strength = Mathf.SmoothStep(0f, 1f, t);
 
@@ -305,7 +305,7 @@ public class PlayerController : MonoBehaviour
 
     public void EnterCannon(Vector3 cannonPos)
     {
-        prevPlayerState = GameStateManager.Instance.CheckPlayerState();
+        prevPlayerState = GameStateManager.Instance.GetPlayerState();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.InCannon);
         transform.position = cannonPos;
         moveInput = Vector2.zero;

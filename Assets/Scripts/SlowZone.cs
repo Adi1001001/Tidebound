@@ -242,7 +242,7 @@ public class SlowZone : MonoBehaviour
             return;
 
 
-        if (ability != null && ability.sharkOn)
+        if (ability != null && ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Shark)
         {
             if (breakableByShark)
                 Destroy(gameObject);

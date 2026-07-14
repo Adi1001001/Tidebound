@@ -1,102 +1,107 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 
 public class AbilityManager : MonoBehaviour {
     PlayerController playerController;
-    [HideInInspector] public bool turtleOn = false;
-    [HideInInspector] public bool sharkOn = false;
-    [HideInInspector] public bool swordfishOn = false;
     public float anglerfishAbilityDuration = 5f;
-    public bool anglerfishAbilityVisionBoost = false;
-    public bool anglerfishCooldownBool = false;
-    public float anglerfishCooldown = 15f;
+    public float anglerfishVisionBuff = 1.5f;
+    public int anglerfishCooldown = 15;
     public float dolphinAbilityDuration = 3f;
     public float dolphinAbilityMultiplier = 1.5f;
-    public bool dolphinCooldownBool = false;
-    public float dolphinCooldown = 10f;
+    public int dolphinCooldown = 10;
     public float sharkAbilityDuration = 1f;
     public float sharkAbilityForce = 500f;
-    public bool sharkCooldownBool = false;
-    public float sharkCooldown = 8f;
+    public int sharkCooldown = 8;
     public float eelRadius = 10f;
-    public bool eelCooldownBool = false;
-    public float eelCooldown = 12f;
+    public int eelCooldown = 12;
     public float swordfishAbilityDuration = 3f;
     public float swordfishAbilitySlowFactor = 0.25f;
-    public bool swordfishCooldownBool = false;
-    public float swordfishCooldown = 10f;
+    public int swordfishCooldown = 10;
     public float turtleAbilityDuration = 5f;
-    public bool turtleCooldownBool = false;
-    public float turtleCooldown = 15f;
-    public void UseAbility()
-{
-    playerController = FindAnyObjectByType<PlayerController>();
+    public int turtleCooldown = 15;
+    [HideInInspector] public bool onAbility = false;
+    [HideInInspector] public bool onCooldown = false;
+    private IEnumerator activeAbility;
 
-    switch (DataCarrier.Instance.currentCharacter)
+    void Start()
     {
-        case CharacterType.Anglerfish:
-            anglerfishAbility();
-            break;
-
-        case CharacterType.Dolphin:
-            dolphinAbility();
-            break;
-
-        case CharacterType.Shark:
-            sharkAbility();
-            break;
-
-        case CharacterType.Eel:
-            eelAbility();
-            break;
-
-        case CharacterType.Swordfish:
-            swordfishAbility();
-            break;
-
-        case CharacterType.Turtle:
-            turtleAbility();
-            break;
+        playerController = FindAnyObjectByType<PlayerController>();
     }
-}
-    public void anglerfishAbility() { // increases your vision for 5 seconds, cooldown of 15 seconds after use
-        if (anglerfishCooldownBool) {
-            Debug.Log("Anglerfish ability is on cooldown!");
-            AbilityNotReady();
+    public void UseAbility()
+    {
+        if (onAbility)
+        {
+            Debug.Log("Ability already running!");
             return;
         }
+        if (onCooldown)
+        {
+            Debug.Log("Ability on cooldown!");
+            return;
+        }
+        switch (DataCarrier.Instance.currentCharacter)
+        {
+            case Character.Anglerfish:
+                activeAbility = AnglerfishAbility();
+                break;
+            case Character.Dolphin:
+                dolphinAbility();
+                break;
+            case Character.Shark:
+                sharkAbility();
+                break;
+            case Character.Eel:
+                eelAbility();
+                break;
+            case Character.Swordfish:
+                swordfishAbility();
+                break;
+            case Character.Turtle:
+                turtleAbility();
+                break;
+        }
+        StartCoroutine(activeAbility);
+    }
+
+    public void CancelAbility()
+    {
+        if (!onAbility) {return;}
+        StopCoroutine(activeAbility);
+        switch (DataCarrier.Instance.currentCharacter)
+        {
+            case Character.Anglerfish:
+                AnglerFishCancel();
+                break;
+        }
+    }
+    public IEnumerator AnglerfishAbility() { // increases your vision for 5 seconds, cooldown of 15 seconds after use
         Debug.Log("Anglerfish ability activated");
-        StartCoroutine(AnglerfishVisionBoost());
-        StartCoroutine(AnglerfishCooldown());
+        CameraController camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+        onAbility = true;
+        camera.ZoomCamera(anglerfishVisionBuff);
+        yield return new WaitForSeconds(anglerfishAbilityDuration); 
+        AnglerFishCancel();
+    }
+
+    public void AnglerFishCancel()
+    {
+        CameraController camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+        camera.ZoomCamera(1/anglerfishVisionBuff);
+        onAbility = false;
+        StartCoroutine(Cooldown(anglerfishCooldown));
     }
     public void dolphinAbility() { // increases your acceleration and max speed for 3 seconds, cooldown of 10 seconds after use
-        if (dolphinCooldownBool) {
-            Debug.Log("Dolphin ability is on cooldown!");
-            AbilityNotReady();
-            return;
-        }
         Debug.Log("Dolphin ability activated");
         StartCoroutine(DolphinSpeedBoost());
-        StartCoroutine(DolphinCooldown());
+        StartCoroutine(Cooldown(dolphinCooldown));
     }
     public void sharkAbility() { // small invulnerable dash that breaks obstacles, cooldown of 8 seconds after use
-        if (sharkCooldownBool) {
-            Debug.Log("Shark ability is on cooldown!");
-            AbilityNotReady();
-            return;
-        }
         Debug.Log("Shark ability activated");
         StartCoroutine(SharkAttack());
-        StartCoroutine(SharkCooldown());
+        StartCoroutine(Cooldown(sharkCooldown));
     }
     public void eelAbility() { // disables nearby obstacles for the rest of the race, cooldown of 12 seconds after use
-        if (eelCooldownBool) {
-            Debug.Log("Eel ability is on cooldown!");
-            AbilityNotReady();
-            return;
-        }
         Debug.Log("Eel ability activated");
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, eelRadius);
@@ -112,38 +117,19 @@ public class AbilityManager : MonoBehaviour {
             renderer.material.color = Color.grey; // change color to indicate that it can't effect the player anymore
             obstacle.active = false; // disable the obstacle
         }
-        StartCoroutine(EelCooldown());
+        StartCoroutine(Cooldown(eelCooldown));
     }
     public void swordfishAbility() { // slows down time for 2 seconds, cooldown of 10 seconds after use
-        if (swordfishCooldownBool) {
-            Debug.Log("Swordfish ability is on cooldown!");
-            AbilityNotReady();
-            return;
-        }
         Debug.Log("Swordfish ability activated");
         StartCoroutine(SwordfishTime());
-        StartCoroutine(SwordfishCooldown());
+        StartCoroutine(Cooldown(swordfishCooldown));
     }
     public void turtleAbility() { // make the player immune to obstacles for 5 seconds, cooldown of 15 seconds after use
-         if (turtleCooldownBool) {
-            Debug.Log("Turtle ability is on cooldown!");
-            AbilityNotReady();
-            return;
-        }
         Debug.Log("Turtle ability activated");
         StartCoroutine(TurtleInvincibility());
-        StartCoroutine(TurtleCooldown());
+        StartCoroutine(Cooldown(turtleCooldown));
     }
-    IEnumerator AnglerfishVisionBoost() {
-        anglerfishAbilityVisionBoost = true;
-        yield return new WaitForSeconds(anglerfishAbilityDuration); 
-        anglerfishAbilityVisionBoost = false;
-    }
-    IEnumerator AnglerfishCooldown() {
-        anglerfishCooldownBool = true;
-        yield return new WaitForSeconds(anglerfishCooldown); 
-        anglerfishCooldownBool = false;
-    }
+
     IEnumerator DolphinSpeedBoost() {
         float originalAcceleration = playerController.accelForce;
         float originalMaxSpeed = playerController.highSpeed;
@@ -153,47 +139,29 @@ public class AbilityManager : MonoBehaviour {
         playerController.accelForce = originalAcceleration;
         playerController.highSpeed = originalMaxSpeed;
     }
-    IEnumerator DolphinCooldown() {
-        dolphinCooldownBool = true;
-        yield return new WaitForSeconds(dolphinCooldown); 
-        dolphinCooldownBool = false;
-    }
     IEnumerator TurtleInvincibility() {
-        turtleOn = true;
+        onAbility = true;
         yield return new WaitForSeconds(turtleAbilityDuration); 
-        turtleOn = false;
-    }
-    IEnumerator TurtleCooldown() {
-        turtleCooldownBool = true;
-        yield return new WaitForSeconds(turtleCooldown); 
-        turtleCooldownBool = false;
-    }
-    IEnumerator EelCooldown() {
-        eelCooldownBool = true;
-        yield return new WaitForSeconds(eelCooldown); 
-        eelCooldownBool = false;
+        onAbility = false;
     }
     IEnumerator SharkAttack() {
-        sharkOn = true;
+        onAbility = true;
         Rigidbody2D playerRb = playerController.GetComponent<Rigidbody2D>();
         playerRb.AddRelativeForce(Vector2.up * sharkAbilityForce); // adding a quick dash forward
         yield return new WaitForSeconds(sharkAbilityDuration);
-        sharkOn = false;
-    }
-    IEnumerator SharkCooldown() {
-        sharkCooldownBool = true;
-        yield return new WaitForSeconds(sharkCooldown); 
-        sharkCooldownBool = false;
+        onAbility = false;
     }
     IEnumerator SwordfishTime() {
-        swordfishOn = true;
+        onAbility = true;
         yield return new WaitForSecondsRealtime(swordfishAbilityDuration); // wait for real time seconds
-        swordfishOn = false;
+        onAbility = false;
     }
-    IEnumerator SwordfishCooldown() {
-        swordfishCooldownBool = true;
-        yield return new WaitForSeconds(swordfishCooldown); 
-        swordfishCooldownBool = false;
+
+    IEnumerator Cooldown(int cooldown)
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(cooldown); 
+        onCooldown = false;
     }
     public void AbilityNotReady() {
         // you can add a UI popup or sound effect here to indicate that the ability is not ready yet

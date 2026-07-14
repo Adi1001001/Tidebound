@@ -4,7 +4,6 @@ public class CameraController : MonoBehaviour {
     private Camera cam;
     private Transform playerTransform;
     private PlayerController playerController;
-    private AbilityManager abilityManager;
     [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // Offset from the playerTransform
     public float leadAmount = 1.5f;
     public float smoothSpeed = 5.0f;
@@ -15,16 +14,14 @@ public class CameraController : MonoBehaviour {
 
     void Start() {
         if (playerTransform == null) {
-            playerController = FindFirstObjectByType<PlayerController>();
+            playerController = FindAnyObjectByType<PlayerController>();
             playerTransform = playerController.transform; // finding the player
-            abilityManager = playerController.GetComponent<AbilityManager>();
         }
         cam = GetComponent<Camera>();
         cam.fieldOfView = normalFOV;
     }
 
     void LateUpdate() { // this function happens after all the other update calls
-        FOVZoom(); // continuously check for FOV zoom
         if (playerTransform == null) return; // fallback if player is still not assigned
 
         if (playerController.inCurrent) return; // do not update position if in current, handled by CurrentExtraLead()
@@ -41,9 +38,9 @@ public class CameraController : MonoBehaviour {
         transform.localPosition = playerTransform.position + offset + shakeOffset;
     }
 
-    public void FOVZoom(){
-        if (cam == null || abilityManager == null) return;
-        float target = abilityManager.anglerfishAbilityVisionBoost ? abilityFOV : normalFOV;
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, target, Time.unscaledDeltaTime * smoothSpeed);
+    public void ZoomCamera(float zoomFactor)
+    {
+        cam.orthographicSize *= zoomFactor;
     }
+
 }

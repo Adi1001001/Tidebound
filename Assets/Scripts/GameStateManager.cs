@@ -24,7 +24,7 @@ public class GameStateManager : MonoBehaviour {
     public void SetGameState(GameStates newState) {
         currentGameState = newState;
     }
-    public GameStates CheckGameState() {
+    public GameStates GetGameState() {
         return currentGameState;
     }
     public void SetPlayerState(PlayerStates newState)
@@ -32,7 +32,7 @@ public class GameStateManager : MonoBehaviour {
         currentPlayerState = newState;
     }
 
-    public PlayerStates CheckPlayerState()
+    public PlayerStates GetPlayerState()
     {
         return currentPlayerState;
     }

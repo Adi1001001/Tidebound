@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerStateManager : MonoBehaviour
+public class PlayerActionManager : MonoBehaviour
 {
     private AbilityManager abilityManager;
     public InputAction playerAbility;
@@ -33,9 +33,14 @@ public class PlayerStateManager : MonoBehaviour
         if (nearbyTeleporter != null)
         {
             nearbyTeleporter.OnRaceClick();
+            return;
         }
         if (nearbyCannon != null)
         {
+            if (!nearbyCannon.playerInCannon)
+            {
+                abilityManager.CancelAbility();
+            }
             nearbyCannon.ToggleCannon();
             return;
         }

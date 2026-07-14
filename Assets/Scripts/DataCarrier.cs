@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum CharacterType
+public enum Character
 {
     Anglerfish,
     Dolphin,
@@ -15,7 +15,7 @@ public class DataCarrier : MonoBehaviour
     public static DataCarrier Instance;
 
     [HideInInspector] public string nextRaceTag;
-    [HideInInspector] public CharacterType currentCharacter = CharacterType.Anglerfish;
+    [HideInInspector] public Character currentCharacter = Character.Anglerfish;
 
     [HideInInspector] public int currentSaveZoneID = 0;
     [HideInInspector] public int overworldProgress = 0;
@@ -39,10 +39,15 @@ public class DataCarrier : MonoBehaviour
         Debug.Log("Updated nextRaceTag to: " + nextRaceTag);
     }
 
-    public void SetCharacter(CharacterType character)
+    public void SetCharacter(Character character)
     {
         currentCharacter = character;
         Debug.Log("Current character: " + currentCharacter);
+    }
+
+    public Character GetCharacter()
+    {
+        return currentCharacter;
     }
 
     public void SetSaveZone(int id)
