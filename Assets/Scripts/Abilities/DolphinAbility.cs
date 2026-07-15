@@ -12,8 +12,7 @@ public class DolphinAbility : Ability
         base.Start();
         cooldown = 10f;
 
-        GameObject player = GameObject.FindWithTag("Player");
-        playerTrail = player.GetComponentInChildren<TrailRenderer>();
+        playerTrail = GetComponent<TrailRenderer>();
         SetTealGradient();
         playerTrail.time = 1f; 
         playerTrail.enabled = false;
@@ -34,6 +33,11 @@ public class DolphinAbility : Ability
 
         gradient.SetKeys(colorKeys, alphaKeys);
         playerTrail.colorGradient = gradient;
+        
+        AnimationCurve widthCurve = new AnimationCurve();
+        widthCurve.AddKey(0.0f, 0.5f);                                          // Full width at head
+        widthCurve.AddKey(1.0f, 0.1f);                                          // Tapered thin width at tail
+        playerTrail.widthCurve = widthCurve;
     }
 
     protected override IEnumerator AbilityRoutine()

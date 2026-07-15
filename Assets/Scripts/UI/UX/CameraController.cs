@@ -33,7 +33,6 @@ public class CameraController : MonoBehaviour {
     public void CameraShake() {
         if (playerTransform == null) return;
         if (playerController.inCurrent == false) return;
-        Debug.Log("Shaking Camera!!!");
         Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * shakeIntensity;
         transform.localPosition = playerTransform.position + offset + shakeOffset;
     }
