@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     [Header("Speed")]
-    public float releaseSpeed = 500f;
+    public float releaseSpeed = 50f;
     [Header("Rotation")]
     public float minRotation = 0f;
     public float maxRotation = 180f;

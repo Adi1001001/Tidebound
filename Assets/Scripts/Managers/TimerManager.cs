@@ -10,7 +10,7 @@ public class TimerManager : MonoBehaviour {
     private PlayerController playerController;
     private Ability ability;
     private float elapsedTime = 0f;
-    public float slowFactor = 1;
+    [HideInInspector] public float slowFactor = 1;
     [HideInInspector] public bool isTimerRunning = false;
     int countdown = 3;
 
@@ -23,13 +23,12 @@ public class TimerManager : MonoBehaviour {
     void Update() {
         if (isTimerRunning) {
             elapsedTime += Time.deltaTime * slowFactor;
-            if (elapsedTime >= timeLimit) {
-                isTimerRunning = false;
-                timerDisplay.color = Color.red;
-                timerDisplay.text = "Out of time! Run won't count towards completion.";
-            } else {
-                DisplayTime(timeLimit - elapsedTime);
-            }
+        }
+        if (elapsedTime >= timeLimit) {
+            timerDisplay.color = Color.red;
+            timerDisplay.text = "Out of time! Run won't count towards completion.";
+        } else {
+            DisplayTime(timeLimit - elapsedTime);
         }
     }
     void DisplayTime(float timeToDisplay) {

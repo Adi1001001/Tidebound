@@ -7,7 +7,6 @@ public class SlowZone : MonoBehaviour
 
     [Range(0.75f, 1f)]
     public float accelerationFactor = 1f;
-    public bool active = true;
     [Header("Movement")]
     public bool movable = false;
     public float moveSpeed = 2f;
@@ -216,13 +215,6 @@ public class SlowZone : MonoBehaviour
 
         PlayerController player =
             collision.GetComponent<PlayerController>();
-
-
-        Ability ability = collision.GetComponent<Ability>();
-
-
-        if (!active)
-            return;
 
         if (player != null)
         {
