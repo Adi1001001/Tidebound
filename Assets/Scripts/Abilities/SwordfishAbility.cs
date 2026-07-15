@@ -38,7 +38,7 @@ public class SwordfishAbility : Ability
         {
             cannon.rotationDuration *= 1/slowFactor;
         }
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
     }
 
     protected override void OnAbilityEnd()
