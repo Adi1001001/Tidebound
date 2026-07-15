@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,6 +45,7 @@ public class LevelManager : MonoBehaviour {
     public void ToOverworld()
     {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Overworld");
     }
     public void ToCharacterSelect() {
