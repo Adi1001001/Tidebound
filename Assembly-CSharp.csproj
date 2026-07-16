@@ -59,6 +59,7 @@
     <Compile Include="Assets/Scripts/Managers/LevelManager.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Current.cs" />
     <Compile Include="Assets/Scripts/Managers/DataCarrier.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/UIConnector.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
@@ -73,11 +74,13 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/CameraController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/BouncyArea.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets/Scripts/Managers/GameStateManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/IconUpdater.cs" />
     <Compile Include="Assets/Scripts/Abilities/AnglerfishAbility.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" />
@@ -89,17 +92,17 @@
     <Compile Include="Assets/Scripts/Map Interactables/SaveZone.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" />
-    <Compile Include="Assets/Scripts/UI/UX/UIConnector.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Teleporter.cs" />
     <Compile Include="Assets/Scripts/Player Components/OverworldSpawn.cs" />
     <Compile Include="Assets/Scripts/Managers/TimerManager.cs" />
-    <Compile Include="Assets/Scripts/UI/UX/CharacterSelector.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/CharacterSelector.cs" />
     <Compile Include="Assets/Scripts/Abilities/TurtleAbility.cs" />
     <Compile Include="Assets/Scripts/Abilities/SwordfishAbility.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/ButtonControls.cs" />
     <Compile Include="Assets/Scripts/Player Components/PlayerAppearance.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
@@ -110,8 +113,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/Scripts/Player Components/AbilityLoader.cs" />
     <Compile Include="Assets/Scripts/Player Components/PlayerController.cs" />
-    <Compile Include="Assets/Scripts/UI/UX/ButtonControls.cs" />
-    <Compile Include="Assets/Scripts/UI/UX/CameraController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
   </ItemGroup>
   <ItemGroup>

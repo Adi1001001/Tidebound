@@ -3,12 +3,12 @@ using System.Collections;
 
 public class TurtleAbility : Ability
 {
-    [SerializeField] private float duration = 5f;
     private PlayerActionManager actionManager;
     private TrailRenderer playerTrail;
     protected override void Start()
     {
         base.Start();
+        duration = 5f;
         cooldown = 8f;
         actionManager = GetComponent<PlayerActionManager>();
         playerTrail = GetComponent<TrailRenderer>();
@@ -45,7 +45,7 @@ public class TurtleAbility : Ability
         
         playerTrail.enabled = true;
         playerTrail.Clear(); 
-        yield return new WaitForSeconds(duration);
+        yield return RunTimer(duration);
     }
 
     protected override void OnAbilityEnd()

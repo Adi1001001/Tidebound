@@ -4,13 +4,14 @@ using System.Collections;
 public abstract class Ability : MonoBehaviour
 {
     [Header("Ability")]
-    [SerializeField] protected float cooldown;
+    [SerializeField] public float duration;
+    [SerializeField] public float cooldown;
 
     protected PlayerController playerController;
 
     [HideInInspector] public bool onAbility = false;
     [HideInInspector] public bool onCooldown = false;
-
+    public float timer;
     private Coroutine activeCoroutine;
 
     protected virtual void Start()
@@ -22,12 +23,14 @@ public abstract class Ability : MonoBehaviour
     {
         if (onAbility)
         {
+            Debug.Log(timer);
             Debug.Log("Ability already active!");
             return;
         }
 
         if (onCooldown)
         {
+            Debug.Log(timer);
             Debug.Log("Ability on cooldown!");
             return;
         }
@@ -39,6 +42,7 @@ public abstract class Ability : MonoBehaviour
         if (!onAbility)
             return;
 
+        timer = 0;
         StopCoroutine(activeCoroutine);
         onAbility = false;
         OnAbilityEnd();
@@ -55,8 +59,20 @@ public abstract class Ability : MonoBehaviour
     private IEnumerator StartCooldown()
     {
         onCooldown = true;
-        yield return new WaitForSeconds(cooldown);
+        yield return RunTimer(cooldown);
         onCooldown = false;
+    }
+
+    protected IEnumerator RunTimer(float time)
+    {
+        timer = time;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        timer = 0;
     }
 
     protected virtual void OnAbilityEnd()

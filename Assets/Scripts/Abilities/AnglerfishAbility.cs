@@ -3,12 +3,12 @@ using System.Collections;
 
 public class AnglerfishAbility : Ability
 {
-    [SerializeField] private float duration = 5f;
     [SerializeField] private float visionBuff = 1.5f;
 
     protected override void Start()
     {
         base.Start();
+        duration = 5f;
         cooldown = 12f;
     }
 
@@ -18,7 +18,8 @@ public class AnglerfishAbility : Ability
 
         CameraController camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
         camera.ZoomCamera(visionBuff);
-        yield return new WaitForSeconds(duration);
+        timer = duration;
+        yield return RunTimer(duration);
     }
 
     protected override void OnAbilityEnd()
