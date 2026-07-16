@@ -38,7 +38,7 @@ public class PlayerActionManager : MonoBehaviour
         playerAbility.Disable();
     }
 
-    void OnAbility()
+    public void OnAbility()
     {
         if (nearbyTeleporter != null)
         {
