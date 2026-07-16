@@ -20,7 +20,6 @@ public class OverworldSpawn : MonoBehaviour
                 return;
             }
         }
-
         Debug.LogWarning("No Save Zone found with ID " + DataCarrier.Instance.currentSaveZoneID);
     }
 }

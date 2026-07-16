@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public enum IconType
 {
-    Teleport
+    Teleport,
+    Anglerfish
 }
 
 [System.Serializable]
@@ -24,7 +25,7 @@ public class IconUpdater : MonoBehaviour
     private Image cooldownOverlay;
     private Outline buttonOutline;
 
-    private Color normalIconColor = Color.red;
+    private Color normalIconColor = Color.white;
     private Color cooldownOverlayColor = new Color(0f, 0f, 0f, 0.5f);
     private Color activeOutlineColor;
     [HideInInspector] public float timer;
@@ -96,7 +97,7 @@ public class IconUpdater : MonoBehaviour
 
             float glow = (Mathf.Sin(Time.time * 6f) + 1f) / 2f;
             Color glowColor = activeOutlineColor;
-            glowColor.a = Mathf.Lerp(0.3f, 1f, glow);
+            Mathf.Lerp(0.3f, 1f, glow);
             buttonOutline.effectColor = glowColor;
         }
         else if (timer > 0)
@@ -110,6 +111,24 @@ public class IconUpdater : MonoBehaviour
         {
             buttonIcon.color = normalIconColor;
             buttonOutline.enabled = false;
+        }
+    }
+
+    public void SetAbilityIcon()
+    {
+        Sprite sprite;
+        switch (DataCarrier.Instance.currentCharacter)
+        {
+            case Character.Anglerfish:
+                sprite = iconDictionary[IconType.Anglerfish];
+                buttonIcon.sprite = sprite;
+                break;
+            case Character.Dolphin:
+                break;
+            case Character.Swordfish:
+                break;
+            case Character.Turtle:
+                break;
         }
     }
 

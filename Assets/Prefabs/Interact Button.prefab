@@ -172,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -100}
+  m_SizeDelta: {x: -80, y: -80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9016635645725749722
 CanvasRenderer:
@@ -351,7 +351,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IconUpdater
   icons:
   - type: 0
-    sprite: {fileID: -2413806693520163455, guid: 29bacdda3e75e491ea46f3afa54d451f, type: 3}
+    sprite: {fileID: 1320761110985423309, guid: 3e4bc6064f3774c799b3fcad407605ff, type: 3}
+  - type: 1
+    sprite: {fileID: 21300000, guid: bd2c6bf4b1f9541769b1d396cdbd7994, type: 3}
   timer: 0
   timerMax: 0
   onAbility: 0

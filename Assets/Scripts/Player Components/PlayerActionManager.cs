@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,20 +14,31 @@ public class PlayerActionManager : MonoBehaviour
     void Start()
     {
         ability = GetComponent<Ability>();
-        playerAbility.performed += ctx => OnAbility(); 
+        StartCoroutine(FindAbility());
+        playerAbility.performed += ctx => OnAbility();    
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateIcon();
-        if (ability == null)
-            return;
-
         iconUpdater.onAbility = ability.onAbility ? true : false;
         if (nearbyTeleporter == null && nearbyCannon == null)
         {
             UpdateAbilityDuration();
+        }
+    }
+
+    private IEnumerator FindAbility()
+    {
+        while (ability == null)
+        {
+            ability = GetComponent<Ability>();
+
+            if (ability == null)
+            {
+                yield return null;
+            }
         }
     }
 
@@ -80,6 +92,7 @@ public class PlayerActionManager : MonoBehaviour
             return;
         }
         iconUpdater.timer = ability.timer;
+        iconUpdater.SetAbilityIcon();
     }
 
     void UpdateAbilityDuration()

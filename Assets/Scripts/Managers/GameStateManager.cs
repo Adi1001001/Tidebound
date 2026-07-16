@@ -21,6 +21,17 @@ public class GameStateManager : MonoBehaviour {
         InCannon,
         Bouncy
     }
+
+    void Awake() {
+        if (Instance != null && Instance != this) { // making it a singleton
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        currentGameState = GameStates.Playing; // default state (change to main menu eventually)
+    }
+    
     public void SetGameState(GameStates newState) {
         currentGameState = newState;
     }
@@ -40,16 +51,6 @@ public class GameStateManager : MonoBehaviour {
     {
         return currentGameState == GameStates.Paused || currentGameState == GameStates.Countdown 
         || currentGameState == GameStates.GameOver;
-    }
-
-    void Awake() {
-        if (Instance != null && Instance != this) { // making it a singleton
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        currentGameState = GameStates.Playing; // default state (change to main menu eventually)
     }
 }
 

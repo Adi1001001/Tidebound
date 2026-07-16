@@ -3,7 +3,6 @@ using UnityEngine;
 public class VineGate : MonoBehaviour
 {
     public int requiredProgress;
-
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
 
