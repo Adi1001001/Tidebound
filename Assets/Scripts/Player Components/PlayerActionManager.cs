@@ -92,6 +92,7 @@ public class PlayerActionManager : MonoBehaviour
             return;
         }
         iconUpdater.timer = ability.timer;
+        iconUpdater.SetAbilityIcon();
     }
 
     void UpdateAbilityDuration()
