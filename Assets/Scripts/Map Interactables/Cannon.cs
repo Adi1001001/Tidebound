@@ -44,12 +44,7 @@ public class Cannon : MonoBehaviour
     {
         currentAngle = Random.Range(minRotation, maxRotation);
 
-        transform.rotation =
-            Quaternion.Euler(
-                0f,
-                0f,
-                currentAngle
-            );
+        transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
 
         // Decide which direction to move based on current position
         float distanceToMin = Mathf.Abs(currentAngle - minRotation);
@@ -66,7 +61,6 @@ public class Cannon : MonoBehaviour
         float startAngle;
         float targetAngle;
 
-
         if (movingTowardsMax)
         {
             startAngle = minRotation;
@@ -78,29 +72,13 @@ public class Cannon : MonoBehaviour
             targetAngle = minRotation;
         }
 
-
         rotationProgress += Time.deltaTime / rotationDuration;
+        float easedProgress = Mathf.SmoothStep(0f, 1f, rotationProgress);
 
 
-        float easedProgress =
-            Mathf.SmoothStep(0f, 1f, rotationProgress);
+        currentAngle = Mathf.Lerp(startAngle, targetAngle, easedProgress);
 
-
-        currentAngle =
-            Mathf.Lerp(
-                startAngle,
-                targetAngle,
-                easedProgress
-            );
-
-
-        transform.rotation =
-            Quaternion.Euler(
-                0f,
-                0f,
-                currentAngle
-            );
-
+        transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
         player.transform.rotation = transform.rotation;
 
         if (rotationProgress >= 1f)
@@ -119,11 +97,9 @@ public class Cannon : MonoBehaviour
             return;
         }
 
-
         if (player == null)
         {
             player = FindAnyObjectByType<PlayerController>();
-
             if (player == null)
             {
                 Debug.LogWarning("PlayerController not found.");
@@ -133,7 +109,6 @@ public class Cannon : MonoBehaviour
 
         playerInCannon = !playerInCannon;
         rotating = playerInCannon;
-
 
         if (playerInCannon)
         {
@@ -151,23 +126,16 @@ public class Cannon : MonoBehaviour
 
     void RebuildCollider()
     {
-        SpriteRenderer sr =
-            GetComponent<SpriteRenderer>();
-
-        PolygonCollider2D poly =
-            GetComponent<PolygonCollider2D>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        PolygonCollider2D poly = GetComponent<PolygonCollider2D>();
 
         if (sr != null && poly != null && sr.sprite != null)
         {
-            poly.pathCount =
-                sr.sprite.GetPhysicsShapeCount();
-
+            poly.pathCount = sr.sprite.GetPhysicsShapeCount();
             for (int i = 0; i < poly.pathCount; i++)
             {
                 List<Vector2> points = new();
-
                 sr.sprite.GetPhysicsShape(i, points);
-
                 poly.SetPath(i, points);
             }
         }

@@ -96,7 +96,7 @@ public class IconUpdater : MonoBehaviour
 
             float glow = (Mathf.Sin(Time.time * 6f) + 1f) / 2f;
             Color glowColor = activeOutlineColor;
-            glowColor.a = Mathf.Lerp(0.3f, 1f, glow);
+            Mathf.Lerp(0.3f, 1f, glow);
             buttonOutline.effectColor = glowColor;
         }
         else if (timer > 0)
