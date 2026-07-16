@@ -24,12 +24,12 @@ public class IconUpdater : MonoBehaviour
     private Image cooldownOverlay;
     private Outline buttonOutline;
 
-    private Color normalIconColor = Color.white;
+    private Color normalIconColor = Color.red;
     private Color cooldownOverlayColor = new Color(0f, 0f, 0f, 0.5f);
-    private Color activeOutlineColor = new Color(1f, 0.5f, 0f);
-    public float timer;
-    public float timerMax;
-    public bool onAbility;
+    private Color activeOutlineColor;
+    [HideInInspector] public float timer;
+    [HideInInspector] public float timerMax;
+    [HideInInspector] public bool onAbility;
 
     void Awake()
     {
@@ -47,6 +47,25 @@ public class IconUpdater : MonoBehaviour
         foreach (IconEntry entry in icons)
         {
             iconDictionary[entry.type] = entry.sprite;
+        }
+    }
+
+    void Start()
+    {
+        switch (DataCarrier.Instance.currentCharacter)
+        {
+            case Character.Anglerfish:
+                activeOutlineColor = new Color(1f, 0.5f, 0f);
+                break;
+            case Character.Dolphin:
+                activeOutlineColor = new Color(0f, 1f, 1f);
+                break;
+            case Character.Swordfish:
+                activeOutlineColor = new Color(0.45f, 0.3f, 0.7f);
+                break;
+            case Character.Turtle:
+                activeOutlineColor = new Color(0.65f, 0.15f, 0.95f);
+                break;
         }
     }
 

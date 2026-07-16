@@ -21,17 +21,8 @@ public abstract class Ability : MonoBehaviour
 
     public void UseAbility()
     {
-        if (onAbility)
+        if (onAbility || onCooldown)
         {
-            Debug.Log(timer);
-            Debug.Log("Ability already active!");
-            return;
-        }
-
-        if (onCooldown)
-        {
-            Debug.Log(timer);
-            Debug.Log("Ability on cooldown!");
             return;
         }
         activeCoroutine = StartCoroutine(AbilityWrapper());

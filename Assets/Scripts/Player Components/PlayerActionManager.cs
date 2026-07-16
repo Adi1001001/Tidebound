@@ -19,26 +19,14 @@ public class PlayerActionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateIcon();
         if (ability == null)
             return;
 
-        if (ability.onAbility)
+        iconUpdater.onAbility = ability.onAbility ? true : false;
+        if (nearbyTeleporter == null && nearbyCannon == null)
         {
-            iconUpdater.onAbility = true;
-            iconUpdater.timer = ability.timer;
-            iconUpdater.timerMax = ability.duration;
-        }
-        else if (ability.onCooldown)
-        {
-            iconUpdater.onAbility = false;
-            iconUpdater.timer = ability.timer;
-            iconUpdater.timerMax = ability.cooldown;
-        }
-        else
-        {
-            iconUpdater.onAbility = false;
-            iconUpdater.timer = 0;
-            iconUpdater.timerMax = 0;
+            UpdateAbilityDuration();
         }
     }
 
@@ -55,8 +43,6 @@ public class PlayerActionManager : MonoBehaviour
         if (nearbyTeleporter != null)
         {
             nearbyTeleporter.OnRaceClick();
-            iconUpdater.SetIcon(IconType.Teleport);
-            iconUpdater.timer = 0;
             return;
         }
         if (nearbyCannon != null)
@@ -82,6 +68,36 @@ public class PlayerActionManager : MonoBehaviour
         else
         {
             Debug.LogWarning("AbilityManager not found in the scene.");
+        }
+    }
+
+    void UpdateIcon()
+    {
+        if (nearbyTeleporter)
+        {
+            iconUpdater.SetIcon(IconType.Teleport);
+            iconUpdater.timer = 0f;
+            return;
+        }
+        iconUpdater.timer = ability.timer;
+    }
+
+    void UpdateAbilityDuration()
+    {
+        if (ability.onAbility)
+        {
+            iconUpdater.timer = ability.timer;
+            iconUpdater.timerMax = ability.duration;
+        }
+        else if (ability.onCooldown)
+        {
+            iconUpdater.timer = ability.timer;
+            iconUpdater.timerMax = ability.cooldown;
+        }
+        else
+        {
+            iconUpdater.timer = 0;
+            iconUpdater.timerMax = 0;
         }
     }
 
