@@ -1635,6 +1635,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cdb75cdf50249468c71b95518c3ae4, type: 3}
+--- !u!114 &513339707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 784331115806571859, guid: 18cdb75cdf50249468c71b95518c3ae4, type: 3}
+  m_PrefabInstance: {fileID: 513339706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b60650a094fe42e0816aea4dba10533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverManager
 --- !u!1001 &538993556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3528,6 +3539,34 @@ PrefabInstance:
     - target: {fileID: 3268625215758810975, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
       propertyPath: m_Name
       value: Interact Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 513339707}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerActionManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6328507716828270210, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
       propertyPath: m_Pivot.x

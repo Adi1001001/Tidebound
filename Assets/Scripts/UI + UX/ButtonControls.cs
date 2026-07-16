@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 // must add this script because levelmanager is a singleton and hence we can't directly call its functions from the button UI
 public class ButtonControls : MonoBehaviour {
