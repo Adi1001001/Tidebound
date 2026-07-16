@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerPause.performed += ctx => OnPause();
-        tempCountdown.performed += ctx => OnTempCountdown();
         retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
     }
@@ -119,17 +118,6 @@ public class PlayerController : MonoBehaviour
             LevelManager.Instance.PauseGame();
         }
     }
-    void OnTempCountdown() {
-        Debug.Log("Temp Countdown triggered");
-        GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
-        TimerManager timerManager = FindAnyObjectByType<TimerManager>();
-        if (timerManager != null) {
-            timerManager.StartCountdown();
-        } else {
-            Debug.LogWarning("TimerManager not found in the scene.");
-        }
-    }
-
     void ApplyRotation()
     {
         float steeringFalloffSpeed = highSpeed * 1.25f;

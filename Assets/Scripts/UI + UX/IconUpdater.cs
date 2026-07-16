@@ -61,7 +61,7 @@ public class IconUpdater : MonoBehaviour
                 activeOutlineColor = new Color(0f, 1f, 1f);
                 break;
             case Character.Swordfish:
-                activeOutlineColor = new Color(0.45f, 0.3f, 0.7f);
+                activeOutlineColor = new Color(0.4f, 1f, 0.2f);
                 break;
             case Character.Turtle:
                 activeOutlineColor = new Color(0.65f, 0.15f, 0.95f);
