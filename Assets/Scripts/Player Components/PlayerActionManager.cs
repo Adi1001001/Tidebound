@@ -14,13 +14,14 @@ public class PlayerActionManager : MonoBehaviour
     void Start()
     {
         ability = GetComponent<Ability>();
-        StartCoroutine(FindAbility());
         playerAbility.performed += ctx => OnAbility();    
+        StartCoroutine(FindAbility());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (ability == null) {return;}
         UpdateIcon();
         iconUpdater.onAbility = ability.onAbility ? true : false;
         if (nearbyTeleporter == null && nearbyCannon == null)
