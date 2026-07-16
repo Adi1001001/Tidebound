@@ -7,7 +7,8 @@ public class PlayerActionManager : MonoBehaviour
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
-    public bool alwaysBouncy;
+    [HideInInspector] public bool alwaysBouncy;
+    [SerializeField] private IconUpdater iconUpdater;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,15 @@ public class PlayerActionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateIcon();
+        if (ability == null)
+            return;
+
+        iconUpdater.onAbility = ability.onAbility ? true : false;
+        if (nearbyTeleporter == null && nearbyCannon == null)
+        {
+            UpdateAbilityDuration();
+        }
     }
 
     void OnEnable() {
@@ -59,6 +68,36 @@ public class PlayerActionManager : MonoBehaviour
         else
         {
             Debug.LogWarning("AbilityManager not found in the scene.");
+        }
+    }
+
+    void UpdateIcon()
+    {
+        if (nearbyTeleporter)
+        {
+            iconUpdater.SetIcon(IconType.Teleport);
+            iconUpdater.timer = 0f;
+            return;
+        }
+        iconUpdater.timer = ability.timer;
+    }
+
+    void UpdateAbilityDuration()
+    {
+        if (ability.onAbility)
+        {
+            iconUpdater.timer = ability.timer;
+            iconUpdater.timerMax = ability.duration;
+        }
+        else if (ability.onCooldown)
+        {
+            iconUpdater.timer = ability.timer;
+            iconUpdater.timerMax = ability.cooldown;
+        }
+        else
+        {
+            iconUpdater.timer = 0;
+            iconUpdater.timerMax = 0;
         }
     }
 

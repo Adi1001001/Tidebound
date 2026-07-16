@@ -3,13 +3,13 @@ using System.Collections;
 
 public class DolphinAbility : Ability
 {
-    [SerializeField] private float duration = 3f;
     [SerializeField] private float abilityBuff = 1.25f;
     private TrailRenderer playerTrail;
 
     protected override void Start()
     {
         base.Start();
+        duration = 3f;
         cooldown = 10f;
 
         playerTrail = GetComponent<TrailRenderer>();
@@ -48,8 +48,7 @@ public class DolphinAbility : Ability
 
         playerTrail.enabled = true;
         playerTrail.Clear(); 
-
-        yield return new WaitForSeconds(duration);
+        yield return RunTimer(duration);
     }
 
     protected override void OnAbilityEnd()
