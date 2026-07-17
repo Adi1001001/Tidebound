@@ -92,6 +92,19 @@ public class PlayerActionManager : MonoBehaviour
             iconUpdater.timer = 0f;
             return;
         }
+        if (nearbyCannon != null)
+        {
+            iconUpdater.timer = 0f;
+            if (!nearbyCannon.playerInCannon)
+            {
+                iconUpdater.SetIcon(IconType.CannonIn);
+            }
+            else
+            {
+                iconUpdater.SetIcon(IconType.CannonOut);
+            }
+            return;
+        }
         iconUpdater.timer = ability.timer;
         iconUpdater.SetAbilityIcon();
     }

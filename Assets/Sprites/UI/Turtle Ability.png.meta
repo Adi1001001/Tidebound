@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 2ee210176470b412aaa22632b797a30f
+guid: d502356026da74b3cb8cbdfbeb40aced
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9213447821872555387
-    second: Dolphin Ability_0
-  - first:
-      213: 1427578521218186034
-    second: Dolphin Ability_1
-  - first:
-      213: -7226972099832776026
-    second: Dolphin Ability_2
-  - first:
-      213: -732873622688122896
-    second: Dolphin Ability_3
-  - first:
-      213: -4912001885817008703
-    second: Dolphin Ability_4
+      213: -5542361135170151535
+    second: Turtle Ability_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dolphin Ability_0
+      name: Turtle Ability_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 66
-        width: 69
-        height: 109
+        x: 10
+        y: 4
+        width: 151
+        height: 174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58a90bc5502432080800000000000000
-      internalID: -9213447821872555387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dolphin Ability_1
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 63
-        width: 71
-        height: 114
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 23bff26f917cfc310800000000000000
-      internalID: 1427578521218186034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dolphin Ability_2
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 1
-        width: 146
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6aafec35a23a4bb90800000000000000
-      internalID: -7226972099832776026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dolphin Ability_3
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 31
-        width: 146
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f7bb66b25f44d5f0800000000000000
-      internalID: -732873622688122896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dolphin Ability_4
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 16
-        width: 146
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1cd04db4f4015dbb0800000000000000
-      internalID: -4912001885817008703
+      spriteID: 19b904989e39513b0800000000000000
+      internalID: -5542361135170151535
       vertices: []
       indices: 
       edges: []
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dolphin Ability_0: -9213447821872555387
-      Dolphin Ability_1: 1427578521218186034
-      Dolphin Ability_2: -7226972099832776026
-      Dolphin Ability_3: -732873622688122896
-      Dolphin Ability_4: -4912001885817008703
+      Turtle Ability_0: -5542361135170151535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

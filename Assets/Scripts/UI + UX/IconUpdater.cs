@@ -138,8 +138,12 @@ public class IconUpdater : MonoBehaviour
                 buttonIcon.sprite = sprite;
                 break;
             case Character.Swordfish:
+                sprite = iconDictionary[IconType.Swordfish];
+                buttonIcon.sprite = sprite;
                 break;
             case Character.Turtle:
+                sprite = iconDictionary[IconType.Turtle];
+                buttonIcon.sprite = sprite;
                 break;
         }
     }
