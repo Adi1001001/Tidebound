@@ -14,13 +14,14 @@ public class PlayerActionManager : MonoBehaviour
     void Start()
     {
         ability = GetComponent<Ability>();
-        StartCoroutine(FindAbility());
         playerAbility.performed += ctx => OnAbility();    
+        StartCoroutine(FindAbility());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (ability == null) {return;}
         UpdateIcon();
         iconUpdater.onAbility = ability.onAbility ? true : false;
         if (nearbyTeleporter == null && nearbyCannon == null)
@@ -89,6 +90,19 @@ public class PlayerActionManager : MonoBehaviour
         {
             iconUpdater.SetIcon(IconType.Teleport);
             iconUpdater.timer = 0f;
+            return;
+        }
+        if (nearbyCannon != null)
+        {
+            iconUpdater.timer = 0f;
+            if (!nearbyCannon.playerInCannon)
+            {
+                iconUpdater.SetIcon(IconType.CannonIn);
+            }
+            else
+            {
+                iconUpdater.SetIcon(IconType.CannonOut);
+            }
             return;
         }
         iconUpdater.timer = ability.timer;

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3e4bc6064f3774c799b3fcad407605ff
+guid: d502356026da74b3cb8cbdfbeb40aced
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1320761110985423309
-    second: Teleport_0
+      213: -5542361135170151535
+    second: Turtle Ability_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Teleport_0
+      name: Turtle Ability_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 16
-        width: 120
-        height: 149
+        x: 10
+        y: 4
+        width: 151
+        height: 174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc9bf659b39445210800000000000000
-      internalID: 1320761110985423309
+      spriteID: 19b904989e39513b0800000000000000
+      internalID: -5542361135170151535
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Teleport_0: 1320761110985423309
+      Turtle Ability_0: -5542361135170151535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

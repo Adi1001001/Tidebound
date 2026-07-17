@@ -5,7 +5,12 @@ using System.Collections.Generic;
 public enum IconType
 {
     Teleport,
-    Anglerfish
+    Anglerfish,
+    Dolphin,
+    Swordfish,
+    Turtle,
+    CannonIn,
+    CannonOut
 }
 
 [System.Serializable]
@@ -78,13 +83,18 @@ public class IconUpdater : MonoBehaviour
 
     private void UpdateCooldownVisual()
     {
-        if (timer > 0 && timerMax > 0)
+        if (timer == 0 || timerMax == 0)
         {
-            cooldownOverlay.fillAmount = timer / timerMax;
+            cooldownOverlay.fillAmount = 0f;
+            return;
+        }
+        if (onAbility)
+        {
+            cooldownOverlay.fillAmount = 1f - (timer / timerMax);
         }
         else
         {
-            cooldownOverlay.fillAmount = 0;
+            cooldownOverlay.fillAmount = timer / timerMax;
         }
     }
 
@@ -97,7 +107,7 @@ public class IconUpdater : MonoBehaviour
 
             float glow = (Mathf.Sin(Time.time * 6f) + 1f) / 2f;
             Color glowColor = activeOutlineColor;
-            Mathf.Lerp(0.3f, 1f, glow);
+            glowColor.a = Mathf.Lerp(0.3f, 1f, glow);
             buttonOutline.effectColor = glowColor;
         }
         else if (timer > 0)
@@ -124,10 +134,16 @@ public class IconUpdater : MonoBehaviour
                 buttonIcon.sprite = sprite;
                 break;
             case Character.Dolphin:
+                sprite = iconDictionary[IconType.Dolphin];
+                buttonIcon.sprite = sprite;
                 break;
             case Character.Swordfish:
+                sprite = iconDictionary[IconType.Swordfish];
+                buttonIcon.sprite = sprite;
                 break;
             case Character.Turtle:
+                sprite = iconDictionary[IconType.Turtle];
+                buttonIcon.sprite = sprite;
                 break;
         }
     }

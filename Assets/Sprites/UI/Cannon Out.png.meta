@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 3e4bc6064f3774c799b3fcad407605ff
+guid: 3c536b683e6cf42399fd8fee81992369
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1320761110985423309
-    second: Teleport_0
+      213: -7531489288717216375
+    second: Cannon Out_0
+  - first:
+      213: -1028857020857351275
+    second: Cannon Out_1
+  - first:
+      213: 2046055587536908976
+    second: Cannon Out_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Teleport_0
+      name: Cannon Out_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 16
-        width: 120
-        height: 149
+        x: 7
+        y: 4
+        width: 150
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc9bf659b39445210800000000000000
-      internalID: 1320761110985423309
+      spriteID: 985d95c3566ca7790800000000000000
+      internalID: -7531489288717216375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Out_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 112
+        width: 71
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 593812b9df3c8b1f0800000000000000
+      internalID: -1028857020857351275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon Out_2
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 17
+        width: 71
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b237d567bc056c10800000000000000
+      internalID: 2046055587536908976
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Teleport_0: 1320761110985423309
+      Cannon Out_0: -7531489288717216375
+      Cannon Out_1: -1028857020857351275
+      Cannon Out_2: 2046055587536908976
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
