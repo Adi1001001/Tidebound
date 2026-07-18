@@ -8,6 +8,7 @@ public class PlayerActionManager : MonoBehaviour
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
+    private PlayerController playerController;
     [HideInInspector] public bool alwaysBouncy;
     [SerializeField] private IconUpdater iconUpdater;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,6 +17,7 @@ public class PlayerActionManager : MonoBehaviour
         ability = GetComponent<Ability>();
         playerAbility.performed += ctx => OnAbility();    
         StartCoroutine(FindAbility());
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -140,14 +142,13 @@ public class PlayerActionManager : MonoBehaviour
 
     public void SetNearbyBouncyArea(BouncyArea bouncyArea)
     {
-        if (alwaysBouncy)
+        if (alwaysBouncy || bouncyArea != null)
         {
-            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
+            playerController.SetBouncy(true);
         }
         else
         {
-            GameStateManager.PlayerStates newState = bouncyArea != null ? GameStateManager.PlayerStates.Bouncy : GameStateManager.PlayerStates.Normal;
-            GameStateManager.Instance.SetPlayerState(newState);
+            playerController.SetBouncy(false);
         }
     }
 }
