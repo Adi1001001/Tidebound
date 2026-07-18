@@ -13,6 +13,8 @@ public class TurtleAbility : Ability
         actionManager = GetComponent<PlayerActionManager>();
         playerTrail = GetComponent<TrailRenderer>();
         SetPurpleGradient();
+        playerTrail.time = 1f; 
+        playerTrail.enabled = false;
     }
 
     private void SetPurpleGradient()
@@ -39,10 +41,9 @@ public class TurtleAbility : Ability
     protected override IEnumerator AbilityRoutine()
     {
         Debug.Log("Turtle ability activated");
-        playerController.prevPlayerState = GameStateManager.PlayerStates.Bouncy;
-        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
+        playerController.SetBouncy(true);
         actionManager.alwaysBouncy = true;
-        
+    
         playerTrail.enabled = true;
         playerTrail.Clear(); 
         yield return RunTimer(duration);
@@ -51,11 +52,7 @@ public class TurtleAbility : Ability
     protected override void OnAbilityEnd()
     {
         playerTrail.enabled = false;
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
-        {
-            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
-        }
-        playerController.prevPlayerState = GameStateManager.PlayerStates.Normal;
+        playerController.SetBouncy(false);
         actionManager.alwaysBouncy = false;
     }
 }
