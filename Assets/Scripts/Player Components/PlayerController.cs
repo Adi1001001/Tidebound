@@ -66,9 +66,7 @@ public class PlayerController : MonoBehaviour
         if (speedText != null)
         {
             float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier;
-
-            speedText.text =
-                "Speed: " + currentSpeed.ToString("F0") + " KNOTS";
+            speedText.text = "Speed: " + currentSpeed.ToString("F0") + " KNOTS";
         }
     }
     void FixedUpdate()
@@ -249,11 +247,17 @@ public class PlayerController : MonoBehaviour
         Vector2 normal = contact.normal;
         float speedIntoWall = Vector2.Dot(incoming, normal);
 
-        if (speedIntoWall < 0f) {return;}
+        if (speedIntoWall < 0f) {
+            if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
+            {
+                Debug.Log(":)");
+                incoming = normal * Mathf.Max(playerRb.linearVelocity.magnitude, 0.5f*highSpeed);
+            }
+            else {return;}
+        }
 
         if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
         {
-
             Vector2 reflected = Vector2.Reflect(-incoming, normal);
 
             float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90f;

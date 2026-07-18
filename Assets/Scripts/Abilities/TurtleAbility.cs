@@ -52,11 +52,7 @@ public class TurtleAbility : Ability
     protected override void OnAbilityEnd()
     {
         playerTrail.enabled = false;
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
-        {
-            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
-        }
-        playerController.prevPlayerState = GameStateManager.PlayerStates.Normal;
+        playerController.SetBouncy(false);
         actionManager.alwaysBouncy = false;
     }
 }
