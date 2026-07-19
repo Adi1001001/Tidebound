@@ -9,7 +9,7 @@ public class AnglerfishAbility : Ability
     {
         base.Start();
         duration = 5f;
-        cooldown = 12f;
+        cooldown = 10f;
     }
 
     protected override IEnumerator AbilityRoutine()

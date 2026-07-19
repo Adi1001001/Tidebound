@@ -2,32 +2,27 @@ using UnityEngine;
 
 public class AbilityLoader : MonoBehaviour
 {
-    private Ability currentAbility;
-
+    [SerializeField] private GameObject lilypadPrefab;
     private void Start()
     {
         switch (DataCarrier.Instance.currentCharacter)
         {
             case Character.Anglerfish:
-                currentAbility = gameObject.AddComponent<AnglerfishAbility>();
+                gameObject.AddComponent<AnglerfishAbility>();
                 break;
 
             case Character.Dolphin:
-                currentAbility = gameObject.AddComponent<DolphinAbility>();
+                gameObject.AddComponent<DolphinAbility>();
                 break;
 
             case Character.Swordfish:
-                currentAbility = gameObject.AddComponent<SwordfishAbility>();
+                gameObject.AddComponent<SwordfishAbility>();
                 break;
 
             case Character.Turtle:
-                currentAbility = gameObject.AddComponent<TurtleAbility>();
+                TurtleAbility currentAbility = gameObject.AddComponent<TurtleAbility>();
+                currentAbility.Initialise(lilypadPrefab);
                 break;
         }
-    }
-
-    public void UseAbility()
-    {
-        currentAbility.UseAbility();
     }
 }

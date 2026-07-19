@@ -86,7 +86,7 @@ public class PlayerAppearance : MonoBehaviour
             transform.localScale = Vector3.Lerp(originalScale, originalScale * currentJumpScale, height);
             float shadowScale = Mathf.Lerp(1f, currentMinShadowScale, height);
             airShadow.transform.localScale = new Vector3(shadowScale, shadowScale * 0.7f, 1f);
-            airShadow.transform.localPosition =shadowOffset * height;
+            airShadow.transform.position = transform.position + shadowOffset * height;
             yield return null;
         }
         transform.localScale = originalScale;

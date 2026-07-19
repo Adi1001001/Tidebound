@@ -11,7 +11,7 @@ public class SwordfishAbility : Ability
     {
         base.Start();
         duration = 2f;
-        cooldown = 15f;
+        cooldown = 14f;
 
         GameObject timerManager = GameObject.Find("TimerManager");
         if (timerManager != null)
@@ -25,7 +25,6 @@ public class SwordfishAbility : Ability
     protected override IEnumerator AbilityRoutine()
     {
         Debug.Log("Swordfish ability activated");
-        
         if (gameTimer != null)
         {
             gameTimer.slowFactor = slowFactor;
