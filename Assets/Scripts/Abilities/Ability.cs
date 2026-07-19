@@ -12,14 +12,14 @@ public abstract class Ability : MonoBehaviour
     [HideInInspector] public bool onAbility = false;
     [HideInInspector] public bool onCooldown = false;
     public float timer;
-    private Coroutine activeCoroutine;
+    protected Coroutine activeCoroutine;
 
     protected virtual void Start()
     {
         playerController = GetComponent<PlayerController>();
     }
 
-    public void UseAbility()
+    public virtual void UseAbility()
     {
         if (onAbility || onCooldown)
         {
@@ -40,7 +40,7 @@ public abstract class Ability : MonoBehaviour
         StartCoroutine(StartCooldown());
     }
 
-    private IEnumerator AbilityWrapper()
+    protected IEnumerator AbilityWrapper()
     {
         onAbility = true;
         yield return AbilityRoutine();

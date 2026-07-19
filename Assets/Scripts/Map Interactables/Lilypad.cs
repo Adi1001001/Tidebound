@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Linq.Expressions;
 
 public class Lilypad : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class Lilypad : MonoBehaviour
     PlayerController playerController;
     PlayerAppearance appearance;
     private bool lilypadActivated = false;
+    public bool initialised = false;
         
     void Start() {
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -38,6 +37,7 @@ public class Lilypad : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
+        if (!initialised) {return;}
         lilypadActivated = false;
     }
 

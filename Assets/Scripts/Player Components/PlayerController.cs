@@ -56,7 +56,10 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = Vector2.zero;
         }
-
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
+        {
+            playerRb.angularVelocity = 0f;
+        }
         if (speedText != null)
         {
             float currentSpeed = playerRb.linearVelocity.magnitude * speedMultiplier;
