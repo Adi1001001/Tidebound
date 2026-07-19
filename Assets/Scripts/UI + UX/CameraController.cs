@@ -24,8 +24,6 @@ public class CameraController : MonoBehaviour {
     void LateUpdate() { // this function happens after all the other update calls
         if (playerTransform == null) return; // fallback if player is still not assigned
 
-        if (playerController.inCurrent) return; // do not update position if in current, handled by CurrentExtraLead()
-
         Vector3 desiredPosition = playerTransform.position + offset;
         transform.position = desiredPosition;
     }

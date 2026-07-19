@@ -58,6 +58,7 @@
     <Compile Include="Assets/Scripts/Abilities/DolphinAbility.cs" />
     <Compile Include="Assets/Scripts/Managers/LevelManager.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Current.cs" />
+    <Compile Include="Assets/Scripts/Map Interactables/Lilypad.cs" />
     <Compile Include="Assets/Scripts/Managers/DataCarrier.cs" />
     <Compile Include="Assets/Scripts/UI + UX/UIConnector.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />
@@ -76,7 +77,6 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" />
     <Compile Include="Assets/Scripts/UI + UX/CameraController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" />
-    <Compile Include="Assets/Scripts/Map Interactables/BouncyArea.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets/Scripts/Managers/GameStateManager.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
