@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public enum IconType
 {
@@ -35,7 +36,7 @@ public class IconUpdater : MonoBehaviour
     private Color activeOutlineColor;
     [HideInInspector] public float timer;
     [HideInInspector] public float timerMax;
-    [HideInInspector] public bool onAbility;
+    public bool onAbility;
 
     void Awake()
     {
@@ -79,6 +80,7 @@ public class IconUpdater : MonoBehaviour
     {
         UpdateCooldownVisual();
         UpdateAbilityVisual();
+
     }
 
     private void UpdateCooldownVisual()
@@ -117,8 +119,7 @@ public class IconUpdater : MonoBehaviour
             buttonIcon.color = dimmedIcon;
             buttonOutline.enabled = false;
         }
-        else
-        {
+        else {
             buttonIcon.color = normalIconColor;
             buttonOutline.enabled = false;
         }
