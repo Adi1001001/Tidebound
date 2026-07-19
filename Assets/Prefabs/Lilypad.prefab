@@ -83,12 +83,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 21ccc9b2592224935a5b451347b19c39, type: 3}
-  m_Color: {r: 0.008956357, g: 0.4716981, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 21ccc9b2592224935a5b451347b19c39, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 11.25, y: 11.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lilypad
   pushForce: 15
   airTime: 0.75
+  initialised: 0
 --- !u!58 &2435894369726075516
 CircleCollider2D:
   m_ObjectHideFlags: 0
