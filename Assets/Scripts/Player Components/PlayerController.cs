@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
-    public GameStateManager.PlayerStates prevPlayerState;
     public InputAction playerMovement;
     public InputAction playerPause;
     public InputAction tempCountdown;
@@ -28,24 +28,18 @@ public class PlayerController : MonoBehaviour
     public Image speedBarFill;
     private Vector3 barOrigin;
     private bool isSlowed = false;
-    private PolygonCollider2D normalCollider;
-    private CircleCollider2D bouncyCollider;
+    public bool inCurrent = false;
     [Header("Collision Feel")]
     [SerializeField] private float bounceStrength = 0.6f;
     [SerializeField] private float maxBounceSpeed = 25f;
     private float collisionLockTimer = 0f;
     private bool originSaved = false;
-    // public CameraController cameraController;
-    [HideInInspector] public bool inCurrent = false;
-    [HideInInspector] public bool maxSpeedReached = false;
-    
+    private Coroutine airtimeCoroutine;    
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerPause.performed += ctx => OnPause();
         retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
-        normalCollider = GetComponent<PolygonCollider2D>();
-        bouncyCollider = GetComponent<CircleCollider2D>();
     }
 
     void Update()
@@ -80,10 +74,17 @@ public class PlayerController : MonoBehaviour
         {
             collisionLockTimer -= Time.fixedDeltaTime;
         }
-        ApplyRotation();
-        ApplyForwardForce();
-        KillOrthogonalVelocity();
-        if (isSlowed)
+        if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Lilypad)
+        {
+            ApplyRotation();
+            ApplyForwardForce();
+            KillOrthogonalVelocity();
+        }
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
+        {
+            ApplyResistance(highSpeed, 5, 1f);
+        }
+        else if (isSlowed)
         {
             ApplyResistance(resistanceSpeed, 35, 3.5f);
         }
@@ -207,11 +208,6 @@ public class PlayerController : MonoBehaviour
             speedColor = Color.Lerp(Color.yellow, Color.red, (speedPercent - 0.5f) * 2f);
         }
 
-        if (speedPercent >= 0.99f) {
-            maxSpeedReached = true;
-        } else {
-            maxSpeedReached = false;
-        }
         if (speedPercent > 0.9f) { // shake effect when going very fast
             if (!originSaved) {
                 barOrigin = speedBar.transform.localPosition;
@@ -247,27 +243,7 @@ public class PlayerController : MonoBehaviour
         Vector2 normal = contact.normal;
         float speedIntoWall = Vector2.Dot(incoming, normal);
 
-        if (speedIntoWall < 0f) {
-            if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
-            {
-                Debug.Log(":)");
-                incoming = normal * Mathf.Max(playerRb.linearVelocity.magnitude, 0.5f*highSpeed);
-            }
-            else {return;}
-        }
-
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Bouncy)
-        {
-            Vector2 reflected = Vector2.Reflect(-incoming, normal);
-
-            float angle = Mathf.Atan2(reflected.y, reflected.x) * Mathf.Rad2Deg - 90f;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-            float speed = incoming.magnitude;
-            playerRb.linearVelocity = reflected.normalized * speed * 1.05f;
-            playerRb.position += normal * 0.5f;
-            return;
-        }
+        if (speedIntoWall < 0f) {return;}
 
         collisionLockTimer = 0.1f;
 
@@ -283,17 +259,6 @@ public class PlayerController : MonoBehaviour
             -correction * bounceStrength,
             ForceMode2D.Impulse
         );
-    }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Bouncy)
-            return;
-
-        ContactPoint2D contact = collision.GetContact(0);
-        Vector2 normal = contact.normal;
-
-        playerRb.position += normal * 0.5f;
     }
     
     public void EnterSlowZone(float resistanceSpeed, float accelFactor)
@@ -312,7 +277,7 @@ public class PlayerController : MonoBehaviour
 
     public void EnterCannon(Vector3 cannonPos)
     {
-        prevPlayerState = GameStateManager.Instance.GetPlayerState();
+        CancelAirTime();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.InCannon);
         transform.position = cannonPos;
         moveInput = Vector2.zero;
@@ -322,24 +287,36 @@ public class PlayerController : MonoBehaviour
 
     public void FireFromCannon(float speed, Vector2 direction)
     { 
-        GameStateManager.Instance.SetPlayerState(prevPlayerState);
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
         playerRb.linearVelocity = direction.normalized * speed;
         playerRb.angularVelocity = 0f;
     }
 
-    public void SetBouncy(bool state)
+    public void StartAirTime(float duration)
     {
-        if (state)
+        if (airtimeCoroutine != null)
         {
-            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Bouncy);
-            prevPlayerState = GameStateManager.PlayerStates.Bouncy;
+            StopCoroutine(airtimeCoroutine);
         }
-        else
+
+        airtimeCoroutine = StartCoroutine(AirTimeRoutine(duration));
+    }
+
+    private IEnumerator AirTimeRoutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
+        airtimeCoroutine = null;
+    }
+
+    public void CancelAirTime()
+    {
+        if (airtimeCoroutine != null)
         {
-            GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
-            prevPlayerState = GameStateManager.PlayerStates.Normal;
+            StopCoroutine(airtimeCoroutine);
+            GetComponent<PlayerAppearance>().StopAirborneEffect();
+            airtimeCoroutine = null;
         }
-        normalCollider.enabled = !state;
-        bouncyCollider.enabled = state;
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
     }
 }
