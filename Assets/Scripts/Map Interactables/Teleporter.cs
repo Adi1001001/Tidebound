@@ -1,16 +1,8 @@
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour {
-    [System.Serializable]
-    public class TeleporterSprite
-    {
-        public int biomeNum;
-        public Sprite sprite;
-    }
     public string teleportTag;
-    [SerializeField] private TeleporterSprite[] sprites;
     void Start() {
-        SetSprite();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         CircleCollider2D cc = GetComponent<CircleCollider2D>();
 
@@ -21,20 +13,6 @@ public class Teleporter : MonoBehaviour {
 
         // Center the collider on the sprite
         cc.offset = bounds.center;
-    }
-
-    private void SetSprite()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        int currentBiome = DataCarrier.Instance.GetBiomeNum();
-        foreach (TeleporterSprite teleporterSprite in sprites)
-        {
-            if (teleporterSprite.biomeNum == currentBiome)
-            {
-                sr.sprite = teleporterSprite.sprite;
-                return;
-            }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

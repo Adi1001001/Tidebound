@@ -2,36 +2,10 @@ using UnityEngine;
 
 public class Current : MonoBehaviour {
     
-    [System.Serializable]
-    public class CurrentSprite
-    {
-        public int biomeNum;
-        public Sprite sprite;
-    }
     public float pushForce = 10f;
     private Rigidbody2D playerRb;
     private CameraController cameraController;
     private PlayerController playerController;
-    [SerializeField] private CurrentSprite[] sprites;
-
-    void Start()
-    {
-        SetSprite();
-    }
-
-    private void SetSprite()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        int currentBiome = DataCarrier.Instance.GetBiomeNum();
-        foreach (CurrentSprite currentSprite in sprites)
-        {
-            if (currentSprite.biomeNum == currentBiome)
-            {
-                sr.sprite = currentSprite.sprite;
-                return;
-            }
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {

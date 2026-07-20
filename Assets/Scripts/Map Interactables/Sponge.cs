@@ -2,22 +2,14 @@ using UnityEngine;
 
 public class Sponge : MonoBehaviour
 {
-    [System.Serializable]
-    public class SpongeSprite
-    {
-        public int biomeNum;
-        public Sprite sprite;
-    }
     public float pushForce = 10f;
     public float airTime = 0.75f;
     PlayerController playerController;
     PlayerAppearance appearance;
     private bool spongeActivated = false;
     public bool initialised = false;
-    [SerializeField] private SpongeSprite[] sprites;
         
     void Start() {
-        SetSprite();
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         appearance = GameObject.FindWithTag("Player").GetComponent<PlayerAppearance>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -30,20 +22,6 @@ public class Sponge : MonoBehaviour
 
         // Center the collider on the sprite
         cc.offset = bounds.center;
-    }
-
-    private void SetSprite()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        int currentBiome = DataCarrier.Instance.GetBiomeNum();
-        foreach (SpongeSprite spongeSprite in sprites)
-        {
-            if (spongeSprite.biomeNum == currentBiome)
-            {
-                sr.sprite = spongeSprite.sprite;
-                return;
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 300306152565822737}
   - component: {fileID: -1993538030647227802}
   - component: {fileID: 6390681848858743529}
+  - component: {fileID: 8838769897549798353}
   m_Layer: 0
   m_Name: Vine Gate
   m_TagString: Untagged
@@ -152,3 +153,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VineGate
   requiredProgress: 0
+--- !u!114 &8838769897549798353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763482398877153812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f62384bf5444a8ba1ad940aa993908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
+  sprites:
+  - biomeNum: 1
+    sprite: {fileID: 7482667652216324306, guid: 384299c2e9563437cbadc3755de746cf, type: 3}
+  - biomeNum: 2
+    sprite: {fileID: 7482667652216324306, guid: 384299c2e9563437cbadc3755de746cf, type: 3}
+  - biomeNum: 3
+    sprite: {fileID: 7482667652216324306, guid: 384299c2e9563437cbadc3755de746cf, type: 3}

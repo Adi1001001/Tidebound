@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5765775663309349871}
   - component: {fileID: 5553580092326672168}
   - component: {fileID: -4080966880117674472}
+  - component: {fileID: 503309632611542684}
   m_Layer: 0
   m_Name: Slow Zone
   m_TagString: Untagged
@@ -156,10 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7440198f896bafa4a813078ffd211fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
-  speedFactor: 0.4
+  speedLimit: 0
   accelerationFactor: 1
-  breakableByShark: 0
-  active: 1
   movable: 0
   moveSpeed: 2
   waypoints:
@@ -276,3 +275,22 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &503309632611542684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364057481370118900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f62384bf5444a8ba1ad940aa993908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
+  sprites:
+  - biomeNum: 1
+    sprite: {fileID: 7482667652216324306, guid: 3f8aab76f0bb9403f89ea465748d8972, type: 3}
+  - biomeNum: 2
+    sprite: {fileID: 7482667652216324306, guid: 3f8aab76f0bb9403f89ea465748d8972, type: 3}
+  - biomeNum: 3
+    sprite: {fileID: 7482667652216324306, guid: 3f8aab76f0bb9403f89ea465748d8972, type: 3}
