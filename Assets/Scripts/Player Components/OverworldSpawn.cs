@@ -14,12 +14,12 @@ public class OverworldSpawn : MonoBehaviour
 
         foreach (SaveZone zone in saveZones)
         {
-            if (zone.saveZoneID == DataCarrier.Instance.currentSaveZoneID)
+            if (zone.saveZoneID == DataCarrier.Instance.GetSaveZone())
             {
                 transform.position = zone.transform.position;
                 return;
             }
         }
-        Debug.LogWarning("No Save Zone found with ID " + DataCarrier.Instance.currentSaveZoneID);
+        Debug.LogWarning("No Save Zone found with ID " + DataCarrier.Instance.GetSaveZone());
     }
 }

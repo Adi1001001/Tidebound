@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TurtleAbility : Ability
 {
-    private GameObject lilypadPrefab;
+    private GameObject spongePrefab;
     private GameObject currObject;
     protected override void Start()
     {
@@ -12,9 +12,9 @@ public class TurtleAbility : Ability
         cooldown = 18f;
     }
 
-    public void Initialise(GameObject lilypadPrefab)
+    public void Initialise(GameObject spongePrefab)
     {
-        this.lilypadPrefab = lilypadPrefab;
+        this.spongePrefab = spongePrefab;
     }
 
     public override void UseAbility()
@@ -23,7 +23,7 @@ public class TurtleAbility : Ability
         {
             return;
         }
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Sponge)
         {
             return;
         }
@@ -40,12 +40,12 @@ public class TurtleAbility : Ability
             float newSpeed = playerController.highSpeed * 0.01f;
             playerRb.linearVelocity = transform.up * newSpeed;
         }
-        currObject = Instantiate(lilypadPrefab, transform.position, Quaternion.identity);
+        currObject = Instantiate(spongePrefab, transform.position, Quaternion.identity);
         currObject.transform.localScale = new Vector3(0.25f, 0.25f, 0);
-        Lilypad lilypad = currObject.GetComponent<Lilypad>();
-        lilypad.pushForce = 40f;
-        lilypad.airTime = 1f;
-        lilypad.initialised = true;
+        Sponge sponge = currObject.GetComponent<Sponge>();
+        sponge.pushForce = 40f;
+        sponge.airTime = 1f;
+        sponge.initialised = true;
         yield return RunTimer(duration);
     }
 

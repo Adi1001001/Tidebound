@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class SlowZone : MonoBehaviour
 {
+    [System.Serializable]
+    public class SlowZoneSprite
+    {
+        public int biomeNum;
+        public Sprite sprite;
+    }
     public float speedLimit;
 
     [Range(0.75f, 1f)]
@@ -25,6 +31,7 @@ public class SlowZone : MonoBehaviour
     public Sprite circleSprite;
 
     public float indicatorSize = 0.02f;
+    [SerializeField] private SlowZoneSprite[] sprites;
 
     private static readonly Color INDICATOR_COLOR =
         Color.red;
@@ -33,7 +40,7 @@ public class SlowZone : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-
+        SetSprite();
         RebuildCollider();
         CreatePathLine();
         CreateMovementIndicator();
@@ -66,7 +73,19 @@ public class SlowZone : MonoBehaviour
         }
     }
 
-
+    private void SetSprite()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        int currentBiome = DataCarrier.Instance.GetBiomeNum();
+        foreach (SlowZoneSprite slowZoneSprite in sprites)
+        {
+            if (slowZoneSprite.biomeNum == currentBiome)
+            {
+                sr.sprite = slowZoneSprite.sprite;
+                return;
+            }
+        }
+    }
 
     void RebuildCollider()
     {

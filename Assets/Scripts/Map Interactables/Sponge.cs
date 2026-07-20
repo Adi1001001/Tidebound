@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class Lilypad : MonoBehaviour
+public class Sponge : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [System.Serializable]
+    public class SpongeSprite
+    {
+        public int biomeNum;
+        public Sprite sprite;
+    }
     public float pushForce = 10f;
     public float airTime = 0.75f;
     PlayerController playerController;
     PlayerAppearance appearance;
-    private bool lilypadActivated = false;
+    private bool spongeActivated = false;
     public bool initialised = false;
+    [SerializeField] private SpongeSprite[] sprites;
         
     void Start() {
+        SetSprite();
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         appearance = GameObject.FindWithTag("Player").GetComponent<PlayerAppearance>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -23,6 +30,20 @@ public class Lilypad : MonoBehaviour
 
         // Center the collider on the sprite
         cc.offset = bounds.center;
+    }
+
+    private void SetSprite()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        int currentBiome = DataCarrier.Instance.GetBiomeNum();
+        foreach (SpongeSprite spongeSprite in sprites)
+        {
+            if (spongeSprite.biomeNum == currentBiome)
+            {
+                sr.sprite = spongeSprite.sprite;
+                return;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -38,18 +59,18 @@ public class Lilypad : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         if (!initialised) {return;}
-        lilypadActivated = false;
+        spongeActivated = false;
     }
 
     private void TryBeginningAirTime(Collider2D collision)
     {
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad || lilypadActivated) {return;}
-        lilypadActivated = true;
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Sponge || spongeActivated) {return;}
+        spongeActivated = true;
         BeginAirTime(collision);
     }
     private void BeginAirTime(Collider2D collision)
     {
-        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Lilypad);
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Sponge);
         Rigidbody2D rb = collision.attachedRigidbody;
         Vector2 launchDirection = rb.linearVelocity.normalized;
         rb.angularVelocity = 0f;

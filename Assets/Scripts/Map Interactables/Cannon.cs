@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    [System.Serializable]
+    public class CannonSprite
+    {
+        public int biomeNum;
+        public Sprite sprite;
+    }
     [Header("Speed")]
     public float releaseSpeed = 50f;
     [Header("Rotation")]
@@ -23,8 +29,11 @@ public class Cannon : MonoBehaviour
     private CameraController mainCamera;
     public float cameraZoomFactor = 1.5f;
 
+    [SerializeField] private CannonSprite[] sprites;
+
     void Start()
     {
+        SetSprite();
         RebuildCollider();
         SetRandomRotation();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
@@ -39,7 +48,19 @@ public class Cannon : MonoBehaviour
         RotateCannon();
     }
 
-
+    private void SetSprite()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        int currentBiome = DataCarrier.Instance.GetBiomeNum();
+        foreach (CannonSprite cannonSprite in sprites)
+        {
+            if (cannonSprite.biomeNum == currentBiome)
+            {
+                sr.sprite = cannonSprite.sprite;
+                return;
+            }
+        }
+    }
     void SetRandomRotation()
     {
         currentAngle = Random.Range(minRotation, maxRotation);

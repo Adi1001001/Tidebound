@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = Vector2.zero;
         }
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Sponge)
         {
             playerRb.angularVelocity = 0f;
         }
@@ -77,13 +77,13 @@ public class PlayerController : MonoBehaviour
         {
             collisionLockTimer -= Time.fixedDeltaTime;
         }
-        if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Lilypad)
+        if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Sponge)
         {
             ApplyRotation();
             ApplyForwardForce();
             KillOrthogonalVelocity();
         }
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Sponge)
         {
             ApplyResistance(highSpeed, 5, 1f);
         }

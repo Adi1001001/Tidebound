@@ -19,7 +19,7 @@ public class GameStateManager : MonoBehaviour {
     {
         Normal,
         InCannon,
-        Lilypad
+        Sponge
     }
 
     void Awake() {
