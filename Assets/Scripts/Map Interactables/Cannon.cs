@@ -39,7 +39,6 @@ public class Cannon : MonoBehaviour
         RotateCannon();
     }
 
-
     void SetRandomRotation()
     {
         currentAngle = Random.Range(minRotation, maxRotation);

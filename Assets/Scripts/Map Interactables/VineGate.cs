@@ -11,11 +11,11 @@ public class VineGate : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        ResizeCollider();
     }
 
     void Start()
     {
+        ResizeCollider();
         CheckGate();
     }
 
@@ -32,7 +32,7 @@ public class VineGate : MonoBehaviour
 
     public void CheckGate()
     {
-        if (DataCarrier.Instance.overworldProgress >= requiredProgress)
+        if (DataCarrier.Instance.GetProgress() >= requiredProgress)
         {
             Destroy(gameObject);
         }

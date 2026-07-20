@@ -3,6 +3,12 @@ using UnityEngine;
 [ExecuteAlways]
 public class CurrentArrowGenerator : MonoBehaviour
 {
+    [System.Serializable]
+    public class CurrentArrowSprite
+    {
+        public int biomeNum;
+        public Sprite sprite;
+    }
     [Header("Arrow")]
     [SerializeField] private Sprite arrowSprite;
 
@@ -14,18 +20,14 @@ public class CurrentArrowGenerator : MonoBehaviour
     public float horizontalGapPixels = 32f;
     public float verticalGapPixels = 32f;
 
-
     [Header("Layout")]
     [Range(0f, 0.5f)]
     [SerializeField] private float boundaryMargin = 0.05f;
 
-
     [SerializeField] private int sortingOrder = 1;
-
-
     private Vector3 lastScale;
     private Quaternion lastRotation;
-
+    [SerializeField] private CurrentArrowSprite[] sprites;
 
     private void OnEnable()
     {
@@ -35,6 +37,10 @@ public class CurrentArrowGenerator : MonoBehaviour
         GenerateArrows();
     }
 
+    void Start()
+    {
+        SetSprite();
+    }
 
 #if UNITY_EDITOR
     private void Update()
@@ -54,7 +60,18 @@ public class CurrentArrowGenerator : MonoBehaviour
     }
 #endif
 
+    private void SetSprite()
+    {
+        int currentBiome = DataCarrier.Instance.GetBiomeNum();
 
+        foreach (CurrentArrowSprite currentArrowSprite in sprites)
+        {
+            if (currentArrowSprite.biomeNum == currentBiome)
+            {
+                arrowSprite = currentArrowSprite.sprite;
+            }
+        }
+    }
     public void GenerateArrows()
     {
         if (arrowSprite == null)

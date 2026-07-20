@@ -25,7 +25,6 @@ public class SlowZone : MonoBehaviour
     public Sprite circleSprite;
 
     public float indicatorSize = 0.02f;
-
     private static readonly Color INDICATOR_COLOR =
         Color.red;
 
@@ -33,7 +32,6 @@ public class SlowZone : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-
         RebuildCollider();
         CreatePathLine();
         CreateMovementIndicator();
@@ -65,8 +63,6 @@ public class SlowZone : MonoBehaviour
             }
         }
     }
-
-
 
     void RebuildCollider()
     {

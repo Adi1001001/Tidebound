@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: 6700682051475656465}
   - component: {fileID: 7165879760816729707}
   - component: {fileID: 6297846669862709267}
+  - component: {fileID: 201457218259057564}
   m_Layer: 0
-  m_Name: Current
+  m_Name: CURRENT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,3 +205,29 @@ MonoBehaviour:
   verticalGapPixels: 24
   boundaryMargin: 0.05
   sortingOrder: 1
+  sprites:
+  - biomeNum: 1
+    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+  - biomeNum: 2
+    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+  - biomeNum: 3
+    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+--- !u!114 &201457218259057564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380318639098590958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f62384bf5444a8ba1ad940aa993908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
+  sprites:
+  - biomeNum: 1
+    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
+  - biomeNum: 2
+    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
+  - biomeNum: 3
+    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}

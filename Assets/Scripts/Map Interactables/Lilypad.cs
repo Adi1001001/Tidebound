@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Lilypad : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float pushForce = 10f;
     public float airTime = 0.75f;
     PlayerController playerController;

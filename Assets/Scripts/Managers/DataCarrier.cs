@@ -17,8 +17,9 @@ public class DataCarrier : MonoBehaviour
     [HideInInspector] public string nextRaceTag;
     [HideInInspector] public Character currentCharacter = Character.Anglerfish;
 
-    [HideInInspector] public int currentSaveZoneID = 0;
-    [HideInInspector] public int overworldProgress = 0;
+    private int currentSaveZoneID = 0;
+    private int overworldProgress = 0;
+    private int biomeNum = 1;
 
     void Awake()
     {
@@ -55,11 +56,30 @@ public class DataCarrier : MonoBehaviour
         currentSaveZoneID = id;
     }
 
+    public int GetSaveZone()
+    {
+        return currentSaveZoneID;
+    }
+
     public void UnlockProgress(int id)
     {
         if (id > overworldProgress)
         {
             overworldProgress = id;
         }
+    }
+
+    public int GetProgress() {
+        return overworldProgress;
+    }
+
+    public void SetBiomeNum(int id)
+    {
+        biomeNum = id;
+    }
+
+    public int GetBiomeNum()
+    {
+        return biomeNum;
     }
 }
