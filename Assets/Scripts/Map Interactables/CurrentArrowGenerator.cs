@@ -60,9 +60,8 @@ public class CurrentArrowGenerator : MonoBehaviour
     }
 #endif
 
-     private void SetSprite()
+    private void SetSprite()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
         int currentBiome = DataCarrier.Instance.GetBiomeNum();
 
         foreach (CurrentArrowSprite currentArrowSprite in sprites)

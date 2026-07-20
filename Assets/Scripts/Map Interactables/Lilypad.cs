@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Sponge : MonoBehaviour
+public class Lilypad : MonoBehaviour
 {
     public float pushForce = 10f;
     public float airTime = 0.75f;
     PlayerController playerController;
     PlayerAppearance appearance;
-    private bool spongeActivated = false;
+    private bool lilypadActivated = false;
     public bool initialised = false;
         
     void Start() {
@@ -37,18 +37,18 @@ public class Sponge : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         if (!initialised) {return;}
-        spongeActivated = false;
+        lilypadActivated = false;
     }
 
     private void TryBeginningAirTime(Collider2D collision)
     {
-        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Sponge || spongeActivated) {return;}
-        spongeActivated = true;
+        if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad || lilypadActivated) {return;}
+        lilypadActivated = true;
         BeginAirTime(collision);
     }
     private void BeginAirTime(Collider2D collision)
     {
-        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Sponge);
+        GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Lilypad);
         Rigidbody2D rb = collision.attachedRigidbody;
         Vector2 launchDirection = rb.linearVelocity.normalized;
         rb.angularVelocity = 0f;

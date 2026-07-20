@@ -53,12 +53,12 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Cannon.cs" />
-    <Compile Include="Assets/Scripts/Map Interactables/Sponge.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
     <Compile Include="Assets/Scripts/Abilities/Ability.cs" />
     <Compile Include="Assets/Scripts/Abilities/DolphinAbility.cs" />
     <Compile Include="Assets/Scripts/Managers/LevelManager.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Current.cs" />
+    <Compile Include="Assets/Scripts/Map Interactables/Lilypad.cs" />
     <Compile Include="Assets/Scripts/Managers/DataCarrier.cs" />
     <Compile Include="Assets/Scripts/UI + UX/UIConnector.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" />

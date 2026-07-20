@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2435894369726075516}
   - component: {fileID: 885647976933397946}
   m_Layer: 0
-  m_Name: Sponge
+  m_Name: Lilypad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Lilypad
   pushForce: 15
   airTime: 0.75
-  initialised: 0
+  initialised: 1
 --- !u!58 &2435894369726075516
 CircleCollider2D:
   m_ObjectHideFlags: 0
