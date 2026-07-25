@@ -206,8 +206,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 63380605}
-  - component: {fileID: 63380607}
   - component: {fileID: 63380606}
+  - component: {fileID: 63380607}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -263,7 +263,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 814ecd01fa17d1c488fd7ee5306de0df, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -395,7 +395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &160376399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &232339109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8274715153905186316, guid: eec3c017eee098a488c500c3edc6d0b3, type: 3}
+  m_Sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4758977764724364232, guid: 7b347fc7a72a47c4f87f9699cccf4bac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b347fc7a72a47c4f87f9699cccf4bac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4480,7 +4480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3112930867766584365, guid: ca53ef53fa7161a4aa19ec42830935d5, type: 3}
+  m_Sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
