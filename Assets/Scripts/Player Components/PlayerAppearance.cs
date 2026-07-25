@@ -32,11 +32,29 @@ public class PlayerAppearance : MonoBehaviour
 
     private void Start()
     {
+        ApplySize();
         ApplyCharacter();
         airShadow.SetActive(false);
     }
 
-    public void ApplyCharacter()
+    private void ApplySize()
+    {
+        Character current = DataCarrier.Instance.currentCharacter;
+        switch (current)
+        {
+            case Character.Anglerfish:
+                transform.localScale = new Vector3(0.8f, 0.65f, 1f);
+                break;
+            case Character.Swordfish:
+                transform.localScale = new Vector3(1.1f, 0.7f, 1f);
+                break;
+            case Character.Turtle:
+                transform.localScale = new Vector3(1f, 0.9f, 1f);
+                break;
+        }
+    }
+
+    private void ApplyCharacter()
     {
         Character current = DataCarrier.Instance.currentCharacter;
         SpriteRenderer shadowRenderer = airShadow.GetComponent<SpriteRenderer>();
