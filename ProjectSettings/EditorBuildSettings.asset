@@ -29,9 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Race 2.1.unity
     guid: 02d9432e7e9a84ab6a8b22c84f9716b1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Race 2.2.unity
     guid: 2fbb91fa68f4747ca9c9e5b72f683105
+  - enabled: 1
+    path: Assets/Scenes/Race 3.1.unity
+    guid: 2625562df7a2940d7becfbacec051665
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5474916d3165b470da25860e151a627c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
