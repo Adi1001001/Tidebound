@@ -352,10 +352,6 @@ MonoBehaviour:
     sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
   - character: 1
     sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
-  - character: 2
-    sprite: {fileID: 1249149584347041918, guid: df9059a793f2ce603bf80a46e4a21408, type: 3}
-  - character: 3
-    sprite: {fileID: 1624513127720242999, guid: 6f16682c8df80207aa3d4b7b45bc7bd0, type: 3}
   - character: 4
     sprite: {fileID: 21300000, guid: 814ecd01fa17d1c488fd7ee5306de0df, type: 3}
   - character: 5
