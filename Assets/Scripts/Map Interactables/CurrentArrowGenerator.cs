@@ -39,6 +39,7 @@ public class CurrentArrowGenerator : MonoBehaviour
 
     void Start()
     {
+        if (!Application.isPlaying) {return;}
         SetSprite();
     }
 
