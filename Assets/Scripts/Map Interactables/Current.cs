@@ -7,6 +7,11 @@ public class Current : MonoBehaviour {
     private CameraController cameraController;
     private PlayerController playerController;
 
+    void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             playerController = collision.gameObject.GetComponent<PlayerController>();

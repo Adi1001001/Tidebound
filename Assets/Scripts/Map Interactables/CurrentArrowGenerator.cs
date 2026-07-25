@@ -29,18 +29,13 @@ public class CurrentArrowGenerator : MonoBehaviour
     private Quaternion lastRotation;
     [SerializeField] private CurrentArrowSprite[] sprites;
 
-    private void OnEnable()
-    {
-        lastScale = transform.localScale;
-        lastRotation = transform.localRotation;
-
-        GenerateArrows();
-    }
-
     void Start()
     {
         if (!Application.isPlaying) {return;}
+        lastScale = transform.localScale;
+        lastRotation = transform.localRotation;
         SetSprite();
+        GenerateArrows();
     }
 
 #if UNITY_EDITOR
@@ -78,9 +73,7 @@ public class CurrentArrowGenerator : MonoBehaviour
         if (arrowSprite == null)
             return;
 
-
         ClearArrows();
-
 
         SpriteRenderer current = GetComponent<SpriteRenderer>();
 
@@ -88,24 +81,27 @@ public class CurrentArrowGenerator : MonoBehaviour
             return;
 
 
+        // Get actual rendered size.
+        // Sliced/Tiled sprites use SpriteRenderer.size.
+        Vector2 spriteSize;
 
-        /*
-         * Everything below is LOCAL SPACE.
-         * Rotation does not affect these values.
-         */
-
-        Vector2 spriteSize =
-            current.sprite.bounds.size;
+        if (current.drawMode == SpriteDrawMode.Sliced ||
+            current.drawMode == SpriteDrawMode.Tiled)
+        {
+            spriteSize = current.size;
+        }
+        else
+        {
+            spriteSize = current.sprite.bounds.size;
+        }
 
 
         float rectWidth = spriteSize.x;
         float rectHeight = spriteSize.y;
 
 
-
-        // Resize the rectangle collider
-        BoxCollider2D box =
-            GetComponent<BoxCollider2D>();
+        // Resize collider to match current size
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
 
         if (box != null)
         {
@@ -118,43 +114,29 @@ public class CurrentArrowGenerator : MonoBehaviour
         }
 
 
-
-        float ppu =
-            arrowSprite.pixelsPerUnit;
+        float ppu = arrowSprite.pixelsPerUnit;
 
 
-
+        // Arrow dimensions in LOCAL SPACE
         float arrowWidth =
-            arrowWidthPixels / ppu /
-            transform.localScale.x;
-
+            arrowWidthPixels / ppu;
 
         float arrowHeight =
-            arrowHeightPixels / ppu /
-            transform.localScale.y;
-
+            arrowHeightPixels / ppu;
 
         float gapX =
-            horizontalGapPixels / ppu /
-            transform.localScale.x;
-
+            horizontalGapPixels / ppu;
 
         float gapY =
-            verticalGapPixels / ppu /
-            transform.localScale.y;
+            verticalGapPixels / ppu;
 
 
-
-        // 10% empty border on each side
+        // Leave border around edges
         float usableWidth =
-            rectWidth *
-            (1f - boundaryMargin * 2f);
-
+            rectWidth * (1f - boundaryMargin * 2f);
 
         float usableHeight =
-            rectHeight *
-            (1f - boundaryMargin * 2f);
-
+            rectHeight * (1f - boundaryMargin * 2f);
 
 
         int columns =
@@ -177,7 +159,6 @@ public class CurrentArrowGenerator : MonoBehaviour
             );
 
 
-
         float totalWidth =
             columns * arrowWidth +
             (columns - 1) * gapX;
@@ -188,8 +169,7 @@ public class CurrentArrowGenerator : MonoBehaviour
             (rows - 1) * gapY;
 
 
-
-        // Center inside the usable area
+        // Center grid
         float startX =
             -usableWidth * 0.5f +
             (usableWidth - totalWidth) * 0.5f +
@@ -202,18 +182,14 @@ public class CurrentArrowGenerator : MonoBehaviour
             arrowHeight * 0.5f;
 
 
-
         float arrowScaleX =
             arrowWidthPixels /
-            arrowSprite.rect.width /
-            transform.localScale.x;
+            arrowSprite.rect.width;
 
 
         float arrowScaleY =
             arrowHeightPixels /
-            arrowSprite.rect.height /
-            transform.localScale.y;
-
+            arrowSprite.rect.height;
 
 
         for (int x = 0; x < columns; x++)
@@ -229,8 +205,6 @@ public class CurrentArrowGenerator : MonoBehaviour
             }
         }
     }
-
-
 
     private void CreateArrow(
         float x,
@@ -273,8 +247,6 @@ public class CurrentArrowGenerator : MonoBehaviour
 
         sr.sortingOrder = sortingOrder;
     }
-
-
 
     private void ClearArrows()
     {

@@ -118,7 +118,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
-  m_Color: {r: 0, g: 0.84148407, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.90737975, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -207,11 +207,11 @@ MonoBehaviour:
   sortingOrder: 1
   sprites:
   - biomeNum: 1
-    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+    sprite: {fileID: 21300000, guid: d54732f884ef147f5b4c3b4e0923da9b, type: 3}
   - biomeNum: 2
-    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+    sprite: {fileID: 21300000, guid: d54732f884ef147f5b4c3b4e0923da9b, type: 3}
   - biomeNum: 3
-    sprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+    sprite: {fileID: 21300000, guid: d54732f884ef147f5b4c3b4e0923da9b, type: 3}
 --- !u!114 &201457218259057564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
   sprites:
   - biomeNum: 1
-    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
+    sprite: {fileID: 21300000, guid: 1e6a091fb659c4825a7da7bdee3db18e, type: 3}
   - biomeNum: 2
-    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
+    sprite: {fileID: 21300000, guid: 0da3c5ffd931349faa85cefbb62025e0, type: 3}
   - biomeNum: 3
-    sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
+    sprite: {fileID: 21300000, guid: aca0ff00d5b654045b2e781ddb035d28, type: 3}
