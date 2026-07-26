@@ -49,7 +49,7 @@ public class PlayerAppearance : MonoBehaviour
                 transform.localScale = new Vector3(1.1f, 0.7f, 1f);
                 break;
             case Character.Turtle:
-                transform.localScale = new Vector3(1f, 0.9f, 1f);
+                transform.localScale = new Vector3(0.9f, 0.9f, 1f);
                 break;
         }
     }
