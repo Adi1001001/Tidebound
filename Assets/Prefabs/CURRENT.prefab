@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
   sprites:
   - biomeNum: 1
-    sprite: {fileID: 21300000, guid: 1e6a091fb659c4825a7da7bdee3db18e, type: 3}
+    sprite: {fileID: 21300000, guid: ec6dcba4104fc4f7bb0cad0687dd8910, type: 3}
   - biomeNum: 2
-    sprite: {fileID: 21300000, guid: 0da3c5ffd931349faa85cefbb62025e0, type: 3}
+    sprite: {fileID: 21300000, guid: 7682fe028e21845ed936fcb7d40f803b, type: 3}
   - biomeNum: 3
-    sprite: {fileID: 21300000, guid: aca0ff00d5b654045b2e781ddb035d28, type: 3}
+    sprite: {fileID: 21300000, guid: 7c3ed119a950343c5b61b9ea35cd6fd4, type: 3}
