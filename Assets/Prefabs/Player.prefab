@@ -188,6 +188,46 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Player Movement
       m_Flags: 8
+    - m_Name: W A S D
+      m_Id: 1d211946-7894-4b42-98c1-f5d48fa2018f
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: b211bd6f-1905-471f-94cd-ab63489d67df
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 3e1a670b-30ad-40b6-934d-8fbc4afb6238
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: aeabf967-083b-4687-ac91-b4146bfd84d9
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: da5d1f97-30b8-4aa4-8226-78616367ea4c
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Movement
+      m_Flags: 8
     m_Flags: 0
   playerPause:
     m_Name: Player Pause
