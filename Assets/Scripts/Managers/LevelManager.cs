@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject raceUI;
     public GameObject volumeUI;
     public GameObject controlsUI;
+    public int biomeNum;
     // private RaceManager raceManager;
     void Awake() {
         if (Instance != null && Instance != this) { // making it a singleton
