@@ -34,7 +34,7 @@ public class TurtleAbility : Ability
     {
         Debug.Log("Turtle ability activated");
         Rigidbody2D playerRb = GetComponent<Rigidbody2D>();
-        // If the player is not moving, give them a speed of speed so the ability can be effective
+        // If the player is not moving, give them a small bit of speed so the ability can be effective
         if (playerRb.linearVelocity.magnitude < 0.1f)
         {
             float newSpeed = playerController.highSpeed * 0.01f;
@@ -43,7 +43,7 @@ public class TurtleAbility : Ability
         currObject = Instantiate(lilypadPrefab, transform.position, Quaternion.identity);
         currObject.transform.localScale = new Vector3(0.25f, 0.25f, 0);
         Lilypad lilypad = currObject.GetComponent<Lilypad>();
-        lilypad.pushForce = 40f;
+        lilypad.pushForce = 30f;
         lilypad.airTime = 1f;
         lilypad.initialised = true;
         yield return RunTimer(duration);

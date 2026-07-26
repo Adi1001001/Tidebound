@@ -10,7 +10,7 @@ public class DolphinAbility : Ability
     {
         base.Start();
         duration = 3f;
-        cooldown = 12f;
+        cooldown = 15f;
 
         playerTrail = GetComponent<TrailRenderer>();
         SetTealGradient();

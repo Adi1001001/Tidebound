@@ -43,13 +43,13 @@ public class PlayerAppearance : MonoBehaviour
         switch (current)
         {
             case Character.Anglerfish:
-                transform.localScale = new Vector3(0.8f, 0.65f, 1f);
+                transform.localScale = new Vector3(0.75f, 0.65f, 1f);
                 break;
             case Character.Swordfish:
                 transform.localScale = new Vector3(1.1f, 0.7f, 1f);
                 break;
             case Character.Turtle:
-                transform.localScale = new Vector3(1f, 0.9f, 1f);
+                transform.localScale = new Vector3(0.85f, 0.85f, 1f);
                 break;
         }
     }
