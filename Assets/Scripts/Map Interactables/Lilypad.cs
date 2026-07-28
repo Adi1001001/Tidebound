@@ -51,6 +51,7 @@ public class Lilypad : MonoBehaviour
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Lilypad);
         Rigidbody2D rb = collision.attachedRigidbody;
         Vector2 launchDirection = rb.linearVelocity.normalized;
+        rb.linearDamping = 0.8f;
         rb.angularVelocity = 0f;
         rb.AddForce(launchDirection * pushForce, ForceMode2D.Impulse);
 
