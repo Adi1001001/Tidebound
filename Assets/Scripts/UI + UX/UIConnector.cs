@@ -6,7 +6,14 @@ public class UIConnector : MonoBehaviour {
     public GameObject volumePanel;
     public GameObject controlsPanel;
 
-    void Start() {
+    void Awake()
+    {
+        if (LevelManager.Instance == null)
+        {
+            GameObject obj = new GameObject("LevelManager");
+            obj.AddComponent<LevelManager>();
+        }
+
         LevelManager.Instance.UpdateUIReferences(pausePanel, racePanel, volumePanel, controlsPanel);
     }
 }

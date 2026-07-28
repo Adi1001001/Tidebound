@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     [Header("Collision Feel")]
     [SerializeField] private float minBounceSpeed = 7f;
     [SerializeField] private float maxBounceSpeed = 18f;
-    private float collisionLockTimer = 0f;
+    private float movementLockTimer = 0f;
     private bool originSaved = false;
     private Coroutine airtimeCoroutine;    
     void Start() {
@@ -68,14 +68,14 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (movementLockTimer > 0f)
+        {
+            movementLockTimer -= Time.fixedDeltaTime;
+        }
         if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.InCannon)
         {
             UpdateSpeedUI();
             return;
-        }
-        if (collisionLockTimer > 0f)
-        {
-            collisionLockTimer -= Time.fixedDeltaTime;
         }
         if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Lilypad)
         {
@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     void ApplyForwardForce()
     {
+        if (movementLockTimer > 0f) {return;}
         float accel = accelForce * accelFactor;
         // Forward
         if (moveInput.y > 0)
@@ -161,9 +162,6 @@ public class PlayerController : MonoBehaviour
 
     void KillOrthogonalVelocity()
     {
-        if (collisionLockTimer > 0f)
-            return;
-
         Vector2 forwardVelocity = transform.up * Vector2.Dot(playerRb.linearVelocity, transform.up);
         Vector2 rightVelocity = transform.right * Vector2.Dot(playerRb.linearVelocity, transform.right);
 
@@ -240,55 +238,28 @@ public class PlayerController : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         Vector2 normal = contact.normal;
 
-        // Speed into the surface.
         float speedIntoWall = Vector2.Dot(collision.relativeVelocity, normal);
 
         if (speedIntoWall <= 0f)
             return;
 
-        // Clamp bounce speed.
         float bounceSpeed = Mathf.Clamp(speedIntoWall, minBounceSpeed, maxBounceSpeed);
-
-        // Apply impulse away from the wall.
         playerRb.AddForce(normal * bounceSpeed, ForceMode2D.Impulse);
+        movementLockTimer = 0.2f;
     }
-
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     // if (collisionLockTimer > 0f)
-    //     //     return;
-
-    //     // Velocity just before impact
-    //     Vector2 incoming = collision.relativeVelocity;
-
-    //     ContactPoint2D contact = collision.GetContact(0);
-    //     Vector2 normal = contact.normal;
-    //     float speedIntoWall = Vector2.Dot(incoming, normal);
-
-    //     if (speedIntoWall < 0f) {return;}
-
-    //     collisionLockTimer = 0.1f;
-
-    //     float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
-    //     float strength = Mathf.SmoothStep(0f, 1f, t);
-
-    //     Vector2 reflectedVelocity = Vector2.Reflect(incoming, normal);
-    //     Vector2 bounceVelocity = Vector2.Lerp(incoming, reflectedVelocity, 0.6f * strength);
-
-    //     Vector2 correction = bounceVelocity - incoming;
-
-    //     // To give some bounce no matter what.
-    //     if (correction.magnitude < minBounceSpeed)
-    //     {
-    //         correction = correction.normalized * minBounceSpeed;
-    //     }
-    //     playerRb.AddForce(-correction, ForceMode2D.Impulse);
-    // }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        Vector2 direction = collision.GetContact(0).normal;
-        playerRb.AddForce(direction * minBounceSpeed, ForceMode2D.Impulse);
+        ContactPoint2D contact = collision.GetContact(0);
+        Vector2 normal = contact.normal;
+
+        float speedIntoWall = Vector2.Dot(collision.relativeVelocity, normal);
+
+        if (speedIntoWall <= 0f)
+            return;
+
+        playerRb.AddForce(normal * minBounceSpeed, ForceMode2D.Impulse);
+        movementLockTimer = 0.2f;
     }
     
     public void EnterSlowZone(float resistanceSpeed, float accelFactor)

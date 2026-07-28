@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     public float minRotation = 0f;
     public float maxRotation = 10f;
 
-    public bool rotating = false;
+    [HideInInspector] public bool rotating = false;
     private bool movingTowardsMax = true;
 
     private float rotationProgress = 0f;
@@ -26,7 +26,8 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         RebuildCollider();
-        SetRandomRotation();
+        currentAngle = minRotation;
+        transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
     }
 
@@ -39,23 +40,7 @@ public class Cannon : MonoBehaviour
         RotateCannon();
     }
 
-    void SetRandomRotation()
-    {
-        currentAngle = Random.Range(minRotation, maxRotation);
-
-        transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
-
-        // Decide which direction to move based on current position
-        float distanceToMin = Mathf.Abs(currentAngle - minRotation);
-        float distanceToMax = Mathf.Abs(maxRotation - currentAngle);
-
-        // If closer to min, move towards max.
-        // If closer to max, move towards min.
-        movingTowardsMax = distanceToMin < distanceToMax;
-    }
-
-
-    void RotateCannon()
+    private void RotateCannon()
     {
         float startAngle;
         float targetAngle;

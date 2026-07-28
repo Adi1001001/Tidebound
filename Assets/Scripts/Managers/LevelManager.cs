@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +17,8 @@ public class LevelManager : MonoBehaviour {
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    public void UpdateUIReferences(GameObject pausePanel, GameObject racePanel, GameObject volumePanel, GameObject controlsPanel) {
+    public void UpdateUIReferences(GameObject pausePanel, GameObject racePanel, GameObject volumePanel, 
+    GameObject controlsPanel) {
         pauseMenuUI = pausePanel;
         volumeUI = volumePanel;
         controlsUI = controlsPanel;
@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour {
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     // }
     public void RestartRace() {
+        Time.timeScale = 1f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
