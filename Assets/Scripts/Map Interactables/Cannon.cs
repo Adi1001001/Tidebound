@@ -7,9 +7,9 @@ public class Cannon : MonoBehaviour
     public float releaseSpeed = 50f;
     [Header("Rotation")]
     public float minRotation = 0f;
-    public float maxRotation = 180f;
+    public float maxRotation = 10f;
 
-    private bool rotating = false;
+    public bool rotating = false;
     private bool movingTowardsMax = true;
 
     private float rotationProgress = 0f;

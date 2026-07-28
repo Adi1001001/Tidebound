@@ -10,8 +10,8 @@ public class SwordfishAbility : Ability
     protected override void Start()
     {
         base.Start();
-        duration = 2f;
-        cooldown = 14f;
+        duration = 4f;
+        cooldown = 22f;
 
         GameObject timerManager = GameObject.Find("TimerManager");
         if (timerManager != null)
@@ -31,11 +31,7 @@ public class SwordfishAbility : Ability
         }
         foreach (SlowZone zone in allZones)
         {
-            zone.moveSpeed *= slowFactor;
-        }
-        foreach (Cannon cannon in allCannons)
-        {
-            cannon.rotationDuration *= 1/slowFactor;
+            zone.movable = false;
         }
         yield return RunTimer(duration);
     }
@@ -48,11 +44,7 @@ public class SwordfishAbility : Ability
         }
         foreach (SlowZone zone in allZones)
         {
-            zone.moveSpeed *= 1/slowFactor;
-        }
-        foreach (Cannon cannon in allCannons)
-        {
-            cannon.rotationDuration *= slowFactor;
+            zone.movable = true;
         }
     }
 }

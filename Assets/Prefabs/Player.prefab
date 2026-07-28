@@ -292,8 +292,8 @@ MonoBehaviour:
   speedBar: {fileID: 0}
   speedBarFill: {fileID: 0}
   inCurrent: 0
-  bounceStrength: 0.6
-  maxBounceSpeed: 25
+  minBounceSpeed: 7
+  maxBounceSpeed: 18
 --- !u!114 &5209505841241612212
 MonoBehaviour:
   m_ObjectHideFlags: 0

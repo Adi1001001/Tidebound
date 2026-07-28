@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     private bool isSlowed = false;
     public bool inCurrent = false;
     [Header("Collision Feel")]
-    [SerializeField] private float bounceStrength = 0.6f;
-    [SerializeField] private float maxBounceSpeed = 25f;
+    [SerializeField] private float minBounceSpeed = 7f;
+    [SerializeField] private float maxBounceSpeed = 18f;
     private float collisionLockTimer = 0f;
     private bool originSaved = false;
     private Coroutine airtimeCoroutine;    
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
         if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad)
         {
-            ApplyResistance(highSpeed, 5, 1f);
+            ApplyResistance(highSpeed, 5, 2f);
         }
         else if (isSlowed)
         {
@@ -190,6 +190,7 @@ public class PlayerController : MonoBehaviour
             resistanceMultiplier *
             resistanceStrength *
             playerRb.mass;
+        Debug.Log(resistanceForce);
 
         playerRb.AddForce(
             -velocity.normalized * resistanceForce,
@@ -236,32 +237,58 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collisionLockTimer > 0f)
-            return;
-
-        // Velocity just before impact
-        Vector2 incoming = collision.relativeVelocity;
-
         ContactPoint2D contact = collision.GetContact(0);
         Vector2 normal = contact.normal;
-        float speedIntoWall = Vector2.Dot(incoming, normal);
 
-        if (speedIntoWall < 0f) {return;}
+        // Speed into the surface.
+        float speedIntoWall = Vector2.Dot(collision.relativeVelocity, normal);
 
-        collisionLockTimer = 0.1f;
+        if (speedIntoWall <= 0f)
+            return;
 
-        float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
-        float strength = Mathf.SmoothStep(0f, 1f, t);
+        // Clamp bounce speed.
+        float bounceSpeed = Mathf.Clamp(speedIntoWall, minBounceSpeed, maxBounceSpeed);
 
-        Vector2 reflectedVelocity = Vector2.Reflect(incoming, normal);
-        Vector2 bounceVelocity = Vector2.Lerp(incoming, reflectedVelocity, 0.6f * strength);
+        // Apply impulse away from the wall.
+        playerRb.AddForce(normal * bounceSpeed, ForceMode2D.Impulse);
+    }
 
-        Vector2 correction = bounceVelocity - incoming;
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     // if (collisionLockTimer > 0f)
+    //     //     return;
 
-        playerRb.AddForce(
-            -correction * bounceStrength,
-            ForceMode2D.Impulse
-        );
+    //     // Velocity just before impact
+    //     Vector2 incoming = collision.relativeVelocity;
+
+    //     ContactPoint2D contact = collision.GetContact(0);
+    //     Vector2 normal = contact.normal;
+    //     float speedIntoWall = Vector2.Dot(incoming, normal);
+
+    //     if (speedIntoWall < 0f) {return;}
+
+    //     collisionLockTimer = 0.1f;
+
+    //     float t = Mathf.Clamp01(speedIntoWall / maxBounceSpeed);
+    //     float strength = Mathf.SmoothStep(0f, 1f, t);
+
+    //     Vector2 reflectedVelocity = Vector2.Reflect(incoming, normal);
+    //     Vector2 bounceVelocity = Vector2.Lerp(incoming, reflectedVelocity, 0.6f * strength);
+
+    //     Vector2 correction = bounceVelocity - incoming;
+
+    //     // To give some bounce no matter what.
+    //     if (correction.magnitude < minBounceSpeed)
+    //     {
+    //         correction = correction.normalized * minBounceSpeed;
+    //     }
+    //     playerRb.AddForce(-correction, ForceMode2D.Impulse);
+    // }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        Vector2 direction = collision.GetContact(0).normal;
+        playerRb.AddForce(direction * minBounceSpeed, ForceMode2D.Impulse);
     }
     
     public void EnterSlowZone(float resistanceSpeed, float accelFactor)
@@ -309,6 +336,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
+        playerRb.linearDamping = 1f;
         airtimeCoroutine = null;
     }
 
@@ -321,5 +349,6 @@ public class PlayerController : MonoBehaviour
             airtimeCoroutine = null;
         }
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
+        playerRb.linearDamping = 1f;
     }
 }
