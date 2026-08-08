@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0afe7f26f0e2e921b816fe9b63143e23
+guid: 04f867df298d924a68110d05ee8deb20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5706339600282324963
-    second: pexels-ian-panelo-38414180(1)_0
+      213: 916041029239734918
+    second: Volume (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pexels-ian-panelo-38414180(1)_0
+      name: Volume (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1280
+        width: 781
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ef829a02adf03f40800000000000000
-      internalID: 5706339600282324963
+      spriteID: 6828483767e66bc00800000000000000
+      internalID: 916041029239734918
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pexels-ian-panelo-38414180(1)_0: 5706339600282324963
+      Volume (1)_0: 916041029239734918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
