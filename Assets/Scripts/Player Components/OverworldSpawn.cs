@@ -17,6 +17,7 @@ public class OverworldSpawn : MonoBehaviour
             if (zone.saveZoneID == DataCarrier.Instance.GetSaveZone())
             {
                 transform.position = zone.transform.position;
+                transform.rotation = zone.transform.rotation;
                 return;
             }
         }

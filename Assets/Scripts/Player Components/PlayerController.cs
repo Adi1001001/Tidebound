@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
             resistanceMultiplier *
             resistanceStrength *
             playerRb.mass;
-
+            
         playerRb.AddForce(
             -velocity.normalized * resistanceForce,
             ForceMode2D.Force
