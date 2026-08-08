@@ -55,7 +55,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (nearbyTeleporter != null)
         {
-            nearbyTeleporter.OnRaceClick();
+            nearbyTeleporter.OnTeleportClick();
             return;
         }
         if (nearbyCannon != null)

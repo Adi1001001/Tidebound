@@ -26,14 +26,12 @@ public class PlayerAppearance : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
         airShadow = transform.Find("Air Shadow").gameObject;
-
-        originalScale = transform.localScale;
     }
 
     private void Start()
     {
-        ApplySize();
         ApplyCharacter();
+        ApplySize();
         airShadow.SetActive(false);
     }
 
@@ -52,6 +50,7 @@ public class PlayerAppearance : MonoBehaviour
                 transform.localScale = new Vector3(0.85f, 0.85f, 1f);
                 break;
         }
+        originalScale = transform.localScale;
     }
 
     private void ApplyCharacter()

@@ -48,7 +48,18 @@ public class LevelManager : MonoBehaviour {
     {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Overworld");
+        switch (DataCarrier.Instance.GetBiomeNum())
+        {
+            case 1:
+                SceneManager.LoadScene("Overworld 1");
+                break;
+            case 2:
+                SceneManager.LoadScene("Overworld 2");
+                break;
+            case 3:
+                SceneManager.LoadScene("Overworld 3");
+                break;
+        }
     }
     public void ToCharacterSelect() {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.CharacterSelect);

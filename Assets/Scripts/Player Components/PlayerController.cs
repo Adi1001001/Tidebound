@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         tempCountdown.Disable();
         retryLevel.Disable();
     }
-    void OnPause() {
+    public void OnPause() {
         Debug.Log("Pause triggered");
         GameStateManager.GameStates currentGameState = GameStateManager.Instance.GetGameState();
         if (currentGameState == GameStateManager.GameStates.Paused) {
@@ -188,8 +188,7 @@ public class PlayerController : MonoBehaviour
             resistanceMultiplier *
             resistanceStrength *
             playerRb.mass;
-        Debug.Log(resistanceForce);
-
+            
         playerRb.AddForce(
             -velocity.normalized * resistanceForce,
             ForceMode2D.Force

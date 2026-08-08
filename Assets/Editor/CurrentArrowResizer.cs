@@ -30,9 +30,9 @@ public static class CurrentArrowResizer
                 "Apply Compact Arrow Size"
             );
 
-            current.arrowWidthPixels *= 0.8f;
+            current.arrowWidthPixels *= 1f;
             current.horizontalGapPixels *= 1.25f;
-            current.arrowHeightPixels *= 0.8f * (11f / 18f);
+            current.arrowHeightPixels *= 11f / 18f;
             current.verticalGapPixels *= 1.25f * (18f / 11f);
 
             EditorUtility.SetDirty(current);

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfeebc9506def47d4ac46b6d2570631a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lilypad
-  pushForce: 15
+  pushForce: 10
   airTime: 0.75
   initialised: 1
 --- !u!58 &2435894369726075516
