@@ -188,7 +188,6 @@ public class PlayerController : MonoBehaviour
             resistanceMultiplier *
             resistanceStrength *
             playerRb.mass;
-        Debug.Log(resistanceForce);
 
         playerRb.AddForce(
             -velocity.normalized * resistanceForce,

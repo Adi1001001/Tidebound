@@ -30,9 +30,22 @@ public class Teleporter : MonoBehaviour {
             collision.GetComponent<PlayerActionManager>().SetNearbyTeleporter(null);
         }
     }
-    public void OnRaceClick() {
+    public void OnTeleportClick() {
         Debug.Log("Teleport triggered");
-        DataCarrier.Instance.UpdateTag(teleportTag);
-        LevelManager.Instance.ToCharacterSelect();
+        if (teleportTag == "Overworld 2")
+        {
+            DataCarrier.Instance.SetBiomeNum(2);
+            LevelManager.Instance.ToOverworld();
+        }
+        else if (teleportTag == "Overworld 3")
+        {
+            DataCarrier.Instance.SetBiomeNum(3);
+            LevelManager.Instance.ToOverworld();
+        }
+        else
+        {
+            DataCarrier.Instance.UpdateTag(teleportTag);
+            LevelManager.Instance.ToCharacterSelect();
+        }
     }
 }
