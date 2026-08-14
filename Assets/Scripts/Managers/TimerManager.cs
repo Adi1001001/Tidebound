@@ -5,7 +5,8 @@ using System.Collections;
 public class TimerManager : MonoBehaviour {
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI countdownDisplay;
-    public float timeLimit = 30f;
+    public float initialTimer = 30f;
+    private float totalTimer;
     private GameObject player;
     private PlayerController playerController;
     private Ability ability;
@@ -18,17 +19,18 @@ public class TimerManager : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         ability = playerController.GetComponent<Ability>();
+        totalTimer = initialTimer;
     }
 
     void Update() {
         if (isTimerRunning) {
             elapsedTime += Time.deltaTime * slowFactor;
         }
-        if (elapsedTime >= timeLimit) {
+        if (elapsedTime >= totalTimer) {
             timerDisplay.color = Color.red;
             timerDisplay.text = "Out of time! Run won't count towards completion.";
         } else {
-            DisplayTime(timeLimit - elapsedTime);
+            DisplayTime(totalTimer - elapsedTime);
         }
     }
     void DisplayTime(float timeToDisplay) {
@@ -37,12 +39,12 @@ public class TimerManager : MonoBehaviour {
         int seconds = Mathf.FloorToInt(timeToDisplay % 60);
         int tenths = Mathf.FloorToInt(timeToDisplay % 1 * 10);
 
-        float elapsed = elapsedTime / timeLimit;
+        float elapsed = (totalTimer - elapsedTime)/initialTimer;
         if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish) {
             timerDisplay.color = Color.white;
-        } else if (elapsed >= 0.9f) {
+        } else if (elapsed <= 0.1f) {
             timerDisplay.color = Color.red;
-        } else if (elapsed >= 0.75f) {
+        } else if (elapsed <= 0.25f) {
             timerDisplay.color = Color.yellow;
         } else {
             timerDisplay.color = Color.green;
@@ -69,13 +71,25 @@ public class TimerManager : MonoBehaviour {
     }
 
     public (float, float) GetTimerValues() {
-        return (elapsedTime, timeLimit);
+        return (elapsedTime, totalTimer);
     }
 
     public void StopRaceTimer() {
         isTimerRunning = false;
         elapsedTime = 0f;
         timerDisplay.gameObject.SetActive(false);
+    }
+
+    public void AddTime(int extraTime)
+    {
+        if (elapsedTime < totalTimer)
+        {
+            totalTimer += extraTime;
+        }
+        else
+        {
+            isTimerRunning = false;
+        }
     }
 
     IEnumerator CountdownCoroutine() {
