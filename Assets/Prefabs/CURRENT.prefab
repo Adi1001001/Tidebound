@@ -117,12 +117,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 002539f23a0224b81b17dccc226552ec, type: 3}
-  m_Color: {r: 0.013483422, g: 0.8541136, b: 0.9528302, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 2b1f9ae23fdb8494faba3e9b949cb12a, type: 3}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -179,7 +179,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 16, y: 16}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 16, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac0ff0e48dda4ba7b3bef74873763b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrentArrowGenerator
-  arrowSprite: {fileID: 7482667652216324306, guid: addd87e75f993409981aa9f82db7cfba, type: 3}
+  arrowSprite: {fileID: 7482667652216324306, guid: 9755c23da4b5b405ea87885e7da915aa, type: 3}
   arrowWidthPixels: 24
   arrowHeightPixels: 24
   horizontalGapPixels: 24
