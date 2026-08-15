@@ -33,9 +33,11 @@ public class TimerManager : MonoBehaviour
         ability = playerController.GetComponent<Ability>();
         totalTimer = initialTimer;
 
-        addedTimeOriginalPos = addedTimeDisplay.rectTransform.anchoredPosition;
-
-        ResetAddedTimeDisplay();
+        if (addedTimeDisplay != null)
+        {
+            addedTimeOriginalPos = addedTimeDisplay.rectTransform.anchoredPosition;
+            ResetAddedTimeDisplay();
+        }
     }
 
     void Update()
