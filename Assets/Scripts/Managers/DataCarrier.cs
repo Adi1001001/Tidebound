@@ -16,7 +16,7 @@ public class DataCarrier : MonoBehaviour
     [HideInInspector] public Character currentCharacter = Character.Anglerfish;
 
     private int currentSaveZoneID = 0;
-    private int overworldProgress = 0;
+    private int overworldProgress = 6;
     private int biomeNum = 1;
 
     void Awake()
