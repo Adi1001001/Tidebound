@@ -49,6 +49,7 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.1f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Editor/VinesResizer.cs" />
     <Compile Include="Assets/Editor/CurrentResizer.cs" />
     <Compile Include="Assets/Editor/CurrentArrowResizer.cs" />
     <Compile Include="Assets/Editor/SlowZoneEditor.cs" />

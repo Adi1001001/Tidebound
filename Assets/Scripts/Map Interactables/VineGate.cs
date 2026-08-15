@@ -10,7 +10,6 @@ public class VineGate : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     void Start()
@@ -24,8 +23,13 @@ public class VineGate : MonoBehaviour
         if (spriteRenderer == null || boxCollider == null)
             return;
 
-        boxCollider.offset = spriteRenderer.sprite.bounds.center;
-        boxCollider.size = spriteRenderer.sprite.bounds.size;
+        Bounds bounds = spriteRenderer.bounds;
+
+        Vector3 localMin = transform.InverseTransformPoint(bounds.min);
+        Vector3 localMax = transform.InverseTransformPoint(bounds.max);
+
+        boxCollider.offset = (localMin + localMax) / 2f;
+        boxCollider.size = localMax - localMin;
 
         boxCollider.isTrigger = false;
     }
