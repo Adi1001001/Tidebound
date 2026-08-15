@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Teleporter : MonoBehaviour {
@@ -6,13 +7,12 @@ public class Teleporter : MonoBehaviour {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         CircleCollider2D cc = GetComponent<CircleCollider2D>();
 
-        Bounds bounds = sr.sprite.bounds; // Local-space bounds of the sprite
+        Vector2 size = sr.size;
+        float radius = Math.Min(size.x, size.y)/2;
 
-        // Radius that encloses the entire sprite
-        cc.radius = Mathf.Max(bounds.extents.x, bounds.extents.y);
+        cc.radius = Mathf.Max(radius, radius);
 
-        // Center the collider on the sprite
-        cc.offset = bounds.center;
+        cc.offset = new Vector2(0f, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
