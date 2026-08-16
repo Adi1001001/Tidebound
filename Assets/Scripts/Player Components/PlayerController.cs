@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     public void OnPause() {
         Debug.Log("Pause triggered");
         GameStateManager.GameStates currentGameState = GameStateManager.Instance.GetGameState();
+
         if (currentGameState == GameStateManager.GameStates.Paused) {
             LevelManager.Instance.ResumeGame();
         } else {
@@ -157,7 +158,6 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddRelativeForce(Vector2.down * reverseForce);
             }
         }
-
     }
 
     void KillOrthogonalVelocity()

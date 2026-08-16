@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SwordfishAbility : Ability
 {
-    [SerializeField] private float slowFactor = 0.25f;
+    public float slowFactor = 0.25f;
     private TimerManager gameTimer = null;
     private SlowZone[] allZones;
     protected override void Start()
