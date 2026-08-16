@@ -5782,7 +5782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3579718930335791877, guid: e0f121cc491f545f4906ca79e5da9b6d, type: 3}
       propertyPath: teleportTag
-      value: Finale
+      value: FINALE
       objectReference: {fileID: 0}
     - target: {fileID: 4540007696033845201, guid: e0f121cc491f545f4906ca79e5da9b6d, type: 3}
       propertyPath: m_LocalScale.x

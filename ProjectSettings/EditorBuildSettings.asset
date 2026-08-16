@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Overworld 3.unity
     guid: 79ea6ec8a197e46d18b4e031f1f360f0
+  - enabled: 1
+    path: Assets/Scenes/FINALE.unity
+    guid: ecf9008f742fa45ab8960b967aa84f42
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5474916d3165b470da25860e151a627c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
