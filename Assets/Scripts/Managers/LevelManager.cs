@@ -90,7 +90,16 @@ public class LevelManager : MonoBehaviour {
         raceUI.SetActive(false);
     }
     public void ResumeGame() {
-        Time.timeScale = 1f;
+        // Accounting for if swordfish ability was active before the game was paused.
+        SwordfishAbility swordfishAbility = GameObject.FindWithTag("Player").GetComponent<SwordfishAbility>();
+        if (swordfishAbility != null && swordfishAbility.onAbility)
+        {
+            Time.timeScale = 1-swordfishAbility.slowFactor*2;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
         pauseMenuUI.SetActive(false);
         if (volumeUI != null) volumeUI.SetActive(false);
