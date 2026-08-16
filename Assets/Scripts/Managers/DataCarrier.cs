@@ -17,7 +17,7 @@ public class DataCarrier : MonoBehaviour
 
     private int currentSaveZoneID = 0;
     private int overworldProgress = 6;
-    private int biomeNum = 1;
+    private int biomeNum = 2;
 
     void Awake()
     {

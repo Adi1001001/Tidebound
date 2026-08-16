@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Assets/Editor/VinesResizer.cs" />
     <Compile Include="Assets/Editor/CurrentResizer.cs" />
+    <Compile Include="Assets/Editor/CannonResizer.cs" />
     <Compile Include="Assets/Editor/CurrentArrowResizer.cs" />
     <Compile Include="Assets/Editor/SlowZoneEditor.cs" />
   </ItemGroup>
