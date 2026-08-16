@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5765775663309349871}
   - component: {fileID: 5553580092326672168}
   - component: {fileID: -4080966880117674472}
-  - component: {fileID: 503309632611542684}
+  - component: {fileID: 2823039345131675846}
   m_Layer: 0
   m_Name: Slow Zone
   m_TagString: Untagged
@@ -83,10 +83,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 2b1f9ae23fdb8494faba3e9b949cb12a, type: 3}
-  m_Color: {r: 0.14360619, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: -5971745814065712087, guid: ffbc7e7dbc66046588eb5684902887ce, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -133,7 +133,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 16, y: 16}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 16, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,8 +163,6 @@ MonoBehaviour:
   moveSpeed: 2
   waypoints:
   - {x: 0, y: 0}
-  circleSprite: {fileID: -2413806693520163455, guid: 5665b7c16186241c6b2579e0b1ddba6f, type: 3}
-  indicatorSize: 0.05
 --- !u!120 &-4080966880117674472
 LineRenderer:
   serializedVersion: 3
@@ -275,7 +273,7 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &503309632611542684
+--- !u!114 &2823039345131675846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,8 +287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
   sprites:
   - biomeNum: 1
-    sprite: {fileID: 7482667652216324306, guid: 2b1f9ae23fdb8494faba3e9b949cb12a, type: 3}
+    sprite: {fileID: -5971745814065712087, guid: ffbc7e7dbc66046588eb5684902887ce, type: 3}
   - biomeNum: 2
-    sprite: {fileID: 7482667652216324306, guid: 2b1f9ae23fdb8494faba3e9b949cb12a, type: 3}
+    sprite: {fileID: -5971745814065712087, guid: ffbc7e7dbc66046588eb5684902887ce, type: 3}
   - biomeNum: 3
-    sprite: {fileID: 7482667652216324306, guid: 2b1f9ae23fdb8494faba3e9b949cb12a, type: 3}
+    sprite: {fileID: -5971745814065712087, guid: ffbc7e7dbc66046588eb5684902887ce, type: 3}
