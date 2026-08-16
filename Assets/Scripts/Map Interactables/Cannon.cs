@@ -25,7 +25,6 @@ public class Cannon : MonoBehaviour
 
     void Start()
     {
-        RebuildCollider();
         currentAngle = minRotation;
         transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
@@ -107,24 +106,7 @@ public class Cannon : MonoBehaviour
             mainCamera.ZoomCamera(1/cameraZoomFactor);
         }
     }
-
-    void RebuildCollider()
-    {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        PolygonCollider2D poly = GetComponent<PolygonCollider2D>();
-
-        if (sr != null && poly != null && sr.sprite != null)
-        {
-            poly.pathCount = sr.sprite.GetPhysicsShapeCount();
-            for (int i = 0; i < poly.pathCount; i++)
-            {
-                List<Vector2> points = new();
-                sr.sprite.GetPhysicsShape(i, points);
-                poly.SetPath(i, points);
-            }
-        }
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 9755c23da4b5b405ea87885e7da915aa, type: 3}
-  m_Color: {r: 0.5660378, g: 0.34674513, b: 0.23762906, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   releaseSpeed: 50
   minRotation: 0
   maxRotation: 180
+  rotating: 0
   rotationDuration: 1.25
   playerInCannon: 0
   cameraZoomFactor: 1.5
@@ -176,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteLoader
   sprites:
   - biomeNum: 1
-    sprite: {fileID: 7482667652216324306, guid: 9755c23da4b5b405ea87885e7da915aa, type: 3}
+    sprite: {fileID: 1741398357674019381, guid: de461dfb50d174cc4a512c841f9732e0, type: 3}
   - biomeNum: 2
-    sprite: {fileID: 7482667652216324306, guid: 9755c23da4b5b405ea87885e7da915aa, type: 3}
+    sprite: {fileID: 1741398357674019381, guid: de461dfb50d174cc4a512c841f9732e0, type: 3}
   - biomeNum: 3
-    sprite: {fileID: 7482667652216324306, guid: 9755c23da4b5b405ea87885e7da915aa, type: 3}
+    sprite: {fileID: 975092974594921574, guid: f8f13d6bca8d348a59cf98ffb6c2b61b, type: 3}
