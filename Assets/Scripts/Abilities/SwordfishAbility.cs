@@ -3,13 +3,13 @@ using System.Collections;
 
 public class SwordfishAbility : Ability
 {
-    [SerializeField] private float slowFactor = 0.6f;
+    [SerializeField] private float slowFactor = 0.25f;
     private TimerManager gameTimer = null;
     private SlowZone[] allZones;
     protected override void Start()
     {
         base.Start();
-        duration = 3f;
+        duration = 1.5f;
         cooldown = 22f;
 
         GameObject timerManager = GameObject.Find("TimerManager");
@@ -31,6 +31,7 @@ public class SwordfishAbility : Ability
         {
             zone.movable = false;
         }
+        Time.timeScale = 1-slowFactor*2;
         yield return RunTimer(duration);
     }
 
@@ -44,5 +45,6 @@ public class SwordfishAbility : Ability
         {
             zone.movable = true;
         }
+        Time.timeScale = 1f;
     }
 }
