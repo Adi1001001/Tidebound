@@ -103,12 +103,12 @@ TextureImporter:
       name: Cur_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 22
-        height: 16
+        x: 8
+        y: 8
+        width: 20
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bf54e855add474b65a98401c20c1cf93
     internalID: 0
     vertices: []
     indices: 
