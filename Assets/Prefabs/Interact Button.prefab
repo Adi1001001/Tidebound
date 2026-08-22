@@ -353,13 +353,13 @@ MonoBehaviour:
   - type: 0
     sprite: {fileID: 21300000, guid: 3e4bc6064f3774c799b3fcad407605ff, type: 3}
   - type: 1
-    sprite: {fileID: 21300000, guid: bd2c6bf4b1f9541769b1d396cdbd7994, type: 3}
+    sprite: {fileID: 49417335881396728, guid: ffe70833159ecf7a5ae639490a51c7be, type: 3}
   - type: 2
-    sprite: {fileID: 21300000, guid: 2ee210176470b412aaa22632b797a30f, type: 3}
+    sprite: {fileID: -2578221563453846374, guid: 2388cb447a145eeb48fe4241ea98dd39, type: 3}
   - type: 3
-    sprite: {fileID: 21300000, guid: 4a4e365b3b97a4f0fabd087b748d5b38, type: 3}
+    sprite: {fileID: 4214149858688995037, guid: 3d81b66e06260b97daabebf543abfaaf, type: 3}
   - type: 4
-    sprite: {fileID: 21300000, guid: d502356026da74b3cb8cbdfbeb40aced, type: 3}
+    sprite: {fileID: -2322561565839454221, guid: 6b9fb3bd1e53dcb9bb082249a8658ff9, type: 3}
   - type: 5
     sprite: {fileID: 21300000, guid: 5ae538176fe5e4485b5ef1e43fb76507, type: 3}
   - type: 6
