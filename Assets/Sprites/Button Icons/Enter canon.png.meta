@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2388cb447a145eeb48fe4241ea98dd39
+guid: 3333105fc9bc647d8acec20eb0e5e9db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2578221563453846374
-    second: Cur_0
+      213: 2113427268529121577
+    second: Enter canon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cur_0
+      name: Enter canon_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 7
-        width: 22
-        height: 16
+        x: 10
+        y: 9
+        width: 12
+        height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a9cc416e521583cd0800000000000000
-      internalID: -2578221563453846374
+      spriteID: 9296d4f37e6645d10800000000000000
+      internalID: 2113427268529121577
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e263caa683f3b40f7882719f1593f6c5
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cur_0: -2578221563453846374
+      Enter canon_0: 2113427268529121577
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

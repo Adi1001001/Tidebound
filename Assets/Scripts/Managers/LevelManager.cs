@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour {
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     // }
     public void QuitGame() { // closing the game
-        Debug.Log("END GAME");
         Application.Quit();
     }
     // public void RestartCurrentScene() { // restarting the level. make it resume the level
@@ -80,7 +79,8 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
     public void PauseGame() {
-        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu) {return;}
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu ||
+        GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Countdown) {return;}
         
         Time.timeScale = 0f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
