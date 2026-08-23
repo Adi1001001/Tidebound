@@ -50,7 +50,7 @@ public class GameStateManager : MonoBehaviour {
     public bool IsGameplayFrozen()
     {
         return currentGameState == GameStates.Paused || currentGameState == GameStates.Countdown 
-        || currentGameState == GameStates.GameOver;
+        || currentGameState == GameStates.GameOver || currentGameState == GameStates.NPC;
     }
 }
 

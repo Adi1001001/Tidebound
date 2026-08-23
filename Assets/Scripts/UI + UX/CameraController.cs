@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour {
     // FOV Zoom variables
     public float normalFOV = 70f;
     public float abilityFOV = 90f;
+    public bool stickToPlayer = true;
 
     void Start() {
         if (playerTransform == null) {
@@ -24,8 +25,11 @@ public class CameraController : MonoBehaviour {
     void LateUpdate() { // this function happens after all the other update calls
         if (playerTransform == null) return; // fallback if player is still not assigned
 
-        Vector3 desiredPosition = playerTransform.position + offset;
-        transform.position = desiredPosition;
+        if (stickToPlayer)
+        {
+            Vector3 desiredPosition = playerTransform.position + offset;
+            transform.position = desiredPosition;
+        }
     }
 
     public void CameraShake() {

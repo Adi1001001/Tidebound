@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// Since all data in this script is saved across scenes, all 
+// variables are privitised and the getter/setter functions must be used.
+
 public enum Character
 {
     Anglerfish,
@@ -19,6 +22,7 @@ public class DataCarrier : MonoBehaviour
     private int overworldProgress = 10;
     private int biomeNum = 1;
     private int discoveryID = 0;
+    private int cutsceneID = 0;
 
     void Awake()
     {
@@ -90,5 +94,15 @@ public class DataCarrier : MonoBehaviour
     public int GetDiscoveryID()
     {
         return discoveryID;
+    }
+
+    public void SetCutsceneID(int id)
+    {
+        cutsceneID = id;
+    }
+
+    public int GetCutsceneID()
+    {
+        return cutsceneID;
     }
 }
