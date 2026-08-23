@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 public enum IconType
 {
@@ -58,6 +59,7 @@ public class IconUpdater : MonoBehaviour
 
     void Start()
     {
+        buttonIcon.preserveAspect = true;
         switch (DataCarrier.Instance.currentCharacter)
         {
             case Character.Anglerfish:

@@ -149,7 +149,10 @@ public class CutsceneManager : MonoBehaviour
     void FinishCutscene()
     {
         isCutsceneRunning = false;
-        if (skipText != null) skipText.text = "";
+        if (skipText != null) 
+        {
+            skipText.text = "";
+        }
         if (activeTriggerSource != null)
         {
             activeTriggerSource.OnCutsceneFinish();

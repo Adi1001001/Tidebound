@@ -2702,9 +2702,9 @@ MonoBehaviour:
   timerDisplay: {fileID: 923735682}
   addedTimeDisplay: {fileID: 923735683}
   countdownDisplay: {fileID: 923735681}
-  initialTimer: 20
+  initialTime: 40
   slowFactor: 1
-  isTimerRunning: 0
+  failed: 0
 --- !u!4 &1075734965
 Transform:
   m_ObjectHideFlags: 0

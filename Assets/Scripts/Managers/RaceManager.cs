@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class RaceManager : MonoBehaviour
 {
@@ -24,34 +25,55 @@ public class RaceManager : MonoBehaviour
         StartRace();
     }
 
-    public void StartRace() { // add the feature to restart a race by pressing a button laters
-        Debug.Log("STARTING RACE");
+    public void StartRace() { 
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Countdown);
         timerManager.StartCountdown();
     }
-    public void FinishRace() { // also add the best time feature later when you have the saves ready
+    public void FinishRace() { 
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.GameOver);
-        float elapsedTime = timerManager.GetTimerValues().Item1;
+        float elapsedTime = (float)Math.Round(timerManager.GetTimerValues().Item1, 1);
         float requiredTime = timerManager.GetTimerValues().Item2;
-        float topSpeed = maxSpeedManager.GetCurrentMaxSpeed();
+        float topSpeed = (float)Math.Round(maxSpeedManager.GetCurrentMaxSpeed());
         topSpeed *= playerController.speedMultiplier;
         timerManager.StopRaceTimer();
 
         RaceEndUI.SetActive(true);
         RaceUI.SetActive(false);
 
-        if (elapsedTime <= requiredTime) {
+        if (!timerManager.failed) { // Can fail due to not reaching time gates fast enough
             successRaceResultText.gameObject.SetActive(true);
             failedRaceResultText.gameObject.SetActive(false);
             DataCarrier.Instance.UnlockProgress(raceID);
+            DataCarrier.Instance.SetBestTime(raceID, elapsedTime);
         } else {
             successRaceResultText.gameObject.SetActive(false);
             failedRaceResultText.gameObject.SetActive(true);
         }
 
-        elapsedTimeText.text = elapsedTime.ToString();
+        if (elapsedTime <= requiredTime && timerManager.failed)
+        {
+            elapsedTimeText.text = elapsedTime.ToString()+" (Failed at time gate)";
+        }
+        else
+        {
+            elapsedTimeText.text = elapsedTime.ToString();
+        }
         requiredTimeText.text = requiredTime.ToString();
-        timeDifferenceText.text = (elapsedTime - requiredTime).ToString();
+        timeDifferenceText.text = Math.Round(Math.Abs(elapsedTime - requiredTime), 1).ToString();
         topSpeedText.text = topSpeed.ToString();
+
+        float bestTime = DataCarrier.Instance.GetBestTime(raceID);
+        if (bestTime == 0.0f)
+        {
+            bestTimeText.text = "No best time.";
+        }
+        else
+        {
+            bestTimeText.text = bestTime.ToString();
+            if (elapsedTime == bestTime)
+            {
+                bestTimeText.text += " (NEW BEST!)";
+            }
+        }
     }
 }
