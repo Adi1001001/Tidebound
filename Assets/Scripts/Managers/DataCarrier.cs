@@ -26,6 +26,7 @@ public class DataCarrier : MonoBehaviour
     private int biomeNum = 1;
     private int discoveryID = 0;
     private int cutsceneID = 0;
+    private int tutorialID = 0;
     private float[] bestTimes = new float[10];
 
     void Awake()
@@ -108,6 +109,16 @@ public class DataCarrier : MonoBehaviour
     public int GetCutsceneID()
     {
         return cutsceneID;
+    }
+
+    public void SetTutorialID(int id)
+    {
+        tutorialID = id;
+    }
+
+    public int GetTutorialID()
+    {
+        return tutorialID;
     }
 
     public void SetBestTime(int level, float time)

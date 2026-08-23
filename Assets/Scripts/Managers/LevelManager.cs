@@ -7,10 +7,9 @@ public class LevelManager : MonoBehaviour {
     public GameObject raceUI;
     public GameObject volumeUI;
     public GameObject controlsUI;
-    public int biomeNum;
-    // private RaceManager raceManager;
+    private float prevTimeScale;
     void Awake() {
-        if (Instance != null && Instance != this) { // making it a singleton
+        if (Instance != null && Instance != this) { 
             Destroy(gameObject);
             return;
         }
@@ -24,21 +23,12 @@ public class LevelManager : MonoBehaviour {
         controlsUI = controlsPanel;
         raceUI = racePanel;
     }
-    // public void NextScene() { // going to the next level.
-    //     Debug.Log("NEXT SCENE");
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    // }
-    // public void PreviousScene() { // going to the previous level.
-    //     Debug.Log("PREVIOUS SCENE");
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    // }
-    public void QuitGame() { // closing the game
+    public void QuitGame() 
+    { 
         Application.Quit();
     }
-    // public void RestartCurrentScene() { // restarting the level. make it resume the level
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    // }
-    public void RestartRace() {
+    public void RestartRace() 
+    {
         Time.timeScale = 1f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -60,63 +50,66 @@ public class LevelManager : MonoBehaviour {
                 break;
         }
     }
-    public void ToCharacterSelect() {
+    public void ToCharacterSelect() 
+    {
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.CharacterSelect);
         SceneManager.LoadScene("Character Select");
     }
-    public void ToMainMenu() { // going back to the main menu without losing all of the save data.
+    public void ToMainMenu() 
+    { // going back to the main menu without losing all of the save data.
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.MainMenu);
         SceneManager.LoadScene("Main Menu");
     }
-    public void ToRaceScene() {
+    public void ToRaceScene() 
+    {
         string raceTag = DataCarrier.Instance.nextRaceTag;
         SceneManager.LoadScene(raceTag);
         // raceManager = FindFirstObjectByType<RaceManager>();
         // raceManager.StartRace();
     }
-    public void LoadSceneByName(string sceneName) {
+    public void LoadSceneByName(string sceneName) 
+    {
         Debug.Log("LOADING SCENE: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
-    public void PauseGame() {
+    public void PauseGame() 
+    {
         if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu ||
         GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Countdown) {return;}
-        
+
+        prevTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
         pauseMenuUI.SetActive(true);
         raceUI.SetActive(false);
     }
-    public void ResumeGame() {
-        // Accounting for if swordfish ability was active before the game was paused.
-        SwordfishAbility swordfishAbility = GameObject.FindWithTag("Player").GetComponent<SwordfishAbility>();
-        if (swordfishAbility != null && swordfishAbility.onAbility)
-        {
-            Time.timeScale = 1-swordfishAbility.slowFactor*2;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
+    public void ResumeGame() 
+    {
+        // Accounting for if game time was running slower than normal when paused.
+       Time.timeScale = prevTimeScale;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
         pauseMenuUI.SetActive(false);
         if (volumeUI != null) volumeUI.SetActive(false);
         if (controlsUI != null) controlsUI.SetActive(false);
         raceUI.SetActive(true);
     }
-    public void OpenVolumeSettings() {
+    public void OpenVolumeSettings() 
+    {
         volumeUI.SetActive(true);
         pauseMenuUI.SetActive(false);
     }
-    public void CloseVolumeSettings() {
+    public void CloseVolumeSettings() 
+    {
         volumeUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
-    public void OpenControls() {
+    public void OpenControls() 
+    {
         controlsUI.SetActive(true);
         pauseMenuUI.SetActive(false);
     }
-    public void CloseControls() {
+    public void CloseControls() 
+    {
         controlsUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
