@@ -24,7 +24,7 @@ public class Current : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             if (playerRb != null && GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Lilypad) {
-                playerRb.AddForce(transform.up * pushForce); // you have to adjust the direction of the current in unity
+                playerRb.AddForce(transform.up * pushForce); 
                 cameraController.CameraShake();
             }
         }

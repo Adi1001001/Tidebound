@@ -80,10 +80,8 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(sceneName);
     }
     public void PauseGame() {
-        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu
-        || GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Countdown) {
-            return;
-        }
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.MainMenu) {return;}
+        
         Time.timeScale = 0f;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
         pauseMenuUI.SetActive(true);
