@@ -7,17 +7,16 @@ public class TimerManager : MonoBehaviour
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI addedTimeDisplay;
     public TextMeshProUGUI countdownDisplay;
-    public float initialTimer = 30f;
+    public float initialTime = 30f;
 
-    private float totalTimer;
+    private float requiredTime;
+    private float totalTime;
     private GameObject player;
     private PlayerController playerController;
     private Ability ability;
     private float elapsedTime = 0f;
 
     [HideInInspector] public float slowFactor = 1;
-    [HideInInspector] public bool isTimerRunning = false;
-
     int countdown = 3;
 
     private float addedTimeAnimationTime = 2f;
@@ -25,13 +24,15 @@ public class TimerManager : MonoBehaviour
 
     private Coroutine addedTimeCoroutine;
     private Vector2 addedTimeOriginalPos;
+    [HideInInspector] public bool failed = false;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         ability = playerController.GetComponent<Ability>();
-        totalTimer = initialTimer;
+        requiredTime = initialTime;
+        totalTime = initialTime;
 
         if (addedTimeDisplay != null)
         {
@@ -42,19 +43,20 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        if (isTimerRunning)
+        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown)
         {
             elapsedTime += Time.deltaTime * slowFactor;
         }
 
-        if (elapsedTime >= totalTimer)
+        if (elapsedTime >= requiredTime)
         {
             timerDisplay.color = Color.red;
             timerDisplay.text = "Out of time!";
+            failed = true;
         }
         else
         {
-            DisplayTime(totalTimer - elapsedTime);
+            DisplayTime(requiredTime - elapsedTime);
         }
     }
 
@@ -66,7 +68,7 @@ public class TimerManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(timeToDisplay % 60);
         int tenths = Mathf.FloorToInt(timeToDisplay % 1 * 10);
 
-        float elapsed = (totalTimer - elapsedTime) / initialTimer;
+        float elapsed = (requiredTime - elapsedTime) / initialTime;
 
         if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish)
         {
@@ -109,28 +111,26 @@ public class TimerManager : MonoBehaviour
     public void StartRaceTimer()
     {
         timerDisplay.gameObject.SetActive(true);
-        isTimerRunning = true;
     }
 
     public (float, float) GetTimerValues()
     {
-        return (elapsedTime, totalTimer);
+        return (elapsedTime, totalTime);
     }
 
     public void StopRaceTimer()
     {
-        isTimerRunning = false;
         elapsedTime = 0f;
         timerDisplay.gameObject.SetActive(false);
     }
 
     public void AddTime(int extraTime)
     {
-        if (elapsedTime < totalTimer)
+        totalTime += extraTime;
+        if (elapsedTime < requiredTime)
         {
-            totalTimer += extraTime;
+            requiredTime += extraTime;
 
-            // Stop the previous animation if one is running
             if (addedTimeCoroutine != null)
             {
                 StopCoroutine(addedTimeCoroutine);
@@ -140,16 +140,11 @@ public class TimerManager : MonoBehaviour
             ResetAddedTimeDisplay();
             addedTimeCoroutine = StartCoroutine(ShowAddedTime(extraTime));
         }
-        else
-        {
-            isTimerRunning = false;
-        }
     }
 
     void ResetAddedTimeDisplay()
     {
         RectTransform rectTransform = addedTimeDisplay.rectTransform;
-
         rectTransform.anchoredPosition = addedTimeOriginalPos;
 
         Color color = addedTimeDisplay.color;
@@ -177,7 +172,6 @@ public class TimerManager : MonoBehaviour
 
             Vector2 finalPos = new Vector2(addedTimeOriginalPos.x+addedTimeMoveDistance, 
                                             addedTimeOriginalPos.y+addedTimeMoveDistance);
-
             rectTransform.anchoredPosition = Vector2.Lerp(addedTimeOriginalPos, finalPos, smoothT);
             Color color = addedTimeDisplay.color;
 
@@ -189,7 +183,6 @@ public class TimerManager : MonoBehaviour
             {
                 color.a = 1f - ((t - 0.2f) / 0.8f);
             }
-
             addedTimeDisplay.color = color;
 
             yield return null;
@@ -206,21 +199,16 @@ public class TimerManager : MonoBehaviour
         while (countdown > 0)
         {
             countdownDisplay.text = countdown.ToString();
-
             yield return new WaitForSeconds(1f);
-
             countdown--;
         }
 
         countdownDisplay.text = "Go!";
-
         yield return new WaitForSeconds(1f);
 
         countdownDisplay.text = "";
         countdownDisplay.gameObject.SetActive(false);
-
         countdown = 3;
-
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Racing);
         StartRaceTimer();
     }

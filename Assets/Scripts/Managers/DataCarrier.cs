@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // Since all data in this script is saved across scenes, all 
 // variables are privitised and the getter/setter functions must be used.
@@ -23,6 +26,7 @@ public class DataCarrier : MonoBehaviour
     private int biomeNum = 1;
     private int discoveryID = 0;
     private int cutsceneID = 0;
+    private float[] bestTimes = new float[10];
 
     void Awake()
     {
@@ -104,5 +108,20 @@ public class DataCarrier : MonoBehaviour
     public int GetCutsceneID()
     {
         return cutsceneID;
+    }
+
+    public void SetBestTime(int level, float time)
+    {
+        float targetTime = bestTimes[level-1];
+        float roundedTime = (float)Math.Round(time, 1);
+        if (targetTime == 0.0f || roundedTime < targetTime)
+        {
+            bestTimes[level-1] = roundedTime;
+        }
+    }
+
+    public float GetBestTime(int level)
+    {
+        return bestTimes[level-1];
     }
 }
