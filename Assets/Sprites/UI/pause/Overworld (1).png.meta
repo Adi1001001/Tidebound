@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5ae538176fe5e4485b5ef1e43fb76507
+guid: 0d769634a848b4278b8e0e75d13968bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6431427724390053106
-    second: Cannon In_0
+      213: 7608034846755761042
+    second: Overworld (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cannon In_0
+      name: Overworld (1)_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 1
-        width: 119
-        height: 173
+        x: 0
+        y: 0
+        width: 781
+        height: 233
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f43edea075014950800000000000000
-      internalID: 6431427724390053106
+      spriteID: 29babaf426b259960800000000000000
+      internalID: 7608034846755761042
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cannon In_0: 6431427724390053106
+      Overworld (1)_0: 7608034846755761042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

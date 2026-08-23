@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IconUpdater
   icons:
   - type: 0
-    sprite: {fileID: 21300000, guid: 3e4bc6064f3774c799b3fcad407605ff, type: 3}
+    sprite: {fileID: 2189510010676529607, guid: 9cd6f7af9131c4cf4b4b92fcbc1b32ba, type: 3}
   - type: 1
     sprite: {fileID: 49417335881396728, guid: ffe70833159ecf7a5ae639490a51c7be, type: 3}
   - type: 2
@@ -361,9 +361,9 @@ MonoBehaviour:
   - type: 4
     sprite: {fileID: -2322561565839454221, guid: 6b9fb3bd1e53dcb9bb082249a8658ff9, type: 3}
   - type: 5
-    sprite: {fileID: 21300000, guid: 5ae538176fe5e4485b5ef1e43fb76507, type: 3}
+    sprite: {fileID: 2113427268529121577, guid: 3333105fc9bc647d8acec20eb0e5e9db, type: 3}
   - type: 6
-    sprite: {fileID: 21300000, guid: 3c536b683e6cf42399fd8fee81992369, type: 3}
+    sprite: {fileID: -7175980831609057725, guid: c9ebd65f5bc644e379731d5977c567c2, type: 3}
   timer: 0
   timerMax: 0
   onAbility: 0
