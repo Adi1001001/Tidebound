@@ -1,47 +1,93 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
     private Camera cam;
     private Transform playerTransform;
     private PlayerController playerController;
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // Offset from the playerTransform
-    public float leadAmount = 1.5f;
-    public float smoothSpeed = 5.0f;
-    public float shakeIntensity = 0.07f;
-    // FOV Zoom variables
-    public float normalFOV = 70f;
-    public float abilityFOV = 90f;
+
+    private Vector3 offset = new Vector3(0f, 0f, -10f);
+    private float smoothSpeed = 5f;
+    private bool rotateWithPlayer = true;
+    private float rotationSmoothSpeed = 3f;
+    private float shakeIntensity = 0.07f;
+    private float normalFOV = 70f;
     public bool stickToPlayer = true;
 
-    void Start() {
-        if (playerTransform == null) {
+    void Start()
+    {
+        // Find the player if one hasn't been assigned
+        if (playerTransform == null)
+        {
             playerController = FindAnyObjectByType<PlayerController>();
-            playerTransform = playerController.transform; // finding the player
+
+            if (playerController != null)
+            {
+                playerTransform = playerController.transform;
+            }
         }
+
         cam = GetComponent<Camera>();
-        cam.fieldOfView = normalFOV;
+
+        if (cam != null)
+        {
+            cam.fieldOfView = normalFOV;
+        }
     }
 
-    void LateUpdate() { // this function happens after all the other update calls
-        if (playerTransform == null) return; // fallback if player is still not assigned
+
+    void LateUpdate()
+    {
+        if (playerTransform == null)
+            return;
 
         if (stickToPlayer)
         {
-            Vector3 desiredPosition = playerTransform.position + offset;
-            transform.position = desiredPosition;
+            FollowPlayer();
+
+            if (rotateWithPlayer)
+            {
+                FollowPlayerRotation();
+            }
         }
     }
 
-    public void CameraShake() {
-        if (playerTransform == null) return;
-        if (playerController.inCurrent == false) return;
-        Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * shakeIntensity;
-        transform.localPosition = playerTransform.position + offset + shakeOffset;
+
+    private void FollowPlayer()
+    {
+        transform.position = playerTransform.position + offset;
     }
+
+
+    private void FollowPlayerRotation()
+    {
+        Quaternion desiredRotation = playerTransform.rotation;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation,rotationSmoothSpeed * Time.deltaTime);
+    }
+
+
+    public void CameraShake()
+    {
+        if (playerTransform == null)
+            return;
+
+        if (playerController == null)
+            return;
+
+        if (!playerController.inCurrent)
+            return;
+
+        Vector3 shakeOffset = (Vector3)Random.insideUnitCircle * shakeIntensity;
+        transform.position += shakeOffset;
+    }
+
 
     public void ZoomCamera(float zoomFactor)
     {
-        cam.orthographicSize *= zoomFactor;
-    }
+        if (cam == null)
+            return;
 
+        cam.fieldOfView *= zoomFactor;
+    }
 }
