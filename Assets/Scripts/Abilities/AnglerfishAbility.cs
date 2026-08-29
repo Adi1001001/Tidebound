@@ -14,8 +14,6 @@ public class AnglerfishAbility : Ability
 
     protected override IEnumerator AbilityRoutine()
     {
-        Debug.Log("Anglerfish ability activated");
-
         CameraController camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
         camera.ZoomCamera(visionBuff);
         timer = duration;

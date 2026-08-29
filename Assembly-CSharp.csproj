@@ -54,6 +54,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Cannon.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/SFXPlayer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
     <Compile Include="Assets/Scripts/Abilities/Ability.cs" />
     <Compile Include="Assets/Scripts/Managers/CutsceneManager.cs" />

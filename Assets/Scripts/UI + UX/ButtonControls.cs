@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 // must add this script because levelmanager is a singleton and hence we can't directly call its functions from the button UI
 public class ButtonControls : MonoBehaviour {
     // public void NextScene() {
@@ -7,12 +8,26 @@ public class ButtonControls : MonoBehaviour {
     // public void PreviousScene() {
     //     LevelManager.Instance.PreviousScene();
     // }
+    private Slider masterSlider;
+
+    private Slider bgSlider;
+    private Slider sfxSlider;
+
+    void Start()
+    {
+        Transform volumeUI = GameObject.Find("Canvas").transform.Find("VolumeUI");
+        if (volumeUI != null)
+        {
+            masterSlider = volumeUI.transform.Find("Master Slider").GetComponent<Slider>();
+            bgSlider = volumeUI.transform.Find("BG Slider").GetComponent<Slider>();
+            sfxSlider = volumeUI.transform.Find("SFX Slider").GetComponent<Slider>();
+        }
+    }
+
     public void QuitGame() {
         LevelManager.Instance.QuitGame();
     }
-    // public void RestartCurrentScene() {
-    //     LevelManager.Instance.RestartCurrentScene();
-    // }
+ 
     public void RestartRace() {
         LevelManager.Instance.RestartRace();
     }
@@ -42,6 +57,18 @@ public class ButtonControls : MonoBehaviour {
     }
     public void CloseVolumeSettings() {
         LevelManager.Instance.CloseVolumeSettings();
+    }
+    public void ChangeMasterVolume()
+    {
+        LevelManager.Instance.ChangeVolumeSetings(Volume.Master, masterSlider.value);
+    }
+    public void ChangeBGVolume()
+    {
+        LevelManager.Instance.ChangeVolumeSetings(Volume.BG, bgSlider.value);
+    }
+    public void ChangeSFXVolume()
+    {
+        LevelManager.Instance.ChangeVolumeSetings(Volume.SFX, sfxSlider.value);
     }
     public void OpenControls() {
         LevelManager.Instance.OpenControls();

@@ -14,6 +14,13 @@ public enum Character
     Turtle
 }
 
+public enum Volume
+{
+    Master,
+    BG,
+    SFX
+}
+
 public class DataCarrier : MonoBehaviour
 {
     public static DataCarrier Instance;
@@ -27,6 +34,9 @@ public class DataCarrier : MonoBehaviour
     private int discoveryID = 0;
     private int cutsceneID = 0;
     private int tutorialID = 0;
+    private float masterVolume = 1;
+    private float bgVolume = 0.5f;
+    private float sfxVolume = 0.5f;
     private float[] bestTimes = new float[10];
 
     void Awake()
@@ -45,13 +55,11 @@ public class DataCarrier : MonoBehaviour
     public void UpdateTag(string tag)
     {
         nextRaceTag = tag;
-        Debug.Log("Updated nextRaceTag to: " + nextRaceTag);
     }
 
     public void SetCharacter(Character character)
     {
         currentCharacter = character;
-        Debug.Log("Current character: " + currentCharacter);
     }
 
     public Character GetCharacter()
@@ -134,5 +142,37 @@ public class DataCarrier : MonoBehaviour
     public float GetBestTime(int level)
     {
         return bestTimes[level-1];
+    }
+
+    public void SetVolume(Volume volType, float newVol)
+    {
+        if (volType == Volume.Master)
+        {
+            masterVolume = newVol;
+        }
+        else if (volType == Volume.BG)
+        {
+            bgVolume = newVol;
+        }
+        else
+        {
+            sfxVolume = newVol;
+        }
+    }
+
+    public float GetVolume(Volume volType)
+    {
+        if (volType == Volume.Master)
+        {
+            return masterVolume;
+        }
+        else if (volType == Volume.BG)
+        {
+            return bgVolume;
+        }
+        else
+        {
+            return sfxVolume;
+        }
     }
 }

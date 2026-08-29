@@ -11,11 +11,16 @@ public class BGTrackPlayer : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
-
+        UpdateVolume();
         PlayLoopingMusic();
     }
 
-    void PlayLoopingMusic()
+    public void UpdateVolume()
+    {
+        audioSource.volume = DataCarrier.Instance.GetVolume(Volume.Master) * DataCarrier.Instance.GetVolume(Volume.BG);
+    }
+
+    private void PlayLoopingMusic()
     {
         if (backgroundMusic != null && audioSource != null)
         {

@@ -73,20 +73,12 @@ public class Cannon : MonoBehaviour
 
     public void ToggleCannon()
     {
-        if (GameStateManager.Instance.IsGameplayFrozen())
-        {
-            Debug.Log("Cannot use cannon, game not in playing state.");
-            return;
-        }
+        if (GameStateManager.Instance.IsGameplayFrozen()) {return;}
 
         if (player == null)
         {
             player = FindAnyObjectByType<PlayerController>();
-            if (player == null)
-            {
-                Debug.LogWarning("PlayerController not found.");
-                return;
-            }
+            if (player == null) {return;}
         }
 
         playerInCannon = !playerInCannon;

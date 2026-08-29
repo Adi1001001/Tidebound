@@ -31,7 +31,6 @@ public class Teleporter : MonoBehaviour {
         }
     }
     public void OnTeleportClick() {
-        Debug.Log("Teleport triggered");
         if (teleportTag == "Overworld 2")
         {
             DataCarrier.Instance.SetBiomeNum(2);

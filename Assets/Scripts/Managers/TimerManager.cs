@@ -99,11 +99,7 @@ public class TimerManager : MonoBehaviour
 
     public void StartCountdown()
     {
-        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown)
-        {
-            Debug.Log("Cannot show countdown timer when not in countdown state");
-            return;
-        }
+        if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown) {return;}
 
         StartCoroutine(CountdownCoroutine());
     }
