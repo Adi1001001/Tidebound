@@ -29,7 +29,7 @@ public class DataCarrier : MonoBehaviour
     [HideInInspector] public Character currentCharacter = Character.Anglerfish;
 
     private int currentSaveZoneID = 0;
-    private int overworldProgress = 10;
+    private int overworldProgress = 0;
     private int biomeNum = 1;
     private int discoveryID = 0;
     private int cutsceneID = 0;
