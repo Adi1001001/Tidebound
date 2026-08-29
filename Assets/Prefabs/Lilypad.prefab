@@ -109,6 +109,7 @@ MonoBehaviour:
   pushForce: 10
   airTime: 0.75
   initialised: 1
+  lilypadSFX: {fileID: 8300000, guid: 86ed6449ed88a495fa67dea9ab72554b, type: 3}
 --- !u!58 &2435894369726075516
 CircleCollider2D:
   m_ObjectHideFlags: 0

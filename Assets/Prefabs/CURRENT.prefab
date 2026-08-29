@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Currents
   pushForce: 40
+  currentSFX: {fileID: 8300000, guid: 70af65c03f51644139fbdc00cbf6f2ae, type: 3}
+  reversedSFX: {fileID: 8300000, guid: 909e34b677e6d42b6964abfe0d82fa18, type: 3}
 --- !u!61 &7165879760816729707
 BoxCollider2D:
   m_ObjectHideFlags: 0

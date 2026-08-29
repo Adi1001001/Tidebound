@@ -19,11 +19,13 @@ public class SlowZone : MonoBehaviour
     private LineRenderer pathRenderer;
 
     private static readonly Color PATH_COLOR = new Color32(90, 70, 45, 255);
+    private AudioSource sfxManager;
 
     void Start()
     {
         startPosition = transform.position;
         CreatePathLine();
+        sfxManager = GameObject.Find("SFX Managers/Slow Zone").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -74,7 +76,13 @@ public class SlowZone : MonoBehaviour
         PlayerController player = collision.GetComponent<PlayerController>();
 
         if (player != null)
+        {
             player.EnterSlowZone(speedLimit, accelerationFactor);
+            if (GameStateManager.Instance.GetPlayerState() != GameStateManager.PlayerStates.Lilypad)
+            {
+                sfxManager.Play();
+            }
+        }   
     }
 
     private void OnTriggerExit2D(Collider2D collision)

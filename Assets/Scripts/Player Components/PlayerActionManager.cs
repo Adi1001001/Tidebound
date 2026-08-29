@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,6 @@ public class PlayerActionManager : MonoBehaviour
     public InputAction playerAbility;
     private Cannon nearbyCannon;
     private Teleporter nearbyTeleporter;
-    [HideInInspector] public bool alwaysBouncy;
     [SerializeField] private IconUpdater iconUpdater;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

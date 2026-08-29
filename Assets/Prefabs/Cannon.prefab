@@ -163,6 +163,7 @@ MonoBehaviour:
   rotationDuration: 1.25
   playerInCannon: 0
   cameraZoomFactor: 1.5
+  cannonSFX: {fileID: 8300000, guid: da3599f0361bd40b9bfb367e0447f499, type: 3}
 --- !u!114 &1512970167924800878
 MonoBehaviour:
   m_ObjectHideFlags: 0
