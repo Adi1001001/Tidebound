@@ -5740,12 +5740,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnAbility
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5012726484654685814, guid: 9d1aa3f6926134b5bbe7238ab9896e43, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
