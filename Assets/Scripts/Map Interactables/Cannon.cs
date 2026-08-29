@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -22,19 +21,19 @@ public class Cannon : MonoBehaviour
 
     private CameraController mainCamera;
     public float cameraZoomFactor = 1.5f;
-
+    private AudioSource sfxManager;
     void Start()
     {
         currentAngle = minRotation;
         transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        sfxManager = GameObject.Find("SFX Managers/Cannon").GetComponent<AudioSource>();
     }
 
 
     void Update()
     {
-        if (!rotating)
-            return;
+        if (!rotating) {return;}
 
         RotateCannon();
     }
@@ -104,6 +103,7 @@ public class Cannon : MonoBehaviour
             player.FireFromCannon(releaseSpeed, transform.up);
             player.SetVisible(true);
             mainCamera.ZoomCamera(1/cameraZoomFactor);
+            sfxManager.Play();
         }
     }
     
@@ -122,4 +122,5 @@ public class Cannon : MonoBehaviour
             collision.GetComponent<PlayerActionManager>().SetNearbyCannon(null);
         }
     }
+
 }

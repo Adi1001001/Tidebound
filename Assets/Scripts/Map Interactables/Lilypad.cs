@@ -8,6 +8,7 @@ public class Lilypad : MonoBehaviour
     PlayerAppearance appearance;
     private bool lilypadActivated = false;
     public bool initialised = false;
+    private AudioSource sfxManager;
         
     void Start() {
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -22,6 +23,7 @@ public class Lilypad : MonoBehaviour
 
         // Center the collider on the sprite
         cc.offset = bounds.center;
+        sfxManager = GameObject.Find("SFX Managers/Lilypad").GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -45,6 +47,7 @@ public class Lilypad : MonoBehaviour
         if (GameStateManager.Instance.GetPlayerState() == GameStateManager.PlayerStates.Lilypad || lilypadActivated) {return;}
         lilypadActivated = true;
         BeginAirTime(collision);
+        sfxManager.Play();
     }
     private void BeginAirTime(Collider2D collision)
     {

@@ -286,7 +286,7 @@ MonoBehaviour:
   maxRotationSpeed: 250
   highSpeed: 20
   reverseForce: 16
-  brakeStrength: 1.5
+  brakeStrength: 1.25
   speedMultiplier: 12.5
   speedText: {fileID: 0}
   speedBar: {fileID: 0}
@@ -427,7 +427,7 @@ MonoBehaviour:
       m_Action: Player Ability
       m_Flags: 0
     m_Flags: 0
-  alwaysBouncy: 0
+  cannonSFX: {fileID: 8300000, guid: da3599f0361bd40b9bfb367e0447f499, type: 3}
   iconUpdater: {fileID: 0}
 --- !u!114 &93492309397845367
 MonoBehaviour:
