@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-// Since all data in this script is saved across scenes, all 
+// Since all data in this script is saved across scenes, almost all 
 // variables are privitised and the getter/setter functions must be used.
 
 public enum Character
