@@ -3,8 +3,8 @@ guid: 7047e592c7bcb73269c92fe06b4b3a36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2641698482785147981
-    second: Group 1_0
+      213: -4177443141821611448
+    second: anglerfish_unlocked_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 1_0
+      name: anglerfish_unlocked_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4cd81616c239a420800000000000000
-      internalID: 2641698482785147981
+      spriteID: 842c456789db606c0800000000000000
+      internalID: -4177443141821611448
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Group 1_0: 2641698482785147981
+      anglerfish_unlocked_0: -4177443141821611448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

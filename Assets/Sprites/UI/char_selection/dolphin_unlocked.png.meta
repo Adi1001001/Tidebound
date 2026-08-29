@@ -3,8 +3,8 @@ guid: e30a8801e7fa3cd26b1bd4cc592bb059
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7175521830830924091
-    second: Group 2_0
+      213: -2389485960779645190
+    second: dolphin_unlocked_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 2_0
+      name: dolphin_unlocked_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b31ecbc6613949360800000000000000
-      internalID: 7175521830830924091
+      spriteID: afe32ffbd27d6ded0800000000000000
+      internalID: -2389485960779645190
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Group 2_0: 7175521830830924091
+      dolphin_unlocked_0: -2389485960779645190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
