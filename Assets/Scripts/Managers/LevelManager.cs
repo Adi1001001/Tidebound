@@ -140,4 +140,9 @@ public class LevelManager : MonoBehaviour {
         controlsUI.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene("Game Finished");
+    }
 }

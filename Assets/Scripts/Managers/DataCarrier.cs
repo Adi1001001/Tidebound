@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-// Since all data in this script is saved across scenes, all 
+// Since all data in this script is saved across scenes, almost all 
 // variables are privitised and the getter/setter functions must be used.
 
 public enum Character
@@ -34,9 +32,9 @@ public class DataCarrier : MonoBehaviour
     private int discoveryID = 0;
     private int cutsceneID = 0;
     private int tutorialID = 0;
-    private float masterVolume = 1;
-    private float bgVolume = 0.5f;
-    private float sfxVolume = 0.5f;
+    private float masterVolume = 1f;
+    private float bgVolume = 0.35f;
+    private float sfxVolume = 0.75f;
     private float[] bestTimes = new float[10];
 
     void Awake()

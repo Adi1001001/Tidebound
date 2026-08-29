@@ -39,12 +39,12 @@ public class RaceManager : MonoBehaviour
 
         RaceEndUI.SetActive(true);
         RaceUI.SetActive(false);
+        DataCarrier.Instance.SetBestTime(raceID, elapsedTime);
 
         if (!timerManager.failed) { // Can fail due to not reaching time gates fast enough
             successRaceResultText.gameObject.SetActive(true);
             failedRaceResultText.gameObject.SetActive(false);
             DataCarrier.Instance.UnlockProgress(raceID);
-            DataCarrier.Instance.SetBestTime(raceID, elapsedTime);
         } else {
             successRaceResultText.gameObject.SetActive(false);
             failedRaceResultText.gameObject.SetActive(true);
@@ -52,15 +52,15 @@ public class RaceManager : MonoBehaviour
 
         if (elapsedTime <= requiredTime && timerManager.failed)
         {
-            elapsedTimeText.text = elapsedTime.ToString()+" (Failed at time gate)";
+            elapsedTimeText.text = elapsedTime.ToString()+" seconds (Failed at time gate)";
         }
         else
         {
-            elapsedTimeText.text = elapsedTime.ToString();
+            elapsedTimeText.text = elapsedTime.ToString()+" seconds";
         }
-        requiredTimeText.text = requiredTime.ToString();
-        timeDifferenceText.text = Math.Round(Math.Abs(elapsedTime - requiredTime), 1).ToString();
-        topSpeedText.text = topSpeed.ToString();
+        requiredTimeText.text = requiredTime.ToString()+" seconds";
+        timeDifferenceText.text = Math.Round(Math.Abs(elapsedTime - requiredTime), 1).ToString()+" seconds";
+        topSpeedText.text = topSpeed.ToString()+" knots";
 
         float bestTime = DataCarrier.Instance.GetBestTime(raceID);
         if (bestTime == 0.0f)
@@ -72,7 +72,7 @@ public class RaceManager : MonoBehaviour
             bestTimeText.text = bestTime.ToString();
             if (elapsedTime == bestTime)
             {
-                bestTimeText.text += " (NEW BEST!)";
+                bestTimeText.text += " seconds (NEW BEST!)";
             }
         }
     }

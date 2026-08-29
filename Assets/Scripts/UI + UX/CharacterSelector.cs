@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,34 @@ public class CharacterSelector : MonoBehaviour {
     public Sprite[] lockedSprites;    
     private int currIndex = 0;
     void Start() {
-        SelectCharacter(0);
         Button defaultSelection = GameObject.Find("Anglerfish").GetComponent<Button>();
+        switch (DataCarrier.Instance.currentCharacter)
+        {
+            case Character.Anglerfish:
+            {
+                SelectCharacter(0);
+                defaultSelection = GameObject.Find("Anglerfish").GetComponent<Button>();
+                break;
+            }
+            case Character.Dolphin:
+            {
+                SelectCharacter(1);
+                defaultSelection = GameObject.Find("Dolphin").GetComponent<Button>();
+                break;
+            }
+            case Character.Swordfish:
+            {
+                SelectCharacter(2);
+                defaultSelection = GameObject.Find("Swordfish").GetComponent<Button>();
+                break;
+            }
+            case Character.Turtle:
+            {
+                SelectCharacter(3);
+                defaultSelection = GameObject.Find("Turtle").GetComponent<Button>();
+                break;
+            }
+        }
         defaultSelection.Select();
         LockCharacters();
     }

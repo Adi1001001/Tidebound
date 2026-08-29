@@ -10,6 +10,11 @@ public class OverworldSpawn : MonoBehaviour
             return;
         }
 
+        if (DataCarrier.Instance.GetProgress() >= 10)
+        {
+            LevelManager.Instance.EndGame();
+        }
+
         SaveZone[] saveZones = FindObjectsByType<SaveZone>();
 
         foreach (SaveZone zone in saveZones)

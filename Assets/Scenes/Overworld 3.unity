@@ -462,6 +462,10 @@ PrefabInstance:
     - target: {fileID: 6590120592370630139, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 327004222}
+    - target: {fileID: 6590120592370630139, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 8158902917648590401, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
       propertyPath: m_Pivot.x
@@ -559,6 +563,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb8aa957ffe34e8a8c54c9435aa700b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IconUpdater
+--- !u!114 &327004222 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 718907093427894433, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
+  m_PrefabInstance: {fileID: 327004220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89664729704e4c4c990588441f32ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonControls
 --- !u!114 &327004225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1083138072849770983, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}

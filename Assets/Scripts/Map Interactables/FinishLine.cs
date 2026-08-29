@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour {
     private RaceManager raceManager;
-    CircleCollider2D circleCollider;
+    BoxCollider2D boxCollider;
 
     void Start() {
         raceManager = FindAnyObjectByType<RaceManager>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         Bounds bounds = sr.sprite.bounds; // Local-space bounds of the sprite
 
         // Radius that encloses the entire sprite
-        circleCollider.radius = Mathf.Max(bounds.extents.x, bounds.extents.y);
+        boxCollider.size = bounds.size;
 
         // Center the collider on the sprite
-        circleCollider.offset = bounds.center;
+        boxCollider.offset = bounds.center;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
             raceManager.FinishRace();
         }
-        circleCollider.enabled = false;
+        boxCollider.enabled = false;
     }
 }
