@@ -68,19 +68,11 @@ public class PlayerActionManager : MonoBehaviour
             return;
         }
 
-        if (GameStateManager.Instance.IsGameplayFrozen())
-        {
-            Debug.Log("Cannot use ability, game not in playing/racing state");
-            return;
-        }
+        if (GameStateManager.Instance.IsGameplayFrozen()) {return;}
 
         if (ability != null)
         {
             ability.UseAbility();
-        }
-        else
-        {
-            Debug.LogWarning("AbilityManager not found in the scene.");
         }
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
     public static LevelManager Instance { get; private set; }
@@ -8,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject volumeUI;
     public GameObject controlsUI;
     private float prevTimeScale;
+    
     void Awake() {
         if (Instance != null && Instance != this) { 
             Destroy(gameObject);
@@ -16,6 +18,7 @@ public class LevelManager : MonoBehaviour {
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
     public void UpdateUIReferences(GameObject pausePanel, GameObject racePanel, GameObject volumePanel, 
     GameObject controlsPanel) {
         pauseMenuUI = pausePanel;
@@ -56,7 +59,7 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene("Character Select");
     }
     public void ToMainMenu() 
-    { // going back to the main menu without losing all of the save data.
+    { 
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.MainMenu);
         SceneManager.LoadScene("Main Menu");
     }
@@ -64,12 +67,9 @@ public class LevelManager : MonoBehaviour {
     {
         string raceTag = DataCarrier.Instance.nextRaceTag;
         SceneManager.LoadScene(raceTag);
-        // raceManager = FindFirstObjectByType<RaceManager>();
-        // raceManager.StartRace();
     }
     public void LoadSceneByName(string sceneName) 
     {
-        Debug.Log("LOADING SCENE: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
     public void PauseGame() 
@@ -86,17 +86,44 @@ public class LevelManager : MonoBehaviour {
     public void ResumeGame() 
     {
         // Accounting for if game time was running slower than normal when paused.
-       Time.timeScale = prevTimeScale;
+        Time.timeScale = prevTimeScale;
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
         pauseMenuUI.SetActive(false);
-        if (volumeUI != null) volumeUI.SetActive(false);
-        if (controlsUI != null) controlsUI.SetActive(false);
+        if (volumeUI != null) 
+        {
+            volumeUI.SetActive(false);
+        }
+        if (controlsUI != null)
+        {
+            controlsUI.SetActive(false);
+        }
         raceUI.SetActive(true);
     }
     public void OpenVolumeSettings() 
     {
         volumeUI.SetActive(true);
+        Slider masterSlider = volumeUI.transform.Find("Master Slider").GetComponent<Slider>();
+        Slider bgSlider = volumeUI.transform.Find("BG Slider").GetComponent<Slider>();
+        Slider sfxSlider = volumeUI.transform.Find("SFX Slider").GetComponent<Slider>();
+        masterSlider.value = DataCarrier.Instance.GetVolume(Volume.Master);
+        bgSlider.value = DataCarrier.Instance.GetVolume(Volume.BG);
+        sfxSlider.value = DataCarrier.Instance.GetVolume(Volume.SFX);
         pauseMenuUI.SetActive(false);
+    }
+
+    public void ChangeVolumeSetings(Volume volType, float newVol)
+    {
+        DataCarrier.Instance.SetVolume(volType, newVol);
+        GameObject bgAudioManager = GameObject.Find("BG_AudioManager");
+        GameObject SFXManager = GameObject.Find("SFX Managers");
+        if (bgAudioManager != null)
+        {
+            bgAudioManager.GetComponent<BGTrackPlayer>().UpdateVolume();
+        }
+        if (SFXManager != null)
+        {
+            SFXManager.GetComponent<SFXPlayer>().UpdateVolume();
+        }
     }
     public void CloseVolumeSettings() 
     {

@@ -156,9 +156,5 @@ public class IconUpdater : MonoBehaviour
         {
             buttonIcon.sprite = sprite;
         }
-        else
-        {
-            Debug.LogWarning("No sprite found for icon type: " + type);
-        }
     }
 }

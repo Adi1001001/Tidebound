@@ -437,11 +437,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1602465704508404843, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 2123319325522880760, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854969587523899254, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3297975953551515927, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

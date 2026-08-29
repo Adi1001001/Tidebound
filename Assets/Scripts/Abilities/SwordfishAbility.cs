@@ -22,7 +22,6 @@ public class SwordfishAbility : Ability
 
     protected override IEnumerator AbilityRoutine()
     {
-        Debug.Log("Swordfish ability activated");
         if (gameTimer != null)
         {
             gameTimer.slowFactor = slowFactor;

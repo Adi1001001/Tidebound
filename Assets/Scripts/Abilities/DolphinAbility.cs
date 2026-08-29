@@ -42,7 +42,6 @@ public class DolphinAbility : Ability
 
     protected override IEnumerator AbilityRoutine()
     {
-        Debug.Log("Dolphin ability activated");
         playerController.accelForce *= abilityBuff;
         playerController.highSpeed *= abilityBuff; 
 

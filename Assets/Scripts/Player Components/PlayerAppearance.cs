@@ -71,8 +71,6 @@ public class PlayerAppearance : MonoBehaviour
                 return;
             }
         }
-
-        Debug.LogWarning($"No sprite assigned for character {current}.");
     }
 
     public void StartAirborneEffect(float duration, Vector2 launchDirection, float launchStrength)

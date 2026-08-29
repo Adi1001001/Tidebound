@@ -32,7 +32,6 @@ public class TurtleAbility : Ability
 
     protected override IEnumerator AbilityRoutine()
     {
-        Debug.Log("Turtle ability activated");
         Rigidbody2D playerRb = GetComponent<Rigidbody2D>();
         // If the player is not moving, give them a small bit of speed so the ability can be effective
         if (playerRb.linearVelocity.magnitude < 0.1f)

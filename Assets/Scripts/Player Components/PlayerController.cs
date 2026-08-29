@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour
         retryLevel.Disable();
     }
     public void OnPause() {
-        Debug.Log("Pause triggered");
         GameStateManager.GameStates currentGameState = GameStateManager.Instance.GetGameState();
 
         if (currentGameState == GameStateManager.GameStates.Paused) {
