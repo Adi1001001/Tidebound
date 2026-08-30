@@ -18,7 +18,6 @@ public class SpriteLoader : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         StartCoroutine(TrySetSprite());
     }
 
@@ -41,9 +40,7 @@ public class SpriteLoader : MonoBehaviour
             if (biomeSprite.biomeNum == currentBiome)
             {
                 spriteRenderer.sprite = biomeSprite.sprite;
-
                 ResizeCollider();
-
                 return;
             }
         }
@@ -52,7 +49,9 @@ public class SpriteLoader : MonoBehaviour
     private void ResizeCollider()
     {
         if (spriteRenderer == null || spriteRenderer.sprite == null)
+        {
             return;
+        }
 
         bool isSliced = spriteRenderer.drawMode == SpriteDrawMode.Sliced;
 
@@ -61,22 +60,14 @@ public class SpriteLoader : MonoBehaviour
 
         if (isSliced)
         {
-            // Sliced sprites use the actual rendered size
             size = spriteRenderer.size;
-
-            // Sprite pivot/centre
             offset = spriteRenderer.sprite.bounds.center;
         }
         else
         {
-            // Simple sprites use their actual sprite bounds
             size = spriteRenderer.sprite.bounds.size;
             offset = spriteRenderer.sprite.bounds.center;
         }
-
-        // -------------------------
-        // BOX COLLIDER
-        // -------------------------
 
         BoxCollider2D box = GetComponent<BoxCollider2D>();
 
@@ -86,10 +77,6 @@ public class SpriteLoader : MonoBehaviour
             box.size = size;
         }
 
-        // -------------------------
-        // CIRCLE COLLIDER
-        // -------------------------
-
         CircleCollider2D circle = GetComponent<CircleCollider2D>();
 
         if (circle != null)
@@ -97,13 +84,8 @@ public class SpriteLoader : MonoBehaviour
             circle.offset = offset;
 
             float diameter = Mathf.Min(size.x, size.y);
-
             circle.radius = diameter / 2f;
         }
-
-        // -------------------------
-        // CAPSULE COLLIDER
-        // -------------------------
 
         CapsuleCollider2D capsule = GetComponent<CapsuleCollider2D>();
 
@@ -113,10 +95,6 @@ public class SpriteLoader : MonoBehaviour
             capsule.size = size;
         }
 
-        // -------------------------
-        // POLYGON COLLIDER
-        // -------------------------
-
         PolygonCollider2D polygon = GetComponent<PolygonCollider2D>();
 
         if (polygon != null)
@@ -125,22 +103,19 @@ public class SpriteLoader : MonoBehaviour
         }
     }
 
-    private void ResizePolygonCollider(
-        PolygonCollider2D polygon,
-        bool isSliced,
-        Vector2 targetSize)
+    private void ResizePolygonCollider(PolygonCollider2D polygon, bool isSliced, Vector2 targetSize)
     {
         Sprite sprite = spriteRenderer.sprite;
-
         int pathCount = sprite.GetPhysicsShapeCount();
 
         if (pathCount == 0)
+        {
             return;
+        }
 
         polygon.pathCount = pathCount;
 
         Vector2 originalSize = sprite.bounds.size;
-
         float scaleX = targetSize.x / originalSize.x;
         float scaleY = targetSize.y / originalSize.y;
 
