@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b663919643e56783fb3f46e52c1b8bb8
+guid: 2cf48d3b3acb8339783bc7b83decf42e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -556663896244417668
-    second: Group 3_0
+      213: -7139563919611653147
+    second: swordfish_unlocked 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 3_0
+      name: swordfish_unlocked 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7b011db2255648f0800000000000000
-      internalID: -556663896244417668
+      spriteID: 5e31a50317c2bec90800000000000000
+      internalID: -7139563919611653147
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Group 3_0: -556663896244417668
+      swordfish_unlocked 1_0: -7139563919611653147
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
