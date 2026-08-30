@@ -1038,10 +1038,10 @@ MonoBehaviour:
   - {fileID: 160376398}
   - {fileID: 1494175499}
   unlockedSprites:
-  - {fileID: 2641698482785147981, guid: 7047e592c7bcb73269c92fe06b4b3a36, type: 3}
-  - {fileID: 7175521830830924091, guid: e30a8801e7fa3cd26b1bd4cc592bb059, type: 3}
-  - {fileID: -556663896244417668, guid: b663919643e56783fb3f46e52c1b8bb8, type: 3}
-  - {fileID: -26329759613171845, guid: 3b46a8de36841484bb1ee4a8c32be272, type: 3}
+  - {fileID: -4177443141821611448, guid: 7047e592c7bcb73269c92fe06b4b3a36, type: 3}
+  - {fileID: -2389485960779645190, guid: e30a8801e7fa3cd26b1bd4cc592bb059, type: 3}
+  - {fileID: -7139563919611653147, guid: 2cf48d3b3acb8339783bc7b83decf42e, type: 3}
+  - {fileID: -974175894196818709, guid: 3b46a8de36841484bb1ee4a8c32be272, type: 3}
   selectedSprites:
   - {fileID: 1331818912538681268, guid: ada76474d5cfdb48695fbd8099684cf3, type: 3}
   - {fileID: -2047118766126016225, guid: ea3b6027e20df15118ba11f3e230d8f7, type: 3}
