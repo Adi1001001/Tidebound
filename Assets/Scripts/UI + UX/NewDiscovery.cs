@@ -22,9 +22,10 @@ public class NewDiscovery : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (DataCarrier.Instance.GetDiscoveryID() >= discoveryID) { return; }
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.NPC) {return;}
 
         DataCarrier.Instance.SetDiscoveryID(discoveryID);
         StartCoroutine(PlayUISequence());

@@ -1026,6 +1026,147 @@ Transform:
   - {fileID: 1340624655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &944689352
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3143718142412516773, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_Name
+      value: Cutscene 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143718142412516773, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: cutsceneID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[0].text
+      value: Welcome.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].text
+      value: You must have some resilience to have made it here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[2].text
+      value: Good work.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[3].text
+      value: But the most brutal trials are to come.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[4].text
+      value: In the deep sea trenches.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].text
+      value: You need to beat all these trials if you want to be the next Max Ver-splashin.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].text
+      value: What are you waiting for?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[7].text
+      value: You'll need more urgency than that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[0].textName
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraCoords.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraCoords.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraMoveTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraCoords.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraCoords.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraMoveTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraCoords.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraCoords.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraMoveTime
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
 --- !u!1 &1043732360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1272,63 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.84513, y: -0.24212, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085237716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5531832015224607569, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
+  m_PrefabInstance: {fileID: 327004220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1187820986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1187820988}
+  - component: {fileID: 1187820987}
+  m_Layer: 0
+  m_Name: CutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1187820987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187820986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1e03da8381e403486ed8bfd3661d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
+  dialogueText: {fileID: 1085237716}
+  skipText: {fileID: 1341919166}
+--- !u!4 &1187820988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187820986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.65474, y: -8.12563, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1457,6 +1655,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6842173263857464994, guid: 7517605abd5c3472180b7861244d1db4, type: 3}
   m_PrefabInstance: {fileID: 1340624654}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1341919166 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5136598282075443050, guid: 55ebe49e3d3d4413bbe265078fe5ec68, type: 3}
+  m_PrefabInstance: {fileID: 327004220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1353471507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1624,6 +1833,147 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a4a9cc8f64914d808ce12bb3a76fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStates
+--- !u!1001 &1750912780
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3143718142412516773, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_Name
+      value: Cutscene 4 (FINALE)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143718142412516773, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734218204071792232, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: cutsceneID
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[0].text
+      value: This is it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].text
+      value: The FINALE.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[2].text
+      value: You have the skills.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[3].text
+      value: Now you just need to prove yourself.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[4].text
+      value: Good luck.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].text
+      value: You need to beat all these trials if you want to be the next Max Ver-splashin.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].text
+      value: What are you waiting for?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[7].text
+      value: You'll need more urgency than that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[0].textName
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraCoords.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraCoords.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[1].cameraMoveTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraCoords.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraCoords.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[5].cameraMoveTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraCoords.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraCoords.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
+      propertyPath: frames.Array.data[6].cameraMoveTime
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
 --- !u!1001 &1840354420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2108,6 +2458,7 @@ SceneRoots:
   - {fileID: 410959071}
   - {fileID: 845338704}
   - {fileID: 1685363262}
+  - {fileID: 1187820988}
   - {fileID: 1353471507}
   - {fileID: 1068543456}
   - {fileID: 1339745021}
@@ -2119,3 +2470,5 @@ SceneRoots:
   - {fileID: 835794257}
   - {fileID: 342327097}
   - {fileID: 865886981}
+  - {fileID: 944689352}
+  - {fileID: 1750912780}
