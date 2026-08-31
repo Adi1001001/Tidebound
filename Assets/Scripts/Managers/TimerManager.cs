@@ -70,9 +70,12 @@ public class TimerManager : MonoBehaviour
 
         float elapsed = (requiredTime - elapsedTime) / initialTime;
 
-        if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish)
+        if (DataCarrier.Instance != null && ability != null && timerDisplay != null)
         {
-            timerDisplay.color = Color.white;
+            if (ability.onAbility && DataCarrier.Instance.GetCharacter() == Character.Swordfish)
+            {
+                timerDisplay.color = Color.white;
+            }
         }
         else if (elapsed <= 0.1f)
         {
