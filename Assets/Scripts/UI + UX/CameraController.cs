@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour {
     public float smoothSpeed = 5.0f;
     public float shakeIntensity = 0.07f;
     // FOV Zoom variables
-    public float normalFOV = 70f;
+    private float normalFOV = 75f;
     public bool stickToPlayer = true;
 
     void Start() {

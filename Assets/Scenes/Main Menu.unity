@@ -469,6 +469,7 @@ MonoBehaviour:
   racePanel: {fileID: 0}
   volumePanel: {fileID: 481736331}
   controlsPanel: {fileID: 751644440}
+  cheatPanel: {fileID: 0}
 --- !u!1 &168196041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4144,8 +4145,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1354105911802705130, guid: 3063c1686267f4514a351857a5a0044b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

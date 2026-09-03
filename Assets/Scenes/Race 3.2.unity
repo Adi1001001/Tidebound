@@ -2702,7 +2702,7 @@ MonoBehaviour:
   timerDisplay: {fileID: 923735682}
   addedTimeDisplay: {fileID: 923735683}
   countdownDisplay: {fileID: 923735681}
-  initialTime: 20
+  initialTime: 25
   slowFactor: 1
   failed: 0
 --- !u!4 &1075734965
@@ -3814,7 +3814,6 @@ MonoBehaviour:
   smoothSpeed: 5
   shakeIntensity: 0.07
   normalFOV: 70
-  abilityFOV: 90
   stickToPlayer: 1
 --- !u!114 &1632915216
 MonoBehaviour:
