@@ -167,7 +167,7 @@ public class LevelManager : MonoBehaviour {
 
     public void SetNewCheatPoint(int newPoint)
     {
-        DataCarrier.Instance.UnlockProgress(newPoint);
+        DataCarrier.Instance.UnlockProgress(newPoint-1);
         DataCarrier.Instance.SetSaveZone(newPoint);
         if (1 <= newPoint && newPoint <= 3)
         {
