@@ -8,7 +8,9 @@ public class LevelManager : MonoBehaviour {
     public GameObject raceUI;
     public GameObject volumeUI;
     public GameObject controlsUI;
+    public GameObject cheatUI;
     private float prevTimeScale;
+    private GameStateManager.GameStates prevGameState;
     
     void Awake() {
         if (Instance != null && Instance != this) { 
@@ -20,11 +22,12 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void UpdateUIReferences(GameObject pausePanel, GameObject racePanel, GameObject volumePanel, 
-    GameObject controlsPanel) {
+    GameObject controlsPanel, GameObject cheatPanel) {
         pauseMenuUI = pausePanel;
         volumeUI = volumePanel;
         controlsUI = controlsPanel;
         raceUI = racePanel;
+        cheatUI = cheatPanel;
     }
     public void QuitGame() 
     { 
@@ -79,15 +82,15 @@ public class LevelManager : MonoBehaviour {
 
         prevTimeScale = Time.timeScale;
         Time.timeScale = 0f;
+        prevGameState = GameStateManager.Instance.GetGameState();
         GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Paused);
         pauseMenuUI.SetActive(true);
         raceUI.SetActive(false);
     }
     public void ResumeGame() 
     {
-        // Accounting for if game time was running slower than normal when paused.
         Time.timeScale = prevTimeScale;
-        GameStateManager.Instance.SetGameState(GameStateManager.GameStates.Playing);
+        GameStateManager.Instance.SetGameState(prevGameState);
         pauseMenuUI.SetActive(false);
         if (volumeUI != null) 
         {
@@ -96,6 +99,10 @@ public class LevelManager : MonoBehaviour {
         if (controlsUI != null)
         {
             controlsUI.SetActive(false);
+        }
+        if (cheatUI != null)
+        {
+            cheatUI.SetActive(false);
         }
         raceUI.SetActive(true);
     }
@@ -144,5 +151,36 @@ public class LevelManager : MonoBehaviour {
     public void EndGame()
     {
         SceneManager.LoadScene("Game Finished");
+    }
+
+    public void OpenCheats()
+    {
+        cheatUI.SetActive(true);
+        raceUI.SetActive(false);
+    }
+
+    public void CloseCheats()
+    {
+        cheatUI.SetActive(false);
+        raceUI.SetActive(true);
+    }
+
+    public void SetNewCheatPoint(int newPoint)
+    {
+        DataCarrier.Instance.UnlockProgress(newPoint-1);
+        DataCarrier.Instance.SetSaveZone(newPoint);
+        if (1 <= newPoint && newPoint <= 3)
+        {
+            DataCarrier.Instance.SetBiomeNum(1);
+        }
+        else if (4 <= newPoint && newPoint <= 6)
+        {
+            DataCarrier.Instance.SetBiomeNum(2);
+        }
+        else if (7 <= newPoint && newPoint <= 10)
+        {
+            DataCarrier.Instance.SetBiomeNum(3);
+        }
+        ToOverworld();
     }
 }

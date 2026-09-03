@@ -83,7 +83,8 @@ public class DataCarrier : MonoBehaviour
         }
     }
 
-    public int GetProgress() {
+    public int GetProgress() 
+    {
         return overworldProgress;
     }
 

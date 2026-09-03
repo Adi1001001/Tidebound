@@ -60,6 +60,7 @@
     <Compile Include="Assets/Scripts/Managers/CutsceneManager.cs" />
     <Compile Include="Assets/Scripts/Abilities/DolphinAbility.cs" />
     <Compile Include="Assets/Scripts/Managers/LevelManager.cs" />
+    <Compile Include="Assets/Scripts/UI + UX/ForceAspectRatio.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Current.cs" />
     <Compile Include="Assets/Scripts/Map Interactables/Lilypad.cs" />
     <Compile Include="Assets/Scripts/Managers/DataCarrier.cs" />

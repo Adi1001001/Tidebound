@@ -4,26 +4,25 @@ public class CameraController : MonoBehaviour {
     private Camera cam;
     private Transform playerTransform;
     private PlayerController playerController;
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // Offset from the playerTransform
+    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); 
     public float leadAmount = 1.5f;
     public float smoothSpeed = 5.0f;
     public float shakeIntensity = 0.07f;
     // FOV Zoom variables
-    public float normalFOV = 70f;
-    public float abilityFOV = 90f;
+    private float normalFOV = 75f;
     public bool stickToPlayer = true;
 
     void Start() {
         if (playerTransform == null) {
             playerController = FindAnyObjectByType<PlayerController>();
-            playerTransform = playerController.transform; // finding the player
+            playerTransform = playerController.transform; 
         }
         cam = GetComponent<Camera>();
         cam.fieldOfView = normalFOV;
     }
 
     void LateUpdate() { // this function happens after all the other update calls
-        if (playerTransform == null) return; // fallback if player is still not assigned
+        if (playerTransform == null) return;
 
         if (stickToPlayer)
         {

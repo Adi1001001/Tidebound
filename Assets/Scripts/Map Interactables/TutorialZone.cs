@@ -41,7 +41,8 @@ public class TutorialZone : MonoBehaviour
 
     void TryStartTutorial()
     {
-        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.NPC)
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.NPC || 
+        GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Paused)
         {
             HideTutorial();
             return;

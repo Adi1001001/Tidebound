@@ -9287,7 +9287,6 @@ MonoBehaviour:
   smoothSpeed: 5
   shakeIntensity: 0.07
   normalFOV: 70
-  abilityFOV: 90
   stickToPlayer: 1
 --- !u!4 &1349780381 stripped
 Transform:
@@ -16664,7 +16663,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
       propertyPath: frames.Array.data[3].text
-      value: Anyways, you are obviously here to be the next fish champion, right?
+      value: Anyways, you are obviously here to be the next Formula Current champion,
+        right?
       objectReference: {fileID: 0}
     - target: {fileID: 6113766745128219339, guid: f3482ec7ac2714a5486faf98a0368822, type: 3}
       propertyPath: frames.Array.data[4].text

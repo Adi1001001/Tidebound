@@ -4406,6 +4406,7 @@ MonoBehaviour:
   racePanel: {fileID: 7229790816850871005}
   volumePanel: {fileID: 0}
   controlsPanel: {fileID: 7716075399816475392}
+  cheatPanel: {fileID: 0}
 --- !u!1 &7174276874010209425
 GameObject:
   m_ObjectHideFlags: 0
