@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Linq.Expressions;
 
 public class TimerManager : MonoBehaviour
 {
@@ -24,13 +25,27 @@ public class TimerManager : MonoBehaviour
 
     private Coroutine addedTimeCoroutine;
     private Vector2 addedTimeOriginalPos;
+    private bool initialised = false;
     [HideInInspector] public bool failed = false;
 
-    void Start()
+    IEnumerator Start()
     {
-        player = GameObject.FindWithTag("Player");
+        yield return new WaitUntil(() => DataCarrier.Instance != null);
+
+        yield return new WaitUntil(() =>
+        {
+            player = GameObject.FindWithTag("Player");
+            return player != null;
+        });
+
         playerController = player.GetComponent<PlayerController>();
+
+        yield return new WaitUntil(() => playerController != null);
+
         ability = playerController.GetComponent<Ability>();
+
+        yield return new WaitUntil(() => ability != null);
+
         requiredTime = initialTime;
         totalTime = initialTime;
 
@@ -39,10 +54,13 @@ public class TimerManager : MonoBehaviour
             addedTimeOriginalPos = addedTimeDisplay.rectTransform.anchoredPosition;
             ResetAddedTimeDisplay();
         }
+        
+        initialised = true;
     }
 
     void Update()
     {
+        if (!initialised) {return;}
         if (GameStateManager.Instance.GetGameState() != GameStateManager.GameStates.Countdown)
         {
             elapsedTime += Time.deltaTime * slowFactor;
