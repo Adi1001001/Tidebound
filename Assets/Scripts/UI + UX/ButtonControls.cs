@@ -76,4 +76,9 @@ public class ButtonControls : MonoBehaviour {
     public void CloseControls() {
         LevelManager.Instance.CloseControls();
     }
+
+    public void ActivateCheat(int newPoint)
+    {
+        LevelManager.Instance.SetNewCheatPoint(newPoint);
+    }
 }

@@ -76,20 +76,19 @@ public class TimerManager : MonoBehaviour
             {
                 timerDisplay.color = Color.white;
             }
+            else if (elapsed <= 0.1f)
+            {
+                timerDisplay.color = Color.red;
+            }
+            else if (elapsed <= 0.25f)
+            {
+                timerDisplay.color = Color.yellow;
+            }
+            else
+            {
+                timerDisplay.color = Color.green;
+            }
         }
-        else if (elapsed <= 0.1f)
-        {
-            timerDisplay.color = Color.red;
-        }
-        else if (elapsed <= 0.25f)
-        {
-            timerDisplay.color = Color.yellow;
-        }
-        else
-        {
-            timerDisplay.color = Color.green;
-        }
-
         if (minutes > 0)
         {
             timerDisplay.text = string.Format("{0}:{1:00}.{2}", minutes, seconds, tenths);

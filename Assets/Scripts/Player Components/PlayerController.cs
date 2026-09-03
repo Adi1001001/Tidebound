@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     public InputAction playerMovement;
     public InputAction playerPause;
-    public InputAction tempCountdown;
-    public InputAction retryLevel;
+    public InputAction cheatCode;
     // public InputAction enterRace;
     public float driftFactor = 0.8f; // How much sideways "slide" to keep (0.9 = slippery, 0.1 = sharp)
     public float accelForce = 25f;
@@ -38,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start() {
         playerRb = GetComponent<Rigidbody2D>();
         playerPause.performed += ctx => OnPause();
-        retryLevel.performed += ctx => LevelManager.Instance.RestartRace();
+        cheatCode.performed += ctx => ActivateCheatCode();
         GameStateManager.Instance.SetPlayerState(GameStateManager.PlayerStates.Normal);
     }
 
@@ -106,22 +105,31 @@ public class PlayerController : MonoBehaviour
     void OnEnable() {
         playerMovement.Enable();
         playerPause.Enable();
-        tempCountdown.Enable();
-        retryLevel.Enable();
+        cheatCode.Enable();
     } 
     void OnDisable() {
         playerMovement.Disable();
         playerPause.Disable();
-        tempCountdown.Disable();
-        retryLevel.Disable();
+        cheatCode.Disable();
     }
     public void OnPause() {
         GameStateManager.GameStates currentGameState = GameStateManager.Instance.GetGameState();
 
-        if (currentGameState == GameStateManager.GameStates.Paused) {
+        if (currentGameState == GameStateManager.GameStates.Paused) 
+        {
             LevelManager.Instance.ResumeGame();
-        } else {
+        } 
+        else 
+        {
             LevelManager.Instance.PauseGame();
+        }
+    }
+
+    public void ActivateCheatCode()
+    {
+        if (GameStateManager.Instance.GetGameState() == GameStateManager.GameStates.Playing)
+        {
+            LevelManager.Instance.OpenCheats();
         }
     }
     void ApplyRotation()

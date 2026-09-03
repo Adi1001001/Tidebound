@@ -9287,7 +9287,6 @@ MonoBehaviour:
   smoothSpeed: 5
   shakeIntensity: 0.07
   normalFOV: 70
-  abilityFOV: 90
   stickToPlayer: 1
 --- !u!4 &1349780381 stripped
 Transform:
