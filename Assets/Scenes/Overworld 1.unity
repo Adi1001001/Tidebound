@@ -9145,6 +9145,7 @@ GameObject:
   - component: {fileID: 1339745019}
   - component: {fileID: 1339745022}
   - component: {fileID: 1339745023}
+  - component: {fileID: 1339745024}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9286,8 +9287,19 @@ MonoBehaviour:
   leadAmount: 1.5
   smoothSpeed: 5
   shakeIntensity: 0.07
-  normalFOV: 70
   stickToPlayer: 1
+--- !u!114 &1339745024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339745018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c56ff067404497191ddd90c2c28dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForceAspectRatio
 --- !u!4 &1349780381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3602482893572469342, guid: 7137d43183b694cd3aaabe2eeca4e2dd, type: 3}
