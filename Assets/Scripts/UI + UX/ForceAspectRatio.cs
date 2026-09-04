@@ -2,37 +2,76 @@ using UnityEngine;
 
 public class ForceAspectRatio : MonoBehaviour
 {
+    private const float TargetAspect = 16f / 9f;
+
+    private float resizeDelay = 0.15f;
+    private float resizeTimer;
+
+    private int lastWidth;
+    private int lastHeight;
+
     void Start()
     {
-        float targetAspect = 16.0f / 9.0f;
-        float windowAspect = (float)Screen.width / (float)Screen.height;
-        float scaleHeight = windowAspect / targetAspect;
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+    }
 
-        Camera camera = GetComponent<Camera>();
+    void Update()
+    {
+        int width = Screen.width;
+        int height = Screen.height;
 
-        if (scaleHeight < 1.0f)
-        {  
-            Rect rect = camera.rect;
+        // Window hasn't changed.
+        if (width == lastWidth && height == lastHeight)
+            return;
 
-            rect.width = 1.0f;
-            rect.height = scaleHeight;
-            rect.x = 0;
-            rect.y = (1.0f - scaleHeight) / 2.0f;
-            
-            camera.rect = rect;
-        }
-        else 
+        // Window is currently being resized.
+        lastWidth = width;
+        lastHeight = height;
+
+        // Reset the timer every time the window changes.
+        resizeTimer = resizeDelay;
+    }
+
+    void LateUpdate()
+    {
+        if (resizeTimer <= 0)
+            return;
+
+        resizeTimer -= Time.unscaledDeltaTime;
+
+        // Wait until resizing has stopped.
+        if (resizeTimer > 0)
+            return;
+
+        int width = Screen.width;
+        int height = Screen.height;
+
+        float aspect = (float)width / height;
+
+        if (Mathf.Approximately(aspect, TargetAspect))
+            return;
+
+        int newWidth;
+        int newHeight;
+
+        if (aspect > TargetAspect)
         {
-            float scaleWidth = 1.0f / scaleHeight;
-
-            Rect rect = camera.rect;
-
-            rect.width = scaleWidth;
-            rect.height = 1.0f;
-            rect.x = (1.0f - scaleWidth) / 2.0f;
-            rect.y = 0;
-
-            camera.rect = rect;
+            // Too wide → reduce width.
+            newHeight = height;
+            newWidth = Mathf.RoundToInt(height * TargetAspect);
         }
+        else
+        {
+            // Too tall → reduce height.
+            newWidth = width;
+            newHeight = Mathf.RoundToInt(width / TargetAspect);
+        }
+
+        Screen.SetResolution(
+            newWidth,
+            newHeight,
+            FullScreenMode.Windowed
+        );
     }
 }
